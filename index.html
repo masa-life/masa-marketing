@@ -21,23 +21,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&display=swap"
     />
     <style>
       :root {
         --slate-warm: #4a4e5a;
         --slate-soft: #64748b;
-        --warm-mist: #f3efea;
-        --soft-taupe: #d8d4ce;
-        --ink: #2c2f36;
-        --muted: #6b6358;
-        --max-width: 720px;
+        --warm-mist: #f6f3ef;
+        --paper: #fbf9f6;
+        --soft-taupe: #e2ddd5;
+        --ink: #33363d;
+        --muted: #6f6a62;
       }
 
       * { box-sizing: border-box; }
 
-      html { scroll-behavior: smooth; }
-      html, body { min-height: 100%; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
       body {
         margin: 0;
@@ -45,168 +44,183 @@
         color: var(--ink);
         font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         font-size: 16px;
-        line-height: 1.6;
+        line-height: 1.65;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
       }
 
-      a {
-        color: var(--slate-warm);
-        text-decoration: none;
-        border-bottom: 1px solid rgba(74, 78, 90, 0.3);
-        padding-bottom: 1px;
-        transition: border-bottom-color 150ms ease;
-      }
-      a:hover, a:focus { border-bottom-color: var(--slate-warm); }
+      a { color: var(--slate-warm); text-decoration: none; }
+      a:not(.cta) { border-bottom: 1px solid rgba(74, 78, 90, 0.25); }
+      a:not(.cta):hover { border-bottom-color: var(--slate-warm); }
 
       h1, h2, h3 {
         font-family: "Cormorant Garamond", Georgia, serif;
         font-weight: 500;
         color: var(--slate-warm);
         line-height: 1.15;
-        margin: 0 0 1rem;
-      }
-      h1 { font-size: clamp(2.75rem, 7vw, 4rem); }
-      h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); }
-      h3 { font-size: 1.25rem; font-weight: 600; }
-
-      p { margin: 0 0 1rem; color: var(--muted); }
-      p:last-child { margin-bottom: 0; }
-
-      .container {
-        width: min(100% - 3rem, var(--max-width));
-        margin: 0 auto;
+        margin: 0;
       }
 
-      header {
-        padding: 4rem 0 3rem;
+      p { margin: 0; color: var(--muted); }
+
+      .wrap {
+        width: min(100% - 2.5rem, 62rem);
+        margin-inline: auto;
+      }
+
+      /* ---------- hero ---------- */
+
+      .hero {
         text-align: center;
+        padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5.5rem);
       }
 
-      .logo {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        display: block;
+      .logo { width: 68px; height: 68px; display: block; margin: 0 auto 1.75rem; }
+
+      .eyebrow {
+        font-size: 0.6875rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--slate-soft);
       }
 
       .wordmark {
         font-family: "Cormorant Garamond", Georgia, serif;
-        font-size: clamp(3rem, 9vw, 4.5rem);
+        font-size: clamp(3.75rem, 12vw, 6rem);
         font-weight: 500;
         color: var(--slate-warm);
-        line-height: 1;
-        letter-spacing: -0.01em;
-        margin: 0 0 1.25rem;
+        line-height: 0.95;
+        letter-spacing: -0.015em;
+        margin: 0.75rem 0 1.5rem;
       }
 
       .tagline {
-        font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-        color: var(--muted);
-        max-width: 34rem;
-        margin: 0 auto 2rem;
-      }
-
-      .company-line {
-        font-size: 0.8125rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--slate-soft);
-        margin-bottom: 2.5rem;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(1.5rem, 3.6vw, 2.125rem);
+        line-height: 1.35;
+        color: var(--ink);
+        max-width: 26ch;
+        margin: 0 auto 2.5rem;
       }
 
       .cta {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
         gap: 0.5rem;
         background: var(--slate-warm);
-        color: var(--warm-mist);
-        padding: 0.875rem 1.75rem;
+        color: var(--paper);
+        padding: 0.8125rem 1.875rem;
         border-radius: 999px;
         font-size: 0.9375rem;
-        font-weight: 500;
         border: 1px solid var(--slate-warm);
-        cursor: pointer;
-        transition: background 150ms ease, color 150ms ease;
+        transition: background 160ms ease, color 160ms ease;
       }
-      .cta:hover, .cta:focus { background: transparent; color: var(--slate-warm); }
+      .cta:hover { background: transparent; color: var(--slate-warm); }
 
-      section {
-        padding: 3rem 0;
-        border-top: 1px solid var(--soft-taupe);
+      .rule {
+        height: 1px;
+        background: var(--soft-taupe);
+        border: 0;
+        margin: 0;
       }
 
-      .section-lead { max-width: 36rem; font-size: 1.0625rem; }
+      /* ---------- sections ---------- */
+
+      section { padding: clamp(3rem, 7vw, 4.5rem) 0; }
+
+      .section-grid {
+        display: grid;
+        gap: clamp(1.25rem, 4vw, 3.5rem);
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 48rem) {
+        .section-grid { grid-template-columns: 14rem minmax(0, 1fr); }
+      }
+
+      .section-label {
+        font-size: 0.6875rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--slate-soft);
+        padding-top: 0.4rem;
+      }
+
+      .lead {
+        font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+        max-width: 44ch;
+      }
+      .lead + .lead { margin-top: 1rem; }
+
+      h2 { font-size: clamp(1.875rem, 3.4vw, 2.5rem); margin-bottom: 1.25rem; }
 
       .features {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: 1fr;
+        gap: 1px;
+        background: var(--soft-taupe);
+        border: 1px solid var(--soft-taupe);
+        border-radius: 1.25rem;
+        overflow: hidden;
         margin-top: 2rem;
       }
-
-      .feature {
-        background: rgba(255, 255, 255, 0.45);
-        border: 1px solid var(--soft-taupe);
-        border-radius: 1rem;
-        padding: 1.5rem;
+      @media (min-width: 40rem) {
+        .features { grid-template-columns: 1fr 1fr; }
       }
-      .feature h3 { margin-bottom: 0.5rem; }
-      .feature p { font-size: 0.9375rem; margin: 0; }
+
+      .feature { background: var(--paper); padding: 1.75rem; }
+      .feature h3 {
+        font-size: 1.3125rem;
+        margin-bottom: 0.5rem;
+      }
+      .feature p { font-size: 0.9375rem; }
 
       .contact-methods {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem 3rem;
+        margin: 0;
       }
-
-      .contact-card {
-        flex: 1 1 220px;
-        background: rgba(255, 255, 255, 0.45);
-        border: 1px solid var(--soft-taupe);
-        border-radius: 1rem;
-        padding: 1.25rem;
+      @media (min-width: 34rem) {
+        .contact-methods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
-      .contact-card dt {
-        font-size: 0.8125rem;
-        letter-spacing: 0.04em;
+      .contact-methods dt {
+        font-size: 0.6875rem;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
         color: var(--slate-soft);
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.35rem;
       }
-      .contact-card dd { margin: 0; font-size: 0.9375rem; }
+      .contact-methods dd { margin: 0; font-size: 1rem; color: var(--ink); }
+
+      /* ---------- footer ---------- */
 
       footer {
-        padding: 2.5rem 0 3rem;
-        border-top: 1px solid var(--soft-taupe);
-        text-align: center;
-      }
-
-      .footer-links {
+        padding: 2.5rem 0 3.5rem;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.25rem;
-        margin-bottom: 1.25rem;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
       }
-      .footer-links a { font-size: 0.875rem; }
+
+      .footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+      .footer-links a { font-size: 0.875rem; border-bottom: 0; color: var(--muted); }
+      .footer-links a:hover { color: var(--slate-warm); }
 
       .copyright { font-size: 0.8125rem; color: var(--slate-soft); }
 
       @media (prefers-reduced-motion: no-preference) {
-        main { animation: fade-in 800ms ease-out both; }
+        main { animation: fade-in 700ms ease-out both; }
       }
       @keyframes fade-in {
-        from { opacity: 0; transform: translateY(6px); }
+        from { opacity: 0; transform: translateY(8px); }
         to { opacity: 1; transform: none; }
       }
     </style>
   </head>
   <body>
     <main>
-      <header class="container">
+      <header class="hero wrap">
         <svg
           class="logo"
           viewBox="0 0 1024 1024"
@@ -225,91 +239,109 @@
           />
           <path
             d="M512 660 C 512 660, 340 558, 340 432 C 340 372, 384 332, 436 332 C 476 332, 500 356, 512 384 C 524 356, 548 332, 588 332 C 640 332, 684 372, 684 432 C 684 558, 512 660, 512 660 Z"
-            fill="#F3EFEA"
+            fill="#F6F3EF"
           />
           <circle cx="512" cy="190" r="78" fill="#B6CAE0" />
         </svg>
 
-        <p class="company-line">Masa Life, Inc.</p>
+        <p class="eyebrow">Masa Life, Inc.</p>
         <h1 class="wordmark">masa</h1>
-        <p class="tagline">
-          A quiet companion for fertility, pregnancy, and the seasons after.
-        </p>
+        <p class="tagline">A quiet companion for fertility, pregnancy, and the seasons after.</p>
         <a class="cta" href="mailto:hello@masalife.co">Contact us</a>
       </header>
 
-      <section class="container" aria-labelledby="about-heading">
-        <h2 id="about-heading">About Masa</h2>
-        <p class="section-lead">
-          Masa is a calm, private space for people navigating every season of the fertility
-          journey — from trying to conceive and IUI/IVF, through pregnancy, postpartum, and loss.
-          We believe the journey deserves software that listens first, never rushes, and holds
-          complexity with dignity.
-        </p>
-        <p class="section-lead">
-          Masa Life, Inc. is a Delaware corporation building member-centered tools for reproductive
-          health. Our work is informed by the clinicians, advocates, and members who have lived
-          these seasons alongside us.
-        </p>
-      </section>
+      <div class="wrap"><hr class="rule" /></div>
 
-      <section class="container" aria-labelledby="features-heading">
-        <h2 id="features-heading">What Masa offers</h2>
-        <p class="section-lead">
-          A single place to track cycles, log how you're doing, prepare for visits, and find
-          carefully curated guidance — without ads, without noise, and without presuming any
-          single outcome.
-        </p>
-        <div class="features">
-          <article class="feature">
-            <h3>Journey-aware tracking</h3>
-            <p>
-              Natural TTC, IUI, IVF, pregnancy, postpartum, and rest modes — each with the
-              fields and context that actually matter for where you are.
+      <section class="wrap" aria-labelledby="about-heading">
+        <div class="section-grid">
+          <p class="section-label">About</p>
+          <div>
+            <h2 id="about-heading">Software that listens first</h2>
+            <p class="lead">
+              Masa is a calm, private space for people navigating every season of the fertility
+              journey — from trying to conceive and IUI/IVF, through pregnancy, postpartum, and
+              loss. The journey deserves software that never rushes, and holds complexity with
+              dignity.
             </p>
-          </article>
-          <article class="feature">
-            <h3>Private daily reflection</h3>
-            <p>
-              Journal prompts, check-ins, and a place to note what others might miss — all
-              yours, always accessible.
+            <p class="lead">
+              Masa Life, Inc. is a Delaware corporation building member-centered tools for
+              reproductive health. Our work is informed by the clinicians, advocates, and members
+              who have lived these seasons alongside us.
             </p>
-          </article>
-          <article class="feature">
-            <h3>Clinical visit support</h3>
-            <p>
-              Visit questions, post-visit recaps, and lab-friendly logging so you can show up
-              prepared and leave less confused.
-            </p>
-          </article>
-          <article class="feature">
-            <h3>Curated learning</h3>
-            <p>
-              Articles and resources written in a human voice, reviewed for clinical accuracy,
-              and organized by the questions people actually ask.
-            </p>
-          </article>
+          </div>
         </div>
       </section>
 
-      <section class="container" aria-labelledby="contact-heading">
-        <h2 id="contact-heading">Contact</h2>
-        <p class="section-lead">
-          Questions, press inquiries, or partnership opportunities? Reach us directly.
-        </p>
-        <dl class="contact-methods">
-          <div class="contact-card">
-            <dt>Email</dt>
-            <dd><a href="mailto:hello@masalife.co">hello@masalife.co</a></dd>
+      <div class="wrap"><hr class="rule" /></div>
+
+      <section class="wrap" aria-labelledby="features-heading">
+        <div class="section-grid">
+          <p class="section-label">What Masa offers</p>
+          <div>
+            <h2 id="features-heading">One place for the whole journey</h2>
+            <p class="lead">
+              Track cycles, log how you're doing, prepare for visits, and find carefully curated
+              guidance — without ads, without noise, and without presuming any single outcome.
+            </p>
+            <div class="features">
+              <article class="feature">
+                <h3>Journey-aware tracking</h3>
+                <p>
+                  Natural TTC, IUI, IVF, pregnancy, postpartum, and rest modes — each with the
+                  fields and context that matter for where you are.
+                </p>
+              </article>
+              <article class="feature">
+                <h3>Private daily reflection</h3>
+                <p>
+                  Journal prompts, check-ins, and a place to note what others might miss — all
+                  yours, always accessible.
+                </p>
+              </article>
+              <article class="feature">
+                <h3>Clinical visit support</h3>
+                <p>
+                  Visit questions, post-visit recaps, and lab-friendly logging so you can show up
+                  prepared and leave less confused.
+                </p>
+              </article>
+              <article class="feature">
+                <h3>Curated learning</h3>
+                <p>
+                  Articles written in a human voice, reviewed for clinical accuracy, and organized
+                  by the questions people actually ask.
+                </p>
+              </article>
+            </div>
           </div>
-          <div class="contact-card">
-            <dt>Company</dt>
-            <dd>Masa Life, Inc.</dd>
-          </div>
-        </dl>
+        </div>
       </section>
 
-      <footer class="container">
+      <div class="wrap"><hr class="rule" /></div>
+
+      <section class="wrap" aria-labelledby="contact-heading">
+        <div class="section-grid">
+          <p class="section-label">Contact</p>
+          <div>
+            <h2 id="contact-heading">Get in touch</h2>
+            <p class="lead">Questions, press inquiries, or partnership opportunities.</p>
+            <dl class="contact-methods" style="margin-top: 2rem">
+              <div>
+                <dt>Email</dt>
+                <dd><a href="mailto:hello@masalife.co">hello@masalife.co</a></dd>
+              </div>
+              <div>
+                <dt>Company</dt>
+                <dd>Masa Life, Inc. — Delaware, USA</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap"><hr class="rule" /></div>
+
+      <footer class="wrap">
         <nav class="footer-links" aria-label="Legal">
           <a href="/privacy">Privacy Policy</a>
           <a href="/terms">Terms of Service</a>
@@ -320,4 +352,3 @@
     </main>
   </body>
 </html>
-
