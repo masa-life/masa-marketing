@@ -1,10 +1,9 @@
 # masa.life — holding page
 
-Single static page on the `.co` apex. Brand-correct, quiet, no funnel.
-Lives **outside** the Lovable app so a change here can never break Masa.
+Single static page on the `.life` apex. Brand-correct, quiet, no funnel.
 
 Source of truth for the spec: ADR-0089 (to be added at cutover) and the
-approved plan in `.lovable/plan.md`.
+approved plan in `plan.md`.
 
 ## What it is
 
@@ -23,24 +22,13 @@ files at the root:
 - `_headers`
 - `README.md`
 
-(Copy them out of `docs/marketing/masalife-co/` in the Lovable app repo.)
+(Copy them out of `docs/marketing/masalife-co/`)
 
 ### 2. Cloudflare account
 
 - Add `masa.life` as a site on Cloudflare (Free plan is fine).
 - Cloudflare will give you two nameservers (e.g.
   `xxx.ns.cloudflare.com`).
-
-### 3. Namecheap
-
-- Domain List → `masalife.co` → **Manage** → **Nameservers** →
-  switch from "Namecheap BasicDNS" to **Custom DNS** and paste the two
-  Cloudflare nameservers.
-- **Before you switch**, check the Advanced DNS tab. If there are any
-  MX records, URL forwarding, or A records pointing somewhere, screenshot
-  them first. `.co` has nothing live on it today, but confirm.
-
-Propagation: usually <1 hour, sometimes a few.
 
 ### 4. Cloudflare Pages
 
