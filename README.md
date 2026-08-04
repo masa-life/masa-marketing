@@ -9,7 +9,7 @@ approved plan in `plan.md`.
 
 `index.html` only. Inline SVG logo, inline CSS, one Google Fonts request,
 no JS, no analytics. `<meta name="robots" content="noindex, nofollow">`
-so it does not compete with `masalife.app` in search.
+
 
 ## Deploy (one-time, today)
 
