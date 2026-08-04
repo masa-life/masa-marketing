@@ -1,91 +1,144 @@
-export default {
-  async fetch(request) {
-    const html = `<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Masa — Every season, yours.</title>
-<meta name="description" content="Masa is a steady place to track, reflect, and move through fertility, pregnancy, and postpartum — built slowly, with care, by someone who has walked this path.">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#2E4A6B">
-<meta name="referrer" content="no-referrer">
-<!-- Intentionally indexable: no noindex/nofollow. This page must be publicly discoverable. -->
-<style>
-  :root {
-    --deep-blue: #2E4A6B;
-    --slate-blue: #5F7FA3;
-    --warm-mist: #F3EFEA;
-    --soft-taupe: #D8D2C7;
-    --charcoal: #3A3A3A;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--warm-mist);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    color: var(--charcoal);
-    padding: 32px;
-  }
-  .card {
-    max-width: 560px;
-    text-align: center;
-  }
-  h1 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-weight: 600;
-    font-size: 48px;
-    color: var(--deep-blue);
-    margin: 0 0 8px;
-    letter-spacing: 0.5px;
-  }
-  .tagline {
-    font-size: 16px;
-    font-style: italic;
-    color: var(--slate-blue);
-    margin: 0 0 28px;
-  }
-  p.about {
-    font-size: 16px;
-    line-height: 1.65;
-    color: var(--charcoal);
-    margin: 0 0 32px;
-  }
-  .contact {
-    font-size: 14px;
-    color: var(--slate-blue);
-    margin-bottom: 40px;
-  }
-  .contact a { color: var(--deep-blue); text-decoration: none; }
-  .contact a:hover { text-decoration: underline; }
-  footer {
-    font-size: 12px;
-    color: var(--soft-taupe);
-    border-top: 1px solid var(--soft-taupe);
-    padding-top: 16px;
-  }
-</style>
-</head>
-<body>
-  <div class="card">
-    <h1>masa</h1>
-    <p class="tagline">Every season, yours.</p>
-    <p class="about">
-      Masa is a steady place to track, reflect, and move through fertility, pregnancy, and postpartum —
-      built slowly, with care, by someone who has walked this path. Over time, Masa will grow to hold
-      other seasons of her life too.
-    </p>
-    <p class="contact">Get in touch: <a href="mailto:hello@masa.life">hello@masa.life</a></p>
-    <footer>&copy; 2026 Masa Life, Inc.</footer>
-  </div>
-</body>
-</html>`;
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Masa</title>
+    <meta name="description" content="A steady companion for fertility, pregnancy, and the seasons after." />
+    <meta name="theme-color" content="#2E4A6B" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Inter:wght@400&display=swap"
+    />
+    <style>
+      :root {
+        --deep-blue: #2e4a6b;
+        --warm-mist: #f3efea;
+        --ink: #2e4a6b;
+        --muted: #6b6358;
+      }
+      * { box-sizing: border-box; }
+      html { height: 100%; }
+      body {
+        min-height: 100%;
+        margin: 0;
+        background: var(--warm-mist);
+        color: var(--ink);
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 2rem 4rem;
+      }
+      main {
+        text-align: center;
+        max-width: 30rem;
+        width: 100%;
+      }
+      .logo {
+        width: 88px;
+        height: 88px;
+        margin: 0 auto 1.75rem;
+        display: block;
+      }
+      h1 {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(3.25rem, 9vw, 4.5rem);
+        line-height: 1;
+        letter-spacing: -0.01em;
+        margin: 0 0 1.5rem;
+        color: var(--deep-blue);
+      }
+      p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--muted);
+        margin: 0 0 1.25rem;
+      }
+      p.tagline {
+        font-size: 1.0625rem;
+        color: var(--ink);
+        margin-bottom: 1.75rem;
+      }
+      p.about {
+        margin-bottom: 1.25rem;
+      }
+      p.status {
+        font-size: 0.9375rem;
+        margin-bottom: 2.5rem;
+      }
+      a {
+        color: var(--deep-blue);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(46, 74, 107, 0.3);
+        padding-bottom: 1px;
+        font-size: 0.875rem;
+        letter-spacing: 0.02em;
+      }
+      a:hover { border-bottom-color: var(--deep-blue); }
+      footer {
+        margin-top: 3rem;
+        text-align: center;
+        width: 100%;
+        font-size: 0.75rem;
+        color: var(--muted);
+        opacity: 0.6;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        main { animation: fade-in 800ms ease-out both; }
+      }
+      @keyframes fade-in {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- v1.0 mark — embrace with rising figure. Inner negative space uses canvas color. -->
+      <svg
+        class="logo"
+        viewBox="0 0 1024 1024"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="Masa"
+      >
+        <path
+          d="M512 760 C 512 760, 192 600, 192 400 C 192 300, 270 232, 360 232 C 432 232, 480 272, 512 320 Z"
+          fill="#8FA3BE"
+        />
+        <path
+          d="M512 760 C 512 760, 832 600, 832 400 C 832 300, 754 232, 664 232 C 592 232, 544 272, 512 320 Z"
+          fill="#B6CAE0"
+        />
+        <path
+          d="M512 660 C 512 660, 340 558, 340 432 C 340 372, 384 332, 436 332 C 476 332, 500 356, 512 384 C 524 356, 548 332, 588 332 C 640 332, 684 372, 684 432 C 684 558, 512 660, 512 660 Z"
+          fill="#F3EFEA"
+        />
+        <circle cx="512" cy="190" r="78" fill="#B6CAE0" />
+      </svg>
 
-    return new Response(html, {
-      headers: { "content-type": "text/html; charset=UTF-8" },
-    });
-  },
-};
+      <h1>masa</h1>
+      <p class="tagline">A steady companion for fertility, pregnancy, and the seasons after.</p>
+      <p class="about">
+        Masa is a steady place to track, reflect, and move through fertility, pregnancy, and
+        postpartum — built slowly, with care, by someone who has walked this path. Over time,
+        Masa will grow to hold other seasons of her life too.
+      </p>
+      <p class="status">
+        We're in private beta now, with a public Charter release planned for fall 2026.
+      </p>
+
+      <a href="mailto:hello@masa.life">hello@masa.life</a>
+    </main>
+    <footer>© 2026 Masa Life, Inc.</footer>
+  </body>
+</html>
