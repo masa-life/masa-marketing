@@ -1,78 +1,39 @@
-# masa.life — holding page
+# masalife.co — Apple enrollment landing page (temporary)
 
-Single static page on the `.life` apex. Brand-correct, quiet, no funnel.
+Single static page on the `.co` apex. This replaces the previous quiet holding page while `masalife.co` is used as the publicly available company website for Apple Developer Program enrollment.
 
-Source of truth for the spec: ADR-0089 (to be added at cutover) and the
-approved plan in `plan.md`.
+Once `masa.life` is transferred to Masa Life, Inc., this page should be replaced with a Cloudflare Page Rule 301 → `https://masa.life/$1`, per ADR-0184.
 
-## What it is
+## Files
 
-`index.html` only. Inline SVG logo, inline CSS, one Google Fonts request,
-no JS, no analytics. `<meta name="robots" content="noindex, nofollow">`
+- `index.html` — self-contained company landing page (inline CSS + inline SVG logo).
+- `_headers` — Cloudflare Pages security headers.
 
+## What's on the page
 
-## Deploy (one-time, today)
+- Company name: **Masa Life, Inc.**
+- Product description and value proposition.
+- Feature grid.
+- Contact email: `hello@masalife.co` (forward to `hello@masa.life`).
+- Footer links: Privacy Policy, Terms of Service, Contact.
+- No waitlist, no analytics, minimal JavaScript.
+- `index`able (the previous `noindex` has been removed so Apple can verify the site).
 
-### 1. New GitHub repo
+## Deploy
 
-Create an empty repo called `masalife-co-holding` and commit these three
-files at the root:
+1. Create a Cloudflare Pages project connected to a repo containing these files.
+2. Set build command to empty and output directory to `/`.
+3. Attach `masalife.co` and `www.masalife.co` custom domains.
+4. Verify `https://masalife.co` loads and WHOIS shows **Masa Life, Inc.** as the registrant.
 
-- `index.html`
-- `_headers`
-- `README.md`
+## Email forwarding
 
-(Copy them out of `docs/marketing/masalife-co/`)
+Set up `hello@masalife.co` to forward to `hello@masa.life` so the contact address on this page lands in your main inbox. Once `masa.life` is transferred to the company, the page can be retired and all contact can point directly to `hello@masa.life`.
 
-### 2. Cloudflare account
+## Brand tokens
 
-- Add `masa.life` as a site on Cloudflare (Free plan is fine).
-- Cloudflare will give you two nameservers (e.g.
-  `xxx.ns.cloudflare.com`).
-
-### 4. Cloudflare Pages
-
-- Create Pages project → connect to the `masalife-co-holding` GitHub
-  repo → no build command, output directory `/`.
-- Pages → Custom domains → add `masalife.co` and `www.masalife.co`.
-- Cloudflare issues the TLS cert automatically.
-
-### 5. Verify
-
-- `curl -I https://masa.life` → 200, headers from `_headers`
-  applied.
-- Page renders Warm Mist background, Deep Blue wordmark, one line of
-  copy, one mailto link. Nothing else.
-
-## Before shipping
-
-- [ ] Confirm `hello@masa.life` (or whichever inbox is chosen) is
-      live and monitored. Search `index.html` for the `TODO` comment.
-
-## 6/13 cutover (masa.life)
-
-When `masa.life` lands, switch this surface from a holding page to a
-301 redirect to the `masa.life` apex. Two options:
-
-1. **Cloudflare Page Rule** — `masalife.co/*` → `https://masa.life/$1`,
-   301 forward. Repo stays archived as a fallback.
-2. **DNS-level redirect** at registrar — simpler, but loses the
-   archived-page fallback.
-
-Recommend option 1. Captured in a new ADR at cutover, referenced from
-ADR-0071.
-
-## Brand tokens (must match app)
-
-- `#2E4A6B` Deep Blue — wordmark, links
+- `#4A4E5A` Slate Warm — wordmark, links
 - `#F3EFEA` Warm Mist — background
 - `#8FA3BE` / `#B6CAE0` — logo embrace halves
 - Cormorant Garamond 500 — wordmark
-- Inter 400 — body line + mailto
-
-## What this page intentionally does NOT have
-
-No waitlist. No analytics. No og:image. No nav. No footer. No mention
-of IVF, loss, 2WW, beta, or Founding 500. No link to `masalife.app`.
-No "built by someone who lived this." All of that belongs on the
-product, not on a parking sign.
+- Inter 400/500 — body
