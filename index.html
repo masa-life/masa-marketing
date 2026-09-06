@@ -16,7 +16,7 @@
     <meta name="twitter:title" content="Masa — A quiet companion for her cycle, fertility, pregnancy, and the seasons after" />
     <meta name="twitter:description" content="A calm, private companion for her cycle, fertility, pregnancy, and the seasons after." />
     <meta name="theme-color" content="#4A4E5A" />
-    <link rel="icon" type="image/svg+xml" href="assets/logo_app_ready.svg" />
+    <link rel="icon" type="image/png" href="assets/masa-icon.png" />
     <link rel="canonical" href="https://masa.life" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,8 +60,11 @@
       <div style="position:sticky; top:0; z-index:50; background:rgba(243,239,234,0.92); backdrop-filter:blur(8px); border-bottom:1px solid #D9D2C7;">
         <div style="max-width:1160px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
           <a href="#top" style="display:flex; align-items:center; gap:10px;">
-            <img src="assets/masa-icon.svg" alt="Masa" width="34" height="27" style="width:34px; height:27px;" />
-            <span style="font-family:'Cormorant Garamond',serif; font-size:30px; color:#4A4E5A; letter-spacing:-0.02em;">masa</span>
+            <img src="assets/masa-icon.png" alt="Masa" width="40" height="40" style="width:40px; height:40px; object-fit:contain;" />
+            <div style="display:flex; flex-direction:column; gap:0px;">
+              <div style="display:flex; justify-content:space-between; width:108px; font-family:'Cormorant Garamond',serif; font-size:19px; color:#4A4E5A; text-transform:uppercase;"><span>M</span><span>A</span><span>S</span><span>A</span></div>
+              <span style="font-size:8px; color:#64748B; letter-spacing:0.1em; text-transform:uppercase; white-space:nowrap; width:108px; margin-top:-4px;">Every season, yours.</span>
+            </div>
           </a>
           <div style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
             <a class="nav-link" data-target="about" href="#about">About</a>
@@ -177,6 +180,15 @@
             <form id="waitlist-form" novalidate>
               <div id="waitlist-pending" style="display:flex; flex-direction:column; gap:12px;">
                 <input id="waitlist-email" type="email" required placeholder="you@email.com" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;" />
+                <select id="waitlist-journey" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;">
+                  <option value="">Where are you in your journey? (optional)</option>
+                  <option value="ttc">Trying to conceive</option>
+                  <option value="ivf">IVF / fertility treatment</option>
+                  <option value="pregnancy">Pregnancy</option>
+                  <option value="postpartum">Postpartum</option>
+                  <option value="loss_pause">Loss or pause</option>
+                  <option value="supporting">Supporting someone</option>
+                </select>
                 <button id="waitlist-submit" type="submit" style="text-align:center; cursor:pointer; font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:13px; border-radius:10px; border:none; font-family:inherit;">Get notified</button>
                 <div id="waitlist-error" style="display:none; font-size:13px; color:#B4483A;"></div>
               </div>
@@ -310,6 +322,7 @@
         var form = document.getElementById('waitlist-form');
         if (form) {
           var input = document.getElementById('waitlist-email');
+          var journeySelect = document.getElementById('waitlist-journey');
           var submitBtn = document.getElementById('waitlist-submit');
           var pending = document.getElementById('waitlist-pending');
           var done = document.getElementById('waitlist-done');
@@ -337,7 +350,7 @@
             fetch('https://masa.tools/api/waitlist', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email: email }),
+              body: JSON.stringify({ email: email, journeyStage: journeySelect.value }),
             })
               .then(function (res) {
                 if (res.status === 429) throw new Error('Too many attempts — please try again in a few minutes.');
