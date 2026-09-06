@@ -3,352 +3,324 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Masa — A quiet companion for fertility, pregnancy, and the seasons after</title>
+    <title>Masa — A quiet companion for her cycle, fertility, pregnancy, and the seasons after</title>
     <meta
       name="description"
-      content="Masa is a calm, private companion for every season of the fertility journey — from trying to conceive through IVF, pregnancy, postpartum, and loss. Built by Masa Life, Inc."
+      content="Masa is a calm, private companion for her cycle, fertility, pregnancy, postpartum, and the seasons after — without ads, without noise, and without presuming any single outcome. Built by Masa Life, Inc."
     />
-    <meta property="og:title" content="Masa — A quiet companion for fertility, pregnancy, and the seasons after" />
-    <meta property="og:description" content="A calm, private companion for every season of the fertility journey." />
+    <meta property="og:title" content="Masa — A quiet companion for her cycle, fertility, pregnancy, and the seasons after" />
+    <meta property="og:description" content="A calm, private companion for her cycle, fertility, pregnancy, and the seasons after." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://masa.life" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Masa — A quiet companion for fertility, pregnancy, and the seasons after" />
-    <meta name="twitter:description" content="A calm, private companion for every season of the fertility journey." />
+    <meta name="twitter:title" content="Masa — A quiet companion for her cycle, fertility, pregnancy, and the seasons after" />
+    <meta name="twitter:description" content="A calm, private companion for her cycle, fertility, pregnancy, and the seasons after." />
     <meta name="theme-color" content="#4A4E5A" />
     <link rel="canonical" href="https://masa.life" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
     />
     <style>
-      :root {
-        --slate-warm: #4a4e5a;
-        --slate-soft: #64748b;
-        --warm-mist: #f6f3ef;
-        --paper: #fbf9f6;
-        --soft-taupe: #e2ddd5;
-        --ink: #33363d;
-        --muted: #6f6a62;
-      }
-
       * { box-sizing: border-box; }
-
       html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-
       body {
         margin: 0;
-        background: var(--warm-mist);
-        color: var(--ink);
-        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-        font-size: 16px;
-        line-height: 1.65;
+        background: #F3EFEA;
+        color: #3A3A3A;
+        font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
       }
+      a { color: #4A4E5A; text-decoration: none; }
+      a:hover { color: #64748B; }
+      ::selection { background: #A9BED6; }
+      img { max-width: 100%; }
 
-      a { color: var(--slate-warm); text-decoration: none; }
-      a:not(.cta) { border-bottom: 1px solid rgba(74, 78, 90, 0.25); }
-      a:not(.cta):hover { border-bottom-color: var(--slate-warm); }
+      .nav-link { font-size: 14px; color: #3A3A3A; font-weight: 400; transition: color 120ms ease; }
+      .nav-link:hover { color: #4A4E5A; }
+      .nav-link.active { color: #4A4E5A; font-weight: 600; }
 
-      h1, h2, h3 {
-        font-family: "Cormorant Garamond", Georgia, serif;
-        font-weight: 500;
-        color: var(--slate-warm);
-        line-height: 1.15;
-        margin: 0;
-      }
-
-      p { margin: 0; color: var(--muted); }
-
-      .wrap {
-        width: min(100% - 2.5rem, 62rem);
-        margin-inline: auto;
-      }
-
-      /* ---------- hero ---------- */
-
-      .hero {
-        text-align: center;
-        padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5.5rem);
-      }
-
-      .logo { width: 68px; height: 68px; display: block; margin: 0 auto 1.75rem; }
-
-      .eyebrow {
-        font-size: 0.6875rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--slate-soft);
-      }
-
-      .wordmark {
-        font-family: "Cormorant Garamond", Georgia, serif;
-        font-size: clamp(3.75rem, 12vw, 6rem);
-        font-weight: 500;
-        color: var(--slate-warm);
-        line-height: 0.95;
-        letter-spacing: -0.015em;
-        margin: 0.75rem 0 1.5rem;
-      }
-
-      .tagline {
-        font-family: "Cormorant Garamond", Georgia, serif;
-        font-size: clamp(1.5rem, 3.6vw, 2.125rem);
-        line-height: 1.35;
-        color: var(--ink);
-        max-width: 26ch;
-        margin: 0 auto 2.5rem;
-      }
-
-      .cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: var(--slate-warm);
-        color: var(--paper);
-        padding: 0.8125rem 1.875rem;
-        border-radius: 999px;
-        font-size: 0.9375rem;
-        border: 1px solid var(--slate-warm);
-        transition: background 160ms ease, color 160ms ease;
-      }
-      .cta:hover { background: transparent; color: var(--slate-warm); }
-
-      .rule {
-        height: 1px;
-        background: var(--soft-taupe);
-        border: 0;
-        margin: 0;
-      }
-
-      /* ---------- sections ---------- */
-
-      section { padding: clamp(3rem, 7vw, 4.5rem) 0; }
-
-      .section-grid {
-        display: grid;
-        gap: clamp(1.25rem, 4vw, 3.5rem);
-        grid-template-columns: 1fr;
-      }
-      @media (min-width: 48rem) {
-        .section-grid { grid-template-columns: 14rem minmax(0, 1fr); }
-      }
-
-      .section-label {
-        font-size: 0.6875rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--slate-soft);
-        padding-top: 0.4rem;
-      }
-
-      .lead {
-        font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
-        max-width: 44ch;
-      }
-      .lead + .lead { margin-top: 1rem; }
-
-      h2 { font-size: clamp(1.875rem, 3.4vw, 2.5rem); margin-bottom: 1.25rem; }
-
-      .features {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1px;
-        background: var(--soft-taupe);
-        border: 1px solid var(--soft-taupe);
-        border-radius: 1.25rem;
-        overflow: hidden;
-        margin-top: 2rem;
-      }
-      @media (min-width: 40rem) {
-        .features { grid-template-columns: 1fr 1fr; }
-      }
-
-      .feature { background: var(--paper); padding: 1.75rem; }
-      .feature h3 {
-        font-size: 1.3125rem;
-        margin-bottom: 0.5rem;
-      }
-      .feature p { font-size: 0.9375rem; }
-
-      .contact-methods {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.5rem 3rem;
-        margin: 0;
-      }
-      @media (min-width: 34rem) {
-        .contact-methods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      }
-      .contact-methods dt {
-        font-size: 0.6875rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--slate-soft);
-        margin-bottom: 0.35rem;
-      }
-      .contact-methods dd { margin: 0; font-size: 1rem; color: var(--ink); }
-
-      /* ---------- footer ---------- */
-
-      footer {
-        padding: 2.5rem 0 3.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-
-      .footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; }
-      .footer-links a { font-size: 0.875rem; border-bottom: 0; color: var(--muted); }
-      .footer-links a:hover { color: var(--slate-warm); }
-
-      .copyright { font-size: 0.8125rem; color: var(--slate-soft); }
-
-      @media (prefers-reduced-motion: no-preference) {
-        main { animation: fade-in 700ms ease-out both; }
-      }
-      @keyframes fade-in {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: none; }
+      #waitlist-email:focus,
+      .cta:focus-visible,
+      a:focus-visible {
+        outline: 2px solid #4A4E5A;
+        outline-offset: 2px;
       }
     </style>
   </head>
   <body>
-    <main>
-      <header class="hero wrap">
-        <svg
-          class="logo"
-          viewBox="0 0 1024 1024"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Masa"
-        >
-          <path
-            d="M512 760 C 512 760, 192 600, 192 400 C 192 300, 270 232, 360 232 C 432 232, 480 272, 512 320 Z"
-            fill="#8FA3BE"
-          />
-          <path
-            d="M512 760 C 512 760, 832 600, 832 400 C 832 300, 754 232, 664 232 C 592 232, 544 272, 512 320 Z"
-            fill="#B6CAE0"
-          />
-          <path
-            d="M512 660 C 512 660, 340 558, 340 432 C 340 372, 384 332, 436 332 C 476 332, 500 356, 512 384 C 524 356, 548 332, 588 332 C 640 332, 684 372, 684 432 C 684 558, 512 660, 512 660 Z"
-            fill="#F6F3EF"
-          />
-          <circle cx="512" cy="190" r="78" fill="#B6CAE0" />
-        </svg>
+    <div>
 
-        <h1 class="wordmark">masa</h1>
-        <p class="tagline">A quiet companion for fertility, pregnancy, and the seasons after.</p>
-        <a class="cta" href="mailto:hello@masa.life">Contact us</a>
-      </header>
-
-      <div class="wrap"><hr class="rule" /></div>
-
-      <section class="wrap" aria-labelledby="about-heading">
-        <div class="section-grid">
-          <p class="section-label">About</p>
-          <div>
-            <h2 id="about-heading">Software that listens first</h2>
-            <p class="lead">
-              Masa is a calm, private space for people navigating every season of the fertility
-              journey — from trying to conceive and IUI/IVF, through pregnancy, postpartum, and
-              loss. The journey deserves software that never rushes, and holds complexity with
-              dignity.
-            </p>
-            <p class="lead">
-              Masa Life, Inc. is a Delaware corporation building member-centered tools for
-              women's health journeys. Our work is informed by our advocates and members
-              who have lived these seasons alongside us.
-            </p>
+      <!-- NAV -->
+      <div style="position:sticky; top:0; z-index:50; background:rgba(243,239,234,0.92); backdrop-filter:blur(8px); border-bottom:1px solid #D9D2C7;">
+        <div style="max-width:1160px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+          <a href="#top" style="display:flex; align-items:center; gap:10px;">
+            <img src="assets/masa-icon.svg" alt="Masa" width="34" height="27" style="width:34px; height:27px;" />
+            <span style="font-family:'Cormorant Garamond',serif; font-size:30px; color:#4A4E5A; letter-spacing:-0.02em;">masa</span>
+          </a>
+          <div style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
+            <a class="nav-link" data-target="about" href="#about">About</a>
+            <a class="nav-link" data-target="offerings" href="#offerings">What we offer</a>
+            <a class="nav-link" data-target="story" href="#story">Founder's story</a>
+            <a class="nav-link" data-target="charter" href="#charter">Charter</a>
+            <a class="nav-link" data-target="contact" href="#contact">Contact</a>
+            <a href="#charter" class="cta" style="font-size:14px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:10px 20px; border-radius:24px;">Get notified</a>
           </div>
         </div>
-      </section>
+      </div>
 
-      <div class="wrap"><hr class="rule" /></div>
+      <!-- HERO -->
+      <div id="top" style="max-width:1160px; margin:0 auto; padding:clamp(48px,8vw,96px) 32px 64px; display:flex; align-items:center; gap:56px; flex-wrap:wrap;">
+        <div style="flex:1 1 460px;">
+          <div style="display:inline-block; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#64748B; background:#FAF8F5; border:1px solid #D9D2C7; padding:6px 14px; border-radius:20px; margin-bottom:20px;">In beta since July</div>
+          <h1 style="font-family:'Cormorant Garamond',serif; font-weight:500; letter-spacing:-0.02em; font-size:clamp(38px,5vw,60px); line-height:1.08; margin:0 0 20px; color:#2f323b;">A quiet companion for her cycle, fertility, pregnancy, and the seasons after.</h1>
+          <p style="font-size:clamp(16px,1.6vw,19px); color:#3A3A3A; max-width:480px; margin:0 0 32px;">Track cycles, log how you're doing, prepare for visits, and find carefully curated guidance — without ads, without noise, and without presuming any single outcome.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+            <a href="#charter" class="cta" style="font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:14px 28px; border-radius:26px;">Get notified</a>
+            <a href="#offerings" style="font-size:15px; font-weight:500; color:#4A4E5A; border:1px solid #4A4E5A; padding:14px 28px; border-radius:26px;">See what Masa offers</a>
+          </div>
+          <p style="font-size:13px; color:#64748B; margin-top:18px;">Charter waitlist opens September 17. Launch is October 8.</p>
+        </div>
 
-      <section class="wrap" aria-labelledby="features-heading">
-        <div class="section-grid">
-          <p class="section-label">What Masa offers</p>
-          <div>
-            <h2 id="features-heading">One place for the whole journey</h2>
-            <p class="lead">
-              Track cycles, log how you're doing, prepare for visits, and find carefully curated
-              guidance — without ads, without noise, and without presuming any single outcome.
-            </p>
-            <div class="features">
-              <article class="feature">
-                <h3>Journey-aware tracking</h3>
-                <p>
-                  Natural TTC, IUI, IVF, pregnancy, postpartum, and rest modes — each with the
-                  fields and context that matter for where you are.
-                </p>
-              </article>
-              <article class="feature">
-                <h3>Private daily reflection</h3>
-                <p>
-                  Journal prompts, check-ins, and a place to note what others might miss — all
-                  yours, always accessible.
-                </p>
-              </article>
-              <article class="feature">
-                <h3>Clinical visit support</h3>
-                <p>
-                  Visit questions, post-visit recaps, and lab-friendly logging so you can show up
-                  prepared and leave less confused.
-                </p>
-              </article>
-              <article class="feature">
-                <h3>Curated learning</h3>
-                <p>
-                  Articles written in a human voice, reviewed for clinical consistency, and organized
-                  by the questions people actually ask.
-                </p>
-              </article>
+        <div style="flex:1 1 340px; max-width:380px; margin:0 auto;">
+          <div style="background:#FAF8F5; border:1px solid #D9D2C7; border-radius:20px; overflow:hidden; box-shadow:0 20px 50px -20px rgba(74,78,90,0.35);">
+            <img src="assets/app-screenshot-crop3.png" alt="Masa app, Today screen" width="441" height="273" style="width:100%; display:block;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div id="about" style="max-width:1160px; margin:0 auto; padding:64px 32px;">
+        <div style="display:flex; gap:56px; flex-wrap:wrap;">
+          <div style="flex:1 1 220px;">
+            <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#64748B; margin-bottom:10px;">About</div>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(26px,3vw,36px); margin:0; letter-spacing:-0.02em; color:#2f323b;">Software that listens first</h2>
+          </div>
+          <div style="flex:2 1 420px; max-width:640px;">
+            <p style="font-size:17px; margin:0 0 20px;">Masa is a calm, private space for her body's story, whatever season it's in. Some women come mid-IVF. Some come because they've just started paying attention to their own body for the first time. Some aren't trying for anything at all, and may never be. Masa meets her wherever she is, without nudging her toward a goal she didn't choose.</p>
+            <p style="font-size:17px; margin:0 0 20px; color:#3A3A3A;">The journey deserves software that never rushes, and holds complexity with dignity. Masa is built slowly, with care, by people who have lived these seasons themselves — and built to grow alongside her, one season at a time.</p>
+            <p style="font-size:17px; margin:0 0 32px; color:#3A3A3A;">Underneath the calm is real depth: journey-aware tracking, visit prep, lab-friendly logging, and curated guidance — as much capability as she needs, surfaced only when she needs it. Smart, never noisy. Thorough, never overwhelming.</p>
+            <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; line-height:1.5; color:#4A4E5A; margin:0;">She matters. Her journey matters. And it is uniquely hers.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- OFFERINGS -->
+      <div id="offerings" style="background:#FAF8F5; border-top:1px solid #D9D2C7; border-bottom:1px solid #D9D2C7;">
+        <div style="max-width:1160px; margin:0 auto; padding:72px 32px;">
+          <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#64748B; margin-bottom:10px; text-align:center;">What Masa offers</div>
+          <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(26px,3vw,36px); margin:0 0 44px; letter-spacing:-0.02em; color:#2f323b; text-align:center;">One place for the whole journey</h2>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:28px;">
+            <div>
+              <div style="width:44px; height:44px; border-radius:12px; background:#EDF2F7; margin-bottom:16px; display:flex; align-items:center; justify-content:center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A4E5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:20px; margin-bottom:8px; color:#2f323b;">Journey-aware tracking</div>
+              <div style="font-size:15px; color:#3A3A3A;">Natural TTC, IUI, IVF, pregnancy, postpartum, and rest modes — each with the fields and context that matter for where you are.</div>
+            </div>
+            <div>
+              <div style="width:44px; height:44px; border-radius:12px; background:#EDF2F7; margin-bottom:16px; display:flex; align-items:center; justify-content:center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A4E5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.65-7 10-7 10Z"></path></svg>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:20px; margin-bottom:8px; color:#2f323b;">Private daily reflection</div>
+              <div style="font-size:15px; color:#3A3A3A;">Journal prompts, check-ins, and a place to note what others might miss — all yours, always accessible.</div>
+            </div>
+            <div>
+              <div style="width:44px; height:44px; border-radius:12px; background:#EDF2F7; margin-bottom:16px; display:flex; align-items:center; justify-content:center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A4E5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:20px; margin-bottom:8px; color:#2f323b;">Appointment prep</div>
+              <div style="font-size:15px; color:#3A3A3A;">Questions to bring, space for recaps, and a simple way to keep track of what your visits cover — for your own reference, not clinical guidance.</div>
+            </div>
+            <div>
+              <div style="width:44px; height:44px; border-radius:12px; background:#EDF2F7; margin-bottom:16px; display:flex; align-items:center; justify-content:center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A4E5A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5v-13Z"></path><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5v-13Z"></path></svg>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:20px; margin-bottom:8px; color:#2f323b;">Curated learning</div>
+              <div style="font-size:15px; color:#3A3A3A;">Articles written in a human voice, reviewed for clinical consistency, and organized by the questions people actually ask.</div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <div class="wrap"><hr class="rule" /></div>
+      <!-- CHARTER -->
+      <div id="charter" style="max-width:1160px; margin:0 auto; padding:80px 32px;">
+        <div style="background:#4A4E5A; border-radius:24px; padding:clamp(32px,5vw,56px); display:flex; gap:48px; flex-wrap:wrap; align-items:center;">
+          <div style="flex:1 1 380px;">
+            <div style="font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(250,248,245,0.75); font-weight:600; margin-bottom:12px;">Charter membership</div>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(28px,3.4vw,40px); margin:0 0 16px; color:#FAF8F5; letter-spacing:-0.02em;">Life, for life.</h2>
+            <p style="font-size:16px; color:rgba(250,248,245,0.85); margin:0 0 20px; max-width:440px;">The first 500 members join Masa's Life tier at Charter pricing, held for as long as they're with us.</p>
+            <ul style="margin:0 0 24px; padding:0; list-style:none; color:rgba(250,248,245,0.85); font-size:15px;">
+              <li style="padding:6px 0; border-top:1px solid rgba(250,248,245,0.15);">Charter pricing, locked for life</li>
+              <li style="padding:6px 0; border-top:1px solid rgba(250,248,245,0.15);">A direct line to shape what we build next</li>
+              <li style="padding:6px 0; border-top:1px solid rgba(250,248,245,0.15); border-bottom:1px solid rgba(250,248,245,0.15);">Every season, in one place, as they arrive</li>
+            </ul>
+            <p style="font-size:13px; color:rgba(250,248,245,0.6); margin:0 0 28px;">$299 once. Masa Life, for life. First 500 only. Charter waitlist opens September 17, 2026.</p>
 
-      <section class="wrap" aria-labelledby="contact-heading">
-        <div class="section-grid">
-          <p class="section-label">Contact</p>
-          <div>
-            <h2 id="contact-heading">Get in touch</h2>
-            <p class="lead">Questions, press inquiries, or partnership opportunities.</p>
-            <dl class="contact-methods" style="margin-top: 2rem">
-              <div>
-                <dt>Email</dt>
-                <dd><a href="mailto:hello@masa.life">hello@masa.life</a></dd>
+            <div style="border-top:1px solid rgba(250,248,245,0.15); padding-top:24px;">
+              <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:#FAF8F5; margin-bottom:14px;">Why join early</div>
+              <div style="display:flex; flex-direction:column; gap:14px; font-size:14px; color:rgba(250,248,245,0.8); max-width:460px;">
+                <p style="margin:0;">Joining the waitlist is the only way into Masa before October 8.</p>
+                <p style="margin:0;">Starting September 17, we'll release waitlisted members in small batches to create an account, complete onboarding, and claim a Charter seat — before the public opening and before the 500 seats are gone.</p>
               </div>
-              <div>
-                <dt>Company</dt>
-                <p class="eyebrow">Masa Life, Inc.</p>
-                <dd>Los Angeles, CA.</dd>
+            </div>
+          </div>
+          <div style="flex:1 1 320px; background:#FAF8F5; border-radius:16px; padding:32px;">
+            <div style="font-size:13px; color:#64748B; margin-bottom:6px;">Be first to know</div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;">Charter waitlist opens September 17. Launch is October 8.</div>
+
+            <form id="waitlist-form" novalidate>
+              <div id="waitlist-pending" style="display:flex; flex-direction:column; gap:12px;">
+                <input id="waitlist-email" type="email" required placeholder="you@email.com" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;" />
+                <button type="submit" style="text-align:center; cursor:pointer; font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:13px; border-radius:10px; border:none; font-family:inherit;">Get notified</button>
               </div>
-            </dl>
+              <div id="waitlist-done" style="display:none; background:#EDF2F7; border-radius:12px; padding:16px 18px; font-size:15px; color:#4A4E5A;">You're on the list. We'll email you at <span id="waitlist-done-email"></span> when it's your turn.</div>
+            </form>
           </div>
         </div>
-      </section>
+      </div>
 
-      <div class="wrap"><hr class="rule" /></div>
+      <!-- FOUNDER STORY -->
+      <div id="story" style="background:#FAF8F5; border-top:1px solid #D9D2C7; border-bottom:1px solid #D9D2C7;">
+        <div style="max-width:1020px; margin:0 auto; padding:80px 32px;">
+          <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#64748B; margin-bottom:10px; text-align:center;">Why I built Masa</div>
+          <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(28px,3.4vw,40px); margin:0 0 48px; letter-spacing:-0.02em; color:#2f323b; text-align:center;">A letter from our founder</h2>
 
-      <footer class="wrap">
-        <nav class="footer-links" aria-label="Legal">
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/terms">Terms of Service</a>
-          <a href="mailto:hello@masa.life">Contact</a>
-        </nav>
-        <p class="copyright">© 2026 Masa Life, Inc. All rights reserved.</p>
-      </footer>
-    </main>
+          <div style="display:flex; gap:48px; flex-wrap:wrap;">
+            <div style="flex:0 0 180px; margin:0 auto;">
+              <div style="width:120px; height:120px; border-radius:50%; background:#4A4E5A; display:flex; align-items:center; justify-content:center; margin:0 auto;">
+                <span style="font-family:'Cormorant Garamond',serif; font-size:40px; color:#FAF8F5;">BS</span>
+              </div>
+              <div style="margin-top:14px; text-align:center;">
+                <div style="font-family:'Cormorant Garamond',serif; font-size:18px; color:#2f323b;">Bella S.</div>
+                <div style="font-size:13px; color:#64748B;">Founder &amp; CEO, Masa</div>
+              </div>
+            </div>
+
+            <div style="flex:1 1 560px; max-width:680px; font-size:17px; color:#3A3A3A;">
+              <p style="margin:0 0 20px;">I built Masa at 4 AM, which is when most of it was needed.</p>
+              <p style="margin:0 0 20px;">That is the hour I learned my body's language best and trusted it least. The hour I'd reopen the same app I'd checked at midnight to see whether the number had changed, knowing it hadn't. The hour I'd search a symptom I already knew the answer to, because searching felt like doing something.</p>
+              <p style="margin:0 0 20px;">Two days after an embryo transfer, I woke at 4 AM with the worst cramp. I walked into the living room, one hand on the mantel, then to my knees, the other arm around my stomach. I started praying with tears coming down my cheeks. Then I opened my app, and nothing there said anything about my experience.</p>
+              <p style="margin:0 0 20px;">The next day, I went in for my scheduled scan to see how things were progressing. I got the news I had been dreading, even if some part of me had already anticipated it. Afterwards, I opened the app again, and still found nothing that would hold me and my experience.</p>
+              <p style="margin:0 0 32px;">I felt so alone.</p>
+              <p style="margin:0 0 20px;">My road ran through trying to conceive naturally, then multiple rounds of IVF — retrievals, transfers. It included multiple losses — chemical, blighted ovum, missed miscarriage — with names I learned too well. It included embryos on ice and the strange arithmetic of loving something that is not with you and cannot be hurried. It included days I was fine and days I was not, often the same day.</p>
+              <p style="margin:0 0 32px; font-weight:500;">What I did not have was an app that could hold any of it.</p>
+              <p style="margin:0 0 20px;">The ones I tried were built for a different woman. They assumed conception was a matter of timing and effort, that a positive test was the end of the story, that I wanted a flame emoji for logging my temperature seven days running. They congratulated me before I was ready to be congratulated. They used language as though what was happening to my body were a matter of sprinkles and luck. It sat in an app I paid for.</p>
+              <p style="margin:0 0 32px;">They were also confident in a way my doctors never were. My RE would say this is progress, and it's early. The app would say don't worry.</p>
+
+              <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; line-height:1.4; color:#4A4E5A; margin:40px 0; text-align:center;">One of those was honest.</p>
+
+              <p style="margin:0 0 20px;">I spent my career in health tech, most of it moving clinical data between systems that were never built to speak to each other. I knew what careless software does to a person at the worst moment of her life. I was watching it happen to me.</p>
+              <p style="margin:0 0 32px;">So the rule underneath Masa is simple, and it never bends: acknowledge what she's living through, support her without prescribing, and never dismiss. No streaks. No confetti on a positive. No "just relax." No false certainty.</p>
+
+              <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; line-height:1.4; color:#4A4E5A; margin:40px 0; text-align:center;">A positive beta and a bleed get the same dignity, because on the day either one arrives, she deserves the same steadiness from her phone.</p>
+
+              <p style="margin:0 0 20px;">Sometimes what she needs isn't another answer. It's a place to be for a moment. That's part of why Masa has Today: a daily message that meets her where she is, space to journal what she's carrying, and a simple way to notice the signs her body is giving her. Not everything needs to become a prediction, a score, or a task. Some things just need somewhere to belong.</p>
+              <p style="margin:0 0 20px;">The rest follows from that. Masa shows the number — beta, doubling time, follicle count, blast grade — big and calm, because those numbers are sacred to the woman reading them and hiding them is condescension.</p>
+              <p style="margin:0 0 20px;">Her journey in Masa belongs to her. Masa doesn't advance her to a new stage because a calculation decided she must be there. She chooses when her life moves. Nothing about her season is decided for her.</p>
+              <p style="margin:0 0 32px;">And she doesn't have to be in the hard part to be here. Some women come to Masa mid-IVF. Some come because they've started paying attention to their own body for the first time and want to understand what it's doing. Some aren't trying for anything at all, and may never be. Masa won't quietly turn into something else — no countdown to conception, no nudge toward a goal she didn't choose.</p>
+              <p style="margin:0 0 32px; font-weight:500;">What she shouldn't have to do is leave.</p>
+              <p style="margin:0 0 20px;">Every time a woman's life changes, she gets handed to a different product and starts from zero. One app for her cycle, another for trying, another for pregnancy, another for the baby, and nothing at all for the seasons in between.</p>
+
+              <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; line-height:1.4; color:#4A4E5A; margin:40px 0; text-align:center;">Her history doesn't restart when her life changes.</p>
+
+              <p style="margin:0 0 20px;">It shouldn't sit split across five companies who each know one chapter of her and none of the rest. Masa is being built differently: to stay with her as her life changes, without assuming what her next season should be.</p>
+              <p style="margin:0 0 32px;">Not every season is here yet. I'm saying so plainly because I'd rather build what we have promised with care than pretend we're further along than we are — and because a woman handing me this much of herself deserves to know the difference between what exists and what's coming.</p>
+              <p style="margin:0 0 20px; font-weight:500;">And Masa never sells her.</p>
+              <p style="margin:0 0 20px;">No ads, in any tier, ever. We don't sell her personal data. That is not a feature we might revisit at scale — it is the thing the whole product is standing on. An app that knows this much about a woman's body and then monetizes her attention has already broken the promise.</p>
+              <p style="margin:0 0 32px;">I am also a mother of a toddler now. Masa carries all of it — the trying, the waiting, the grief, the joy, and the ordinary days in between — because one body's story can hold many seasons.</p>
+
+              <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; font-size:30px; line-height:1.3; color:#4A4E5A; margin:40px 0 8px; text-align:center;">Every season, yours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div id="contact" style="max-width:1160px; margin:0 auto; padding:80px 32px;">
+        <div style="display:flex; gap:56px; flex-wrap:wrap;">
+          <div style="flex:1 1 220px;">
+            <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#64748B; margin-bottom:10px;">Contact</div>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(26px,3vw,36px); margin:0; letter-spacing:-0.02em; color:#2f323b;">Get in touch</h2>
+          </div>
+          <div style="flex:2 1 340px; max-width:520px;">
+            <p style="font-size:16px; margin:0 0 28px;">Questions, press inquiries, or partnership opportunities.</p>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div>
+                <div style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#64748B; margin-bottom:4px;">Email</div>
+                <a href="mailto:hello@masa.life" style="font-size:17px;">hello@masa.life</a>
+              </div>
+              <div>
+                <div style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#64748B; margin-bottom:4px;">Company</div>
+                <div style="font-size:17px;">Masa Life, Inc.</div>
+                <div style="font-size:15px; color:#64748B;">Los Angeles, CA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div style="border-top:1px solid #D9D2C7;">
+        <div style="max-width:1160px; margin:0 auto; padding:28px 32px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
+          <div style="font-size:13px; color:#64748B;">© 2026 Masa Life, Inc. All rights reserved.</div>
+          <div style="display:flex; gap:20px;">
+            <a href="https://www.masa.life/privacy" style="font-size:13px; color:#64748B;">Privacy Policy</a>
+            <a href="https://www.masa.life/terms" style="font-size:13px; color:#64748B;">Terms of Service</a>
+            <a href="mailto:hello@masa.life" style="font-size:13px; color:#64748B;">Contact</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      (function () {
+        var sectionIds = ['top', 'about', 'offerings', 'charter', 'story', 'contact'];
+        var navLinks = {};
+        sectionIds.forEach(function (id) {
+          var link = document.querySelector('.nav-link[data-target="' + id + '"]');
+          if (link) navLinks[id] = link;
+        });
+        var targets = sectionIds
+          .map(function (id) { return document.getElementById(id); })
+          .filter(Boolean);
+
+        if ('IntersectionObserver' in window && targets.length) {
+          var observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                Object.keys(navLinks).forEach(function (id) {
+                  navLinks[id].classList.toggle('active', id === entry.target.id);
+                });
+              });
+            },
+            { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+          );
+          targets.forEach(function (t) { observer.observe(t); });
+        }
+
+        var form = document.getElementById('waitlist-form');
+        if (form) {
+          var input = document.getElementById('waitlist-email');
+          var pending = document.getElementById('waitlist-pending');
+          var done = document.getElementById('waitlist-done');
+          var doneEmail = document.getElementById('waitlist-done-email');
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var email = input.value.trim();
+            if (!email) return;
+            doneEmail.textContent = email;
+            pending.style.display = 'none';
+            done.style.display = 'block';
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

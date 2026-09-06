@@ -6,18 +6,28 @@ Once `masa.life` is transferred to Masa Life, Inc., this page should be replaced
 
 ## Files
 
-- `index.html` — self-contained company landing page (inline CSS + inline SVG logo).
+- `index.html` — company landing page (inline CSS, small vanilla-JS nav highlighter and waitlist form).
+- `assets/` — logo icon and app screenshot referenced by `index.html`.
 - `_headers` — Cloudflare Pages security headers.
 
 ## What's on the page
 
 - Company name: **Masa Life, Inc.**
-- Product description and value proposition.
-- Feature grid.
-- Contact email: `hello@masalife.co` (forward to `hello@masa.life`).
+- Nav, hero, about, offerings, Charter waitlist, founder's story, and contact sections.
+- Charter waitlist form: front-end only — submitting shows a confirmation message but does not send or store the email anywhere yet. Wire it to a real capture mechanism before relying on it to collect signups.
+- Contact email: `hello@masa.life`.
 - Footer links: Privacy Policy, Terms of Service, Contact.
-- No waitlist, no analytics, minimal JavaScript.
+- No analytics.
 - `index`able (the previous `noindex` has been removed so Apple can verify the site).
+
+## Syncing from Claude Design
+
+This page is synced by hand from a Claude Design canvas (`masa-life/masa-marketing`,
+branch `master`, file `index.html`). Claude Design has read-only access to this repo —
+it can browse the code but cannot push — so after editing the canvas, its `Masa
+Landing.dc.html` export needs to be translated into `index.html` and committed here
+manually (the `.dc.html` format and its `support.js`/`image-slot.js` runtime are
+editor-only and are not shipped to production).
 
 ## Deploy
 
