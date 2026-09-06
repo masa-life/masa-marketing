@@ -176,7 +176,8 @@
             <form id="waitlist-form" novalidate>
               <div id="waitlist-pending" style="display:flex; flex-direction:column; gap:12px;">
                 <input id="waitlist-email" type="email" required placeholder="you@email.com" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;" />
-                <button type="submit" style="text-align:center; cursor:pointer; font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:13px; border-radius:10px; border:none; font-family:inherit;">Get notified</button>
+                <button id="waitlist-submit" type="submit" style="text-align:center; cursor:pointer; font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:13px; border-radius:10px; border:none; font-family:inherit;">Get notified</button>
+                <div id="waitlist-error" style="display:none; font-size:13px; color:#B4483A;"></div>
               </div>
               <div id="waitlist-done" style="display:none; background:#EDF2F7; border-radius:12px; padding:16px 18px; font-size:15px; color:#4A4E5A;">You're on the list. We'll email you at <span id="waitlist-done-email"></span> when it's your turn.</div>
             </form>
@@ -308,16 +309,47 @@
         var form = document.getElementById('waitlist-form');
         if (form) {
           var input = document.getElementById('waitlist-email');
+          var submitBtn = document.getElementById('waitlist-submit');
           var pending = document.getElementById('waitlist-pending');
           var done = document.getElementById('waitlist-done');
           var doneEmail = document.getElementById('waitlist-done-email');
+          var errorBox = document.getElementById('waitlist-error');
+          var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+          function showError(message) {
+            errorBox.textContent = message;
+            errorBox.style.display = 'block';
+          }
+
           form.addEventListener('submit', function (e) {
             e.preventDefault();
             var email = input.value.trim();
-            if (!email) return;
-            doneEmail.textContent = email;
-            pending.style.display = 'none';
-            done.style.display = 'block';
+            errorBox.style.display = 'none';
+            if (!EMAIL_RE.test(email)) {
+              showError('That doesn\'t look like a valid email address.');
+              return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining…';
+
+            fetch('https://masa.tools/api/waitlist', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: email }),
+            })
+              .then(function (res) {
+                if (res.status === 429) throw new Error('Too many attempts — please try again in a few minutes.');
+                if (!res.ok) throw new Error('Something went wrong. Please try again.');
+                doneEmail.textContent = email;
+                pending.style.display = 'none';
+                done.style.display = 'block';
+              })
+              .catch(function (err) {
+                showError(err.message || 'Something went wrong. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Get notified';
+              });
           });
         }
       })();
