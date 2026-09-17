@@ -5,3 +5,9 @@
   Referrer-Policy: no-referrer
   Permissions-Policy: interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# The font files are now ours to serve, and their names never change for a
+# given set of glyphs — an hour's caching on 292KB that is identical every
+# time is a round trip charged to every visitor for nothing.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
