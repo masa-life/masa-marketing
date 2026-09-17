@@ -416,6 +416,13 @@
                 the invite it promises would be refused at signup. The note she
                 has just been sent says the same thing.
               -->
+              <!--
+                4 to 7 October: entries have stopped and the last batch is out.
+                The API decides this, not the page - masalife.co is hand-edited
+                and nobody should have to remember to change it at midnight on
+                the 3rd.
+              -->
+              <div id="waitlist-closed" style="display:none; background:#EDF2F7; border-radius:12px; padding:16px 18px; font-size:15px; color:#4A4E5A;">The Charter waitlist has closed. Masa opens to everyone on October 8 — no invite needed, come straight in.</div>
               <div id="waitlist-region" style="display:none; background:#EDF2F7; border-radius:12px; padding:16px 18px; font-size:15px; color:#4A4E5A;">Masa isn't open in your region yet, so we haven't put you on the Charter list. We've emailed <span id="waitlist-region-email"></span> and we'll write again when that changes.</div>
             </form>
           </div>
@@ -567,6 +574,7 @@
           var pending = document.getElementById('waitlist-pending');
           var done = document.getElementById('waitlist-done');
           var doneEmail = document.getElementById('waitlist-done-email');
+          var closed = document.getElementById('waitlist-closed');
           var region = document.getElementById('waitlist-region');
           var regionEmail = document.getElementById('waitlist-region-email');
           var errorBox = document.getElementById('waitlist-error');
@@ -611,7 +619,9 @@
               })
               .then(function (body) {
                 pending.style.display = 'none';
-                if (body && body.region === 'unavailable') {
+                if (body && body.waitlist === 'closed') {
+                  closed.style.display = 'block';
+                } else if (body && body.region === 'unavailable') {
                   regionEmail.textContent = email;
                   region.style.display = 'block';
                 } else {
