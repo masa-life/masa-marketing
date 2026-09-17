@@ -370,7 +370,7 @@
                   <option value="ug">Uganda</option>
                   <option value="ua">Ukraine</option>
                   <option value="ae">United Arab Emirates</option>
-                  <option value="uk">United Kingdom</option>
+                  <option value="gb">United Kingdom</option>
                   <option value="us">United States</option>
                   <option value="uy">Uruguay</option>
                   <option value="uz">Uzbekistan</option>
@@ -410,6 +410,13 @@
                 <div id="waitlist-error" style="display:none; font-size:13px; color:#B4483A;"></div>
               </div>
               <div id="waitlist-done" style="display:none; background:#EDF2F7; border-radius:12px; padding:16px 18px; font-size:15px; color:#4A4E5A;">You're on the list. We'll email you at <span id="waitlist-done-email"></span> when it's your turn.</div>
+              <!--
+                Shown when Masa is not open where she is. Saying "You're on the
+                list" there would be untrue twice over: she is not on it, and
+                the invite it promises would be refused at signup. The note she
+                has just been sent says the same thing.
+              -->
+              <div id="waitlist-region" style="display:none; background:#EDF2F7; border-radius:12px; padding:16px 18px; font-size:15px; color:#4A4E5A;">Masa isn't open in your region yet, so we haven't put you on the Charter list. We've emailed <span id="waitlist-region-email"></span> and we'll write again when that changes.</div>
             </form>
           </div>
         </div>
@@ -560,6 +567,8 @@
           var pending = document.getElementById('waitlist-pending');
           var done = document.getElementById('waitlist-done');
           var doneEmail = document.getElementById('waitlist-done-email');
+          var region = document.getElementById('waitlist-region');
+          var regionEmail = document.getElementById('waitlist-region-email');
           var errorBox = document.getElementById('waitlist-error');
           var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -598,9 +607,17 @@
               .then(function (res) {
                 if (res.status === 429) throw new Error('Too many attempts — please try again in a few minutes.');
                 if (!res.ok) throw new Error('Something went wrong. Please try again.');
-                doneEmail.textContent = email;
+                return res.json().catch(function () { return {}; });
+              })
+              .then(function (body) {
                 pending.style.display = 'none';
-                done.style.display = 'block';
+                if (body && body.region === 'unavailable') {
+                  regionEmail.textContent = email;
+                  region.style.display = 'block';
+                } else {
+                  doneEmail.textContent = email;
+                  done.style.display = 'block';
+                }
               })
               .catch(function (err) {
                 showError(err.message || 'Something went wrong. Please try again.');
