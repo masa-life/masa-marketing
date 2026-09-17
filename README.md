@@ -14,7 +14,16 @@ Once `masa.life` is transferred to Masa Life, Inc., this page should be replaced
 
 - Company name: **Masa Life, Inc.**
 - Nav, hero, about, offerings, Charter waitlist, founder's story, and contact sections.
-- Charter waitlist form: front-end only — submitting shows a confirmation message but does not send or store the email anywhere yet. Wire it to a real capture mechanism before relying on it to collect signups.
+- Charter waitlist form: posts to `https://masa.tools/api/waitlist`. Open-phase
+  fields are email (required), country, first name, journey stage, and how they
+  heard about Masa. The last two are validated against a fixed vocabulary in
+  masa-tools' `worker.js` (`JOURNEY_STAGES`, `HOW_HEARD_OPTIONS`) and anything
+  it does not recognise is dropped to empty without an error, so the `value`
+  attributes here and those two sets have to be changed together.
+- Launch copy is hand-written, not derived from a date. The page does not know
+  what phase it is in: masa-app (`src/lib/charter.dates.ts`, which owns the
+  calendar per ADR-0357) and masa-tools (`WAITLIST_PHASES`) both switch
+  themselves at midnight Pacific, and this page has to be edited to match.
 - Contact email: `hello@masa.life`.
 - Footer links: Privacy Policy, Terms of Service, Contact.
 - No analytics.
