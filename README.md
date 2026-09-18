@@ -64,6 +64,44 @@ ever changes, they all change together.
   roughly a quarter of the bytes. Re-exporting an asset from a design tool will
   undo that — quantise it again on the way in.
 
+## Search Console — not yet set up
+
+Nothing in this repo can do this part: verification needs a Google account and
+a DNS record, neither of which is in version control. These are the steps, in
+order. **Owner:** Bella. **Last validated:** not yet — written 2026-09-18,
+update this line once it has actually been walked through.
+
+1. **Create a Domain property**, not a URL-prefix one, at
+   [search.google.com/search-console](https://search.google.com/search-console).
+   Enter `masa.life` with no scheme and no `www`. A Domain property covers
+   `www`, `app.` and `dev.`, and both http and https, as one property — a URL
+   prefix property would cover only the exact string and would need a separate
+   property per subdomain.
+2. **Verify by DNS.** Domain properties support only this method. Google shows
+   a `google-site-verification=…` string; add it in Cloudflare under
+   `masa.life` → DNS → Records → Add record, type `TXT`, name `@`, content set
+   to that whole string. TXT records are not proxied, so the orange cloud does
+   not apply. Cloudflare publishes in seconds; click Verify. If it fails, wait
+   a few minutes and retry rather than adding a second record.
+3. **Submit the sitemap.** Sitemaps → enter `sitemap.xml` (the relative path,
+   not the full URL) → Submit. It should read "Success" and 1 discovered URL.
+4. **Request the first crawl.** URL Inspection → `https://masa.life/` → Request
+   Indexing. Without this the first crawl of a brand-new property can take
+   days. It is a one-off, not something to repeat on every copy change.
+5. **Check back in a week**, under Pages, that `masa.life/` is Indexed and not
+   "Discovered — currently not indexed".
+
+Two things to expect once the property exists:
+
+- **`dev.masa.life` will appear in it.** The development environment serves no
+  `robots.txt`, no `noindex` and no `X-Robots-Tag`, so if it is publicly
+  reachable it is indexable, and a dev copy of the product in Google's index
+  competes with production for its own brand terms. Worth closing before
+  verification, not after.
+- **No verification file or meta tag belongs in this repo.** DNS verification
+  needs neither, and a stale `google*.html` or `google-site-verification` meta
+  tag left in the page is a small information leak for no benefit.
+
 ## Core Web Vitals
 
 `node scripts/measure-vitals.js` re-measures the page: it serves the repo over
