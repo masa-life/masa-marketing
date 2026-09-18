@@ -1,13 +1,29 @@
-# masalife.co — Apple enrollment landing page (temporary)
+# masa.life — the company landing page
 
-Single static page on the `.co` apex. This replaces the previous quiet holding page while `masalife.co` is used as the publicly available company website for Apple Developer Program enrollment.
+Single static page on the `masa.life` apex: the brand surface. `app.masa.life`
+is the product and `masa.tools` the team workspace; neither is served from this
+repo.
 
-Once `masa.life` is transferred to Masa Life, Inc., this page should be replaced with a Cloudflare Page Rule 301 → `https://masa.life/$1`, per ADR-0184.
+This page began life on the `.co` apex as a temporary holding page for Apple
+Developer Program enrollment. The `masa.life` cutover in ADR-0184 has since
+happened, so **`masa.life` is the live domain and the canonical host**.
+`masalife.co` and `masalife.app` are legacy defensive holds and should redirect
+here, not serve a copy of this page — two hosts serving the same HTML is how a
+site competes with itself for its own name. `docs/reference/environments-and-domains.md`
+in masa-app is the current answer on the domain topology; the ADRs are history.
+
+Every absolute URL on the page — canonical, `og:url`, `og:image`, the JSON-LD
+`@id`s, `sitemap.xml`, `robots.txt` — points at `https://masa.life`. If that
+ever changes, they all change together.
 
 ## Files
 
 - `index.html` — company landing page (inline CSS, small vanilla-JS nav highlighter and waitlist form).
-- `assets/` — logo icon and app screenshot referenced by `index.html`.
+- `assets/` — logo icon, app screenshot, and the Open Graph share card referenced by `index.html`.
+- `scripts/make-og-image.py` — regenerates `assets/og-image.png`. Run it when the hero copy changes.
+- `robots.txt` — crawl policy; points at the sitemap.
+- `sitemap.xml` — the one page, with a hand-set `lastmod`.
+- `llms.txt` — what Masa is, for the models that now answer questions about it.
 - `_headers` — Cloudflare Pages security headers.
 
 ## What's on the page
@@ -26,8 +42,27 @@ Once `masa.life` is transferred to Masa Life, Inc., this page should be replaced
   themselves at midnight Pacific, and this page has to be edited to match.
 - Contact email: `hello@masa.life`.
 - Footer links: Privacy Policy, Terms of Service, Contact.
-- No analytics.
+- No analytics. Nothing here measures whether any of the search work below
+  lands; Search Console is the only feedback loop the page currently has.
 - `index`able (the previous `noindex` has been removed so Apple can verify the site).
+
+## Search and sharing
+
+- **Share card.** `assets/og-image.png`, 1200×630, built by
+  `scripts/make-og-image.py` from the page's own tokens and self-hosted faces.
+  It is generated ahead of time, so **changing the hero copy means re-running
+  the script** — otherwise the preview quotes a line the page no longer has.
+- **Structured data.** A single JSON-LD `@graph` in the head: `Organization`,
+  `WebSite`, `WebPage`. Deliberately no `Event` or `Offer` for the Charter
+  waitlist — the launch copy is already hand-synced across three repos, and a
+  stale date in structured data is the version Google quotes.
+- **`sitemap.xml`.** `lastmod` is hand-set. Move it when the copy changes, not
+  on every deploy; a `lastmod` that always says "today" is one Google stops
+  reading.
+- **Images** are palette-quantised PNGs, not truecolour. The page is flat brand
+  colour and two faces, so a 192–256 entry palette is visually identical at
+  roughly a quarter of the bytes. Re-exporting an asset from a design tool will
+  undo that — quantise it again on the way in.
 
 ## Syncing from Claude Design
 
@@ -42,12 +77,15 @@ editor-only and are not shipped to production).
 
 1. Create a Cloudflare Pages project connected to a repo containing these files.
 2. Set build command to empty and output directory to `/`.
-3. Attach `masalife.co` and `www.masalife.co` custom domains.
-4. Verify `https://masalife.co` loads and WHOIS shows **Masa Life, Inc.** as the registrant.
+3. Attach `masa.life` and `www.masa.life` as custom domains.
+4. Point `masalife.co` and `masalife.app` at a 301 → `https://masa.life/$1`.
+   They are defensive holds; they should never serve this page themselves.
+5. Verify `https://masa.life` loads and WHOIS shows **Masa Life, Inc.** as the registrant.
 
-## Email forwarding
-
-Set up `hello@masalife.co` to forward to `hello@masa.life` so the contact address on this page lands in your main inbox. Once `masa.life` is transferred to the company, the page can be retired and all contact can point directly to `hello@masa.life`.
+The Cloudflare project is still named `masalife-holding` in `wrangler.jsonc`,
+from when the page lived on the `.co`. The name is cosmetic and renaming it
+means recreating the project and re-attaching the domains, so it is left alone
+deliberately — it is not evidence of which domain is live.
 
 ## Brand tokens
 

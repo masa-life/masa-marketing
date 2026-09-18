@@ -1,0 +1,9 @@
+# masa.life — the company page. Everything here is public marketing copy:
+# there is no member surface on this host, so there is nothing to keep out.
+# The product lives on app.masa.life and the team workspace on masa.tools,
+# both of which carry their own robots.txt and their own auth.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://masa.life/sitemap.xml
