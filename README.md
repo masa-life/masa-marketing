@@ -64,6 +64,44 @@ ever changes, they all change together.
   roughly a quarter of the bytes. Re-exporting an asset from a design tool will
   undo that — quantise it again on the way in.
 
+## Core Web Vitals
+
+`node scripts/measure-vitals.js` re-measures the page: it serves the repo over
+loopback with the HTML brotli'd the way Cloudflare serves it, loads it in
+Chromium under Slow 4G with a 4x CPU throttle, and prints the median of seven
+runs at phone and desktop widths. Needs `npm install playwright`.
+
+As measured, both viewports pass with a lot of room:
+
+| | LCP | CLS |
+|---|---|---|
+| phone, 390×844 | 300ms | 0.0098 |
+| desktop, 1280×800 | 380ms | 0.0008 |
+| Google's "good" | under 2500ms | under 0.1 |
+
+Three things worth not re-deriving:
+
+- **The LCP element is the `h1`, not the screenshot beside it.** The screenshot
+  looks bigger but is not; on a phone the h1 is a 326×205 block and the image
+  renders 326×169, and on desktop the h1 wins too. Optimising for the image is
+  optimising the wrong element.
+- **Adding `<link rel="preload">` for the fonts makes things worse.** Tried,
+  measured over seven runs a side: it cost roughly 80ms of LCP on both
+  viewports and moved CLS by 0.0002. `font-display: swap` already paints the h1
+  in the fallback serif immediately, so there is no paint waiting on the font,
+  and the preload just competes with the document for the same bandwidth. This
+  is the obvious-looking change that is wrong; don't re-add it without re-running
+  the script.
+- **The remaining phone CLS is the font swap**, at about 1.7s: the h1 reflows
+  when Cormorant replaces the fallback serif and pushes the CTA row and the
+  waitlist note down. Removing it properly means metric-matched fallbacks
+  (`size-adjust`, `ascent-override`) tuned per platform, since the fallback
+  serif differs on Windows, macOS and Android. At 0.0098 against a 0.1 budget
+  that is not worth the fragility on a page synced by hand from a design canvas.
+
+INP needs nothing: the only script is an `IntersectionObserver` and a submit
+handler, with no scroll listeners, and it runs at the end of the body.
+
 ## Syncing from Claude Design
 
 This page is synced by hand from a Claude Design canvas (`masa-life/masa-marketing`,

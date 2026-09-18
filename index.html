@@ -40,6 +40,17 @@
     <meta name="theme-color" content="#4A4E5A" />
     <link rel="icon" type="image/png" href="assets/masa-icon-favicon.png" />
     <link rel="canonical" href="https://masa.life" />
+
+    <!--
+      There is deliberately no <link rel="preload"> for the fonts here, and
+      adding one is a regression. See "Core Web Vitals" in README.md: it was
+      tried, measured over seven runs a side, and cost about 80ms of LCP on
+      both a phone and a desktop while changing CLS by 0.0002. The h1 is the
+      largest contentful paint and `font-display: swap` already paints it in
+      the fallback immediately, so the preload buys nothing and competes with
+      the document for the same bandwidth. `scripts/measure-vitals.js`
+      re-runs the measurement.
+    -->
     <!--
       The two faces this page reads in, served from the same origin as the page.
 
@@ -326,7 +337,7 @@
       <div style="position:sticky; top:0; z-index:50; background:rgba(243,239,234,0.92); backdrop-filter:blur(8px); border-bottom:1px solid #D9D2C7;">
         <div class="nav-bar" style="max-width:1160px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
           <a href="#top" style="display:flex; align-items:center; gap:10px;">
-            <img src="assets/masa-icon.png" alt="Masa" width="40" height="40" style="width:40px; height:40px; object-fit:contain;" />
+            <img src="assets/masa-icon.png" alt="Masa" width="40" height="40" decoding="async" style="width:40px; height:40px; object-fit:contain;" />
             <div style="display:flex; flex-direction:column; gap:0px;">
               <div style="display:flex; justify-content:space-between; width:82px; font-family:'Cormorant Garamond',serif; font-size:19px; color:#4A4E5A; text-transform:uppercase;"><span>M</span><span>A</span><span>S</span><span>A</span></div>
               <span style="font-size:8px; color:#64748B; letter-spacing:0.05em; white-space:nowrap; width:82px; margin-top:-4px;">Every Season Yours</span>
@@ -358,7 +369,7 @@
 
         <div style="flex:1 1 340px; max-width:380px; margin:0 auto;">
           <div style="background:#FAF8F5; border:1px solid #D9D2C7; border-radius:20px; overflow:hidden; box-shadow:0 20px 50px -20px rgba(74,78,90,0.35);">
-            <img src="assets/app-screenshot-crop4.png" alt="Masa app, Today screen" width="809" height="420" style="width:100%; height:auto; display:block;" />
+            <img src="assets/app-screenshot-crop4.png" alt="Masa app, Today screen" width="809" height="420" decoding="async" style="width:100%; height:auto; display:block;" />
           </div>
         </div>
       </div>
