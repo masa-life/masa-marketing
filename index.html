@@ -12,9 +12,31 @@
     <meta property="og:description" content="Built for her whole story — cycles, fertility, pregnancy, postpartum, and the seasons in between." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://masa.life" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:site_name" content="Masa" />
+    <meta property="og:locale" content="en_US" />
+    <!--
+      The card every share of this link renders as — iMessage, Slack, WhatsApp,
+      LinkedIn. Without it those previews are a blank rectangle with a URL
+      under it, which for a page whose whole job is a waitlist signup is the
+      one impression that matters most. Absolute URLs: relative ones are not
+      resolved by most crawlers.
+
+      Built from the page's own tokens and faces by `scripts/make-og-image.py`
+      — Warm Mist, the icon, the wordmark, and the line the hero opens with. It
+      is generated ahead of time, not at request time, so changing the hero
+      copy below means re-running that script. 1200x630 is the size Facebook,
+      LinkedIn and X all crop cleanly.
+    -->
+    <meta property="og:image" content="https://masa.life/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Masa — built for her whole story, every season." />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Masa — Built for her whole story, every season" />
     <meta name="twitter:description" content="Built for her whole story — cycles, fertility, pregnancy, postpartum, and the seasons in between." />
+    <meta name="twitter:image" content="https://masa.life/assets/og-image.png" />
+    <meta name="twitter:image:alt" content="Masa — built for her whole story, every season." />
     <meta name="theme-color" content="#4A4E5A" />
     <link rel="icon" type="image/png" href="assets/masa-icon-favicon.png" />
     <link rel="canonical" href="https://masa.life" />
