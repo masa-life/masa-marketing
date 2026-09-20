@@ -73,6 +73,17 @@ Domain property created, verified by DNS TXT in Cloudflare, sitemap submitted,
 first crawl requested. Steps 1–4 are done and are not repeated; step 5 is the
 one-week check.
 
+**The property is owned by `admin@masa.life`, with `bella@masa.life` added as
+a Full user.** Company account owns it so the property survives any one
+person's account; Full lets Bella do everything day to day without being able
+to add or remove users. Google sends coverage, manual-action and security
+alerts to the owner, so `admin@` is the address that has to reach someone.
+
+Ownership is recoverable rather than precious: verification is by DNS, so
+anyone who controls `masa.life`'s DNS can verify a further account, each owner
+holding its own TXT record alongside the others. Nothing has to be torn down
+to add one.
+
 1. **Create a Domain property**, not a URL-prefix one, at
    [search.google.com/search-console](https://search.google.com/search-console).
    Enter `masa.life` with no scheme and no `www`. A Domain property covers
