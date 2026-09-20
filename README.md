@@ -83,8 +83,16 @@ update this line once it has actually been walked through.
    to that whole string. TXT records are not proxied, so the orange cloud does
    not apply. Cloudflare publishes in seconds; click Verify. If it fails, wait
    a few minutes and retry rather than adding a second record.
-3. **Submit the sitemap.** Sitemaps → enter `sitemap.xml` (the relative path,
-   not the full URL) → Submit. It should read "Success" and 1 discovered URL.
+3. **Submit the sitemap.** Sitemaps → enter the **full URL**,
+   `https://masa.life/sitemap.xml` → Submit. It should read "Success" and 1
+   discovered URL.
+
+   The relative path `sitemap.xml` is what a *URL-prefix* property wants,
+   because that kind of property shows its origin greyed out in front of the
+   field. A Domain property covers http, https and every subdomain, so it has
+   no single prefix to show and the field starts empty. This step said
+   "relative path" until 2026-09-19, which is the URL-prefix instruction
+   sitting next to the Domain-property setup in step 1.
 4. **Request the first crawl.** URL Inspection → `https://masa.life/` → Request
    Indexing. Without this the first crawl of a brand-new property can take
    days. It is a one-off, not something to repeat on every copy change.
