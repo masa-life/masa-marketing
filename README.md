@@ -40,12 +40,22 @@ ever changes, they all change together.
   hand-written and hand-edited, which meant that from the moment entries
   stopped the page kept saying "Waitlist open now" until somebody remembered.
 - Contact email: `hello@masa.life`.
-- Footer links: Privacy Policy, Terms of Service, Contact, Instagram.
+- Footer links: Privacy Policy, Terms of Service, Contact, then a hairline and
+  the Instagram mark. The hairline is there because the first three are
+  obligations and the fourth is an invitation; in a plain row of four the
+  invitation read as the least important of them.
 - **Social profiles** are listed twice and both copies have to agree: as a
   footer link carrying `rel="me"`, and in `sameAs` on the Organization node in
   the JSON-LD. The footer link is for a visitor deciding whether this is a real
   company; `sameAs` is how a search engine ties the profiles to Masa Life, Inc.,
   which is what branded search leans on. Adding a platform means adding both.
+
+  Each one is the platform's own glyph, inline in the markup rather than
+  fetched, so it cannot arrive late and shift the footer. An icon has no text
+  to read, so the anchor carries `aria-label` and the `<svg>` carries
+  `aria-hidden="true"` — without the first there is nothing to announce, and
+  without the second it gets announced twice. The padding on `.social-link` is
+  the tap target, not spacing: an 18px glyph is an 18px thing to hit.
 
   Only live profiles go in. A `sameAs` pointing at a 404, or a footer link to an
   empty profile, is worse than leaving the platform out — it is a broken link on
