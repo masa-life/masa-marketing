@@ -40,7 +40,18 @@ ever changes, they all change together.
   hand-written and hand-edited, which meant that from the moment entries
   stopped the page kept saying "Waitlist open now" until somebody remembered.
 - Contact email: `hello@masa.life`.
-- Footer links: Privacy Policy, Terms of Service, Contact.
+- Footer links: Privacy Policy, Terms of Service, Contact, Instagram.
+- **Social profiles** are listed twice and both copies have to agree: as a
+  footer link carrying `rel="me"`, and in `sameAs` on the Organization node in
+  the JSON-LD. The footer link is for a visitor deciding whether this is a real
+  company; `sameAs` is how a search engine ties the profiles to Masa Life, Inc.,
+  which is what branded search leans on. Adding a platform means adding both.
+
+  Only live profiles go in. A `sameAs` pointing at a 404, or a footer link to an
+  empty profile, is worse than leaving the platform out — it is a broken link on
+  the one page that has to look real. Instagram is `@app.masa.life`, because
+  `masa.life` and `masalife` were both taken; TikTok, YouTube, Facebook and
+  Pinterest are not listed because they were not confirmed live.
 - No analytics. Nothing here measures whether any of the search work below
   lands; Search Console is the only feedback loop the page currently has.
 - `index`able (the previous `noindex` has been removed so Apple can verify the site).
