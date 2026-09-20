@@ -64,12 +64,25 @@ ever changes, they all change together.
   roughly a quarter of the bytes. Re-exporting an asset from a design tool will
   undo that — quantise it again on the way in.
 
-## Search Console — not yet set up
+## Search Console
 
 Nothing in this repo can do this part: verification needs a Google account and
 a DNS record, neither of which is in version control. These are the steps, in
-order. **Owner:** Bella. **Last validated:** not yet — written 2026-09-18,
-update this line once it has actually been walked through.
+order. **Owner:** Bella. **Last validated:** 2026-09-19, walked end to end —
+Domain property created, verified by DNS TXT in Cloudflare, sitemap submitted,
+first crawl requested. Steps 1–4 are done and are not repeated; step 5 is the
+one-week check.
+
+**The property is owned by `admin@masa.life`, with `bella@masa.life` added as
+a Full user.** Company account owns it so the property survives any one
+person's account; Full lets Bella do everything day to day without being able
+to add or remove users. Google sends coverage, manual-action and security
+alerts to the owner, so `admin@` is the address that has to reach someone.
+
+Ownership is recoverable rather than precious: verification is by DNS, so
+anyone who controls `masa.life`'s DNS can verify a further account, each owner
+holding its own TXT record alongside the others. Nothing has to be torn down
+to add one.
 
 1. **Create a Domain property**, not a URL-prefix one, at
    [search.google.com/search-console](https://search.google.com/search-console).
@@ -83,8 +96,16 @@ update this line once it has actually been walked through.
    to that whole string. TXT records are not proxied, so the orange cloud does
    not apply. Cloudflare publishes in seconds; click Verify. If it fails, wait
    a few minutes and retry rather than adding a second record.
-3. **Submit the sitemap.** Sitemaps → enter `sitemap.xml` (the relative path,
-   not the full URL) → Submit. It should read "Success" and 1 discovered URL.
+3. **Submit the sitemap.** Sitemaps → enter the **full URL**,
+   `https://masa.life/sitemap.xml` → Submit. It should read "Success" and 1
+   discovered URL.
+
+   The relative path `sitemap.xml` is what a *URL-prefix* property wants,
+   because that kind of property shows its origin greyed out in front of the
+   field. A Domain property covers http, https and every subdomain, so it has
+   no single prefix to show and the field starts empty. This step said
+   "relative path" until 2026-09-19, which is the URL-prefix instruction
+   sitting next to the Domain-property setup in step 1.
 4. **Request the first crawl.** URL Inspection → `https://masa.life/` → Request
    Indexing. Without this the first crawl of a brand-new property can take
    days. It is a one-off, not something to repeat on every copy change.
