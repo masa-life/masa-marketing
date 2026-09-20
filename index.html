@@ -361,6 +361,7 @@
             "email": "hello@masa.life",
             "description": "Masa Life, Inc. builds Masa, a calm and private app for a woman's whole reproductive story — cycles, fertility, pregnancy, postpartum, and the seasons in between.",
             "slogan": "Every Season Yours",
+            "sameAs": ["https://www.instagram.com/app.masa.life/"],
             "logo": {
               "@type": "ImageObject",
               "url": "https://masa.life/assets/masa-icon.png",
@@ -922,6 +923,13 @@
             <a href="https://app.masa.life/privacy-policy" style="font-size:13px; color:#64748B;">Privacy Policy</a>
             <a href="https://app.masa.life/beta-terms" style="font-size:13px; color:#64748B;">Terms of Service</a>
             <a href="mailto:hello@masa.life" style="font-size:13px; color:#64748B;">Contact</a>
+            <!--
+              rel="me" says this profile is the same entity as this site. It is
+              the correct rel for an identity link, and it is what consumes
+              these when something is checking whether a profile is really ours.
+              Keep it on any social link added here.
+            -->
+            <a href="https://www.instagram.com/app.masa.life/" rel="me noopener" target="_blank" style="font-size:13px; color:#64748B;">Instagram</a>
           </div>
         </div>
       </div>
