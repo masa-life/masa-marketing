@@ -50,12 +50,19 @@ ever changes, they all change together.
   company; `sameAs` is how a search engine ties the profiles to Masa Life, Inc.,
   which is what branded search leans on. Adding a platform means adding both.
 
-  Each one is the platform's own glyph, inline in the markup rather than
-  fetched, so it cannot arrive late and shift the footer. An icon has no text
-  to read, so the anchor carries `aria-label` and the `<svg>` carries
-  `aria-hidden="true"` — without the first there is nothing to announce, and
-  without the second it gets announced twice. The padding on `.social-link` is
-  the tap target, not spacing: an 18px glyph is an 18px thing to hit.
+  Each one is the platform's own glyph in the platform's own colours, inline in
+  the markup rather than fetched, so it cannot arrive late and shift the
+  footer. An icon has no text to read, so the anchor carries `aria-label` and
+  the `<svg>` carries `aria-hidden="true"` — without the first there is nothing
+  to announce, and without the second it gets announced twice. The padding on
+  `.social-link` is the tap target, not spacing: a 20px glyph is a 20px thing
+  to hit.
+
+  Two things to know before adding a second one. A gradient `id` is global to
+  the page and the first definition wins, so each glyph needs its own — hence
+  `ig-gradient` rather than `gradient`. And `.social-link:hover` fades rather
+  than recolours, because a brand mark in its own colours has no single colour
+  to change and repainting somebody else's logo on hover is not the fix.
 
   Only live profiles go in. A `sameAs` pointing at a 404, or a footer link to an
   empty profile, is worse than leaving the platform out — it is a broken link on
