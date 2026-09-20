@@ -1,5 +1,15 @@
 <!doctype html>
-<html lang="en">
+<!--
+  data-charter-phase is the launch phase the page is dressed for. It ships as
+  "waitlist-open" and the script at the end of <head> corrects it, before
+  anything paints, from the clock.
+
+  Shipping a real phase rather than an empty attribute is deliberate: with
+  JavaScript off nothing corrects it, and the page then reads exactly as it
+  did before any of this existed. That is the old failure — stale copy — and
+  not a new one, which is the most a static page can promise here.
+-->
+<html lang="en" data-charter-phase="waitlist-open">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -260,6 +270,73 @@
     </style>
 
     <!--
+      The launch calendar, and the only copy of it on this page.
+
+      These four instants are masa-app's `src/lib/charter.dates.ts`, which owns
+      the calendar per ADR-0357, and they agree with masa-tools' WAITLIST_PHASES
+      to the millisecond — masa-app closes the waitlist at 2026-10-03T23:59:59.999
+      Pacific, masa-tools opens the next phase at 2026-10-04T00:00:00 Pacific,
+      which is the same boundary written from either side. If that calendar
+      moves, this moves with it, in the same change.
+
+      Every boundary carries its -07:00 offset, so each parses to one absolute
+      instant and the phase is the same for a visitor in Sydney as in Rancho
+      Cucamonga. Do not rewrite these as local dates.
+
+      Why this exists: until 2026-09-19 the page had no idea what phase it was
+      in. masa-app and masa-tools both roll themselves over at midnight Pacific
+      and this page was hand-edited to match, so from the moment entries
+      stopped it would have kept saying "Waitlist open now" until somebody
+      remembered — during the week they would least want to be remembering.
+      Worse, the form stayed on screen: you could fill it in and only learn it
+      had closed after submitting. masa-tools' own note for that phase reads
+      "No form is on screen in this one, so it should collect nothing."
+    -->
+    <script>
+      (function () {
+        var OPENS_AT = Date.parse('2026-09-17T00:00:00-07:00');
+        var CLOSES_AT = Date.parse('2026-10-04T00:00:00-07:00');
+        var PUBLIC_OPENS_AT = Date.parse('2026-10-08T00:00:00-07:00');
+
+        // Mirrors getCharterWindow() in masa-app. Same names, same order, so
+        // the two can be read side by side.
+        function charterPhase(now) {
+          if (now < OPENS_AT) return 'before-waitlist';
+          if (now < CLOSES_AT) return 'waitlist-open';
+          if (now < PUBLIC_OPENS_AT) return 'waitlist-closed';
+          return 'public-open';
+        }
+
+        try {
+          document.documentElement.setAttribute('data-charter-phase', charterPhase(Date.now()));
+        } catch (e) {
+          // Leave the shipped default in place. A visitor seeing last week's
+          // copy is the failure this page already had; a blank hero is a new
+          // one, and worse.
+        }
+      })();
+    </script>
+    <style>
+      /*
+        Show only the blocks dressed for the current phase.
+
+        Each variant carries data-when with one or more phase names, space
+        separated, and ~= matches a single one out of that list. The rules are
+        written out per phase because CSS cannot compare an attribute on <html>
+        against one on a descendant.
+
+        Nothing is hidden unless <html> carries a phase, so a page whose script
+        did not run shows its shipped copy rather than nothing at all.
+      */
+      html[data-charter-phase='before-waitlist'] [data-when]:not([data-when~='before-waitlist']),
+      html[data-charter-phase='waitlist-open'] [data-when]:not([data-when~='waitlist-open']),
+      html[data-charter-phase='waitlist-closed'] [data-when]:not([data-when~='waitlist-closed']),
+      html[data-charter-phase='public-open'] [data-when]:not([data-when~='public-open']) {
+        display: none !important;
+      }
+    </style>
+
+    <!--
       Structured data, so a search engine reading this page knows Masa Life,
       Inc. is the company behind masa.life rather than inferring it from the
       footer. Organization plus WebSite is the whole useful set for a one-page
@@ -349,7 +426,9 @@
             <a class="nav-link" data-target="charter" href="#charter">Charter</a>
             <a class="nav-link" data-target="story" href="#story">Founder's story</a>
             <a class="nav-link" data-target="contact" href="#contact">Contact</a>
-            <a href="#charter" class="cta" style="font-size:14px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:10px 20px; border-radius:24px;">Join the waitlist</a>
+            <a href="#charter" class="cta" data-when="before-waitlist waitlist-open" style="font-size:14px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:10px 20px; border-radius:24px;">Join the waitlist</a>
+            <a href="#charter" class="cta" data-when="waitlist-closed" style="font-size:14px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:10px 20px; border-radius:24px;">Opens October 8</a>
+            <a href="https://app.masa.life" class="cta" data-when="public-open" style="font-size:14px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:10px 20px; border-radius:24px;">Open Masa</a>
           </div>
         </div>
       </div>
@@ -357,14 +436,19 @@
       <!-- HERO -->
       <div id="top" style="max-width:1160px; margin:0 auto; padding:clamp(48px,8vw,96px) 32px 64px; display:flex; align-items:center; gap:56px; flex-wrap:wrap;">
         <div style="flex:1 1 460px;">
-          <div style="display:inline-block; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#64748B; background:#FAF8F5; border:1px solid #D9D2C7; padding:6px 14px; border-radius:20px; margin-bottom:20px;">Invite only, for now</div>
+          <div style="display:inline-block; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#64748B; background:#FAF8F5; border:1px solid #D9D2C7; padding:6px 14px; border-radius:20px; margin-bottom:20px;" data-when="before-waitlist waitlist-open waitlist-closed">Invite only, for now</div>
           <h1 style="font-family:'Cormorant Garamond',serif; font-weight:500; letter-spacing:-0.02em; font-size:clamp(38px,5vw,60px); line-height:1.08; margin:0 0 20px; color:#2f323b;">Built for her whole story — cycles, fertility, pregnancy, postpartum, and the seasons in between.</h1>
           <p style="font-size:clamp(16px,1.6vw,19px); color:#3A3A3A; max-width:480px; margin:0 0 32px;">One place to track, reflect, and prepare — through cycles, fertility, pregnancy, postpartum, and every season in between. No ads, no noise, no presumed outcome.</p>
           <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
-            <a href="#charter" class="cta" style="font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:14px 28px; border-radius:26px;">Join the Charter waitlist</a>
+            <a href="#charter" class="cta" data-when="before-waitlist waitlist-open" style="font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:14px 28px; border-radius:26px;">Join the Charter waitlist</a>
+            <a href="#charter" class="cta" data-when="waitlist-closed" style="font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:14px 28px; border-radius:26px;">What happens on October 8</a>
+            <a href="https://app.masa.life" class="cta" data-when="public-open" style="font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:14px 28px; border-radius:26px;">Create your account</a>
             <a href="#offerings" style="font-size:15px; font-weight:500; color:#4A4E5A; border:1px solid #4A4E5A; padding:14px 28px; border-radius:26px;">See what Masa offers</a>
           </div>
-          <p style="font-size:13px; color:#64748B; margin-top:18px;">Waitlist open now. Join to get first access — closes October 3, or once all 500 Charter spots are claimed. Joining is not a purchase.</p>
+          <p style="font-size:13px; color:#64748B; margin-top:18px;" data-when="before-waitlist">The Charter waitlist opens September 17. Joining it will be the only way into Masa before October 8.</p>
+          <p style="font-size:13px; color:#64748B; margin-top:18px;" data-when="waitlist-open">Waitlist open now. Join to get first access — closes October 3, or once all 500 Charter spots are claimed. Joining is not a purchase.</p>
+          <p style="font-size:13px; color:#64748B; margin-top:18px;" data-when="waitlist-closed">The waitlist has closed. The last batch of invitations is going out now, and Masa opens to everyone on October 8 — no invite needed.</p>
+          <p style="font-size:13px; color:#64748B; margin-top:18px;" data-when="public-open">Masa is open to everyone. Charter pricing holds while any of the 500 seats remain.</p>
         </div>
 
         <div style="flex:1 1 340px; max-width:380px; margin:0 auto;">
@@ -440,21 +524,53 @@
               <li style="padding:6px 0; border-top:1px solid rgba(250,248,245,0.15);">A direct line to shape what we build next</li>
               <li style="padding:6px 0; border-top:1px solid rgba(250,248,245,0.15); border-bottom:1px solid rgba(250,248,245,0.15);">Every season, in one place, as they arrive</li>
             </ul>
-            <p style="font-size:13px; color:rgba(250,248,245,0.6); margin:0 0 28px;">Everyone needs to join the waitlist for app access while Charter is available — whether or not you plan to become a Charter member.</p>
+            <p style="font-size:13px; color:rgba(250,248,245,0.6); margin:0 0 28px;" data-when="before-waitlist waitlist-open">Everyone needs to join the waitlist for app access while Charter is available — whether or not you plan to become a Charter member.</p>
+            <p style="font-size:13px; color:rgba(250,248,245,0.6); margin:0 0 28px;" data-when="public-open">Charter is claimed inside the app, on the plan screen, for as long as seats remain.</p>
 
             <div style="border-top:1px solid rgba(250,248,245,0.15); padding-top:24px;">
-              <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:#FAF8F5; margin-bottom:14px;">Why join early</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:#FAF8F5; margin-bottom:14px;" data-when="before-waitlist waitlist-open">Why join early</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:#FAF8F5; margin-bottom:14px;" data-when="waitlist-closed">What happens next</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:#FAF8F5; margin-bottom:14px;" data-when="public-open">What Charter means now</div>
               <div style="display:flex; flex-direction:column; gap:14px; font-size:14px; color:rgba(250,248,245,0.8); max-width:460px;">
-                <p style="margin:0;">Joining the waitlist is the only way into Masa before October 8.</p>
-                <p style="margin:0;">We're releasing members in small batches to create an account, complete onboarding, and claim a Charter seat — before the public opening on October 8 and before the 500 seats are gone.</p>
+                <p style="margin:0;" data-when="before-waitlist waitlist-open">Joining the waitlist is the only way into Masa before October 8.</p>
+                <p style="margin:0;" data-when="before-waitlist waitlist-open">We're releasing members in small batches to create an account, complete onboarding, and claim a Charter seat — before the public opening on October 8 and before the 500 seats are gone.</p>
+                <p style="margin:0;" data-when="waitlist-closed">Entries have stopped. The last batch of invitations is going out now, so everyone who joined in time gets their window before the doors open.</p>
+                <p style="margin:0;" data-when="waitlist-closed">On October 8 Masa opens to everyone, no invite needed. Charter seats that are still unclaimed stay available at Charter pricing until the 500 are gone.</p>
+                <p style="margin:0;" data-when="public-open">Masa is open to everyone — create an account whenever you like, no invite and no waiting.</p>
+                <p style="margin:0;" data-when="public-open">Charter pricing is held for life for the first 500 members, and any seats still unclaimed are first come.</p>
               </div>
             </div>
           </div>
           <div class="charter-form" style="flex:1 1 320px; background:#FAF8F5; border-radius:16px; padding:32px;">
-            <div style="font-size:13px; color:#64748B; margin-bottom:6px;">Join the waitlist</div>
-            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;">Waitlist open now. Join to get first access — closes October 3, or once all 500 Charter spots are claimed. Joining is not a purchase.</div>
+            <div style="font-size:13px; color:#64748B; margin-bottom:6px;" data-when="before-waitlist waitlist-open">Join the waitlist</div>
+            <div style="font-size:13px; color:#64748B; margin-bottom:6px;" data-when="waitlist-closed">The waitlist has closed</div>
+            <div style="font-size:13px; color:#64748B; margin-bottom:6px;" data-when="public-open">Masa is open</div>
 
-            <form id="waitlist-form" novalidate>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;" data-when="before-waitlist">The Charter waitlist opens September 17. Leave your email and we'll tell you the moment it does.</div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;" data-when="waitlist-open">Waitlist open now. Join to get first access — closes October 3, or once all 500 Charter spots are claimed. Joining is not a purchase.</div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;" data-when="waitlist-closed">Entries have stopped and the last batch is going out. Masa opens to everyone on October 8 — nothing to join, just come back.</div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;" data-when="public-open">Masa is open to everyone. Create your account and claim a Charter seat while they last.</div>
+
+            <!--
+              The one CTA that replaces the form once there is nothing to join.
+              It is a link to the product rather than a second form: an address
+              taken here after entries stop is an enquiry, not a place in a
+              queue, and masa-tools would file it as exactly that.
+            -->
+            <a href="https://app.masa.life" data-when="public-open" style="display:block; text-align:center; font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:13px; border-radius:10px;">Create your account</a>
+
+            <!--
+              No form once entries have stopped. Hiding the <form> takes the
+              three response messages inside it with it, which is right: there
+              is no submission in those phases to respond to.
+
+              before-waitlist keeps the form because masa-tools' teaser phase
+              does collect (email and journey stage). That phase is behind us
+              and cannot recur, so it is handled for correctness rather than
+              tuned — the extra fields this form sends are ones masa-tools
+              accepts and labels against the form they came from.
+            -->
+            <form id="waitlist-form" data-when="before-waitlist waitlist-open" novalidate>
               <div id="waitlist-pending" style="display:flex; flex-direction:column; gap:12px;">
                 <input id="waitlist-email" type="email" required placeholder="you@email.com" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;" />
                 <select id="waitlist-country" class="waitlist-field" aria-label="Country or region" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;">
