@@ -12,12 +12,45 @@
     <meta property="og:description" content="Built for her whole story — cycles, fertility, pregnancy, postpartum, and the seasons in between." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://masa.life" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:site_name" content="Masa" />
+    <meta property="og:locale" content="en_US" />
+    <!--
+      The card every share of this link renders as — iMessage, Slack, WhatsApp,
+      LinkedIn. Without it those previews are a blank rectangle with a URL
+      under it, which for a page whose whole job is a waitlist signup is the
+      one impression that matters most. Absolute URLs: relative ones are not
+      resolved by most crawlers.
+
+      Built from the page's own tokens and faces by `scripts/make-og-image.py`
+      — Warm Mist, the icon, the wordmark, and the line the hero opens with. It
+      is generated ahead of time, not at request time, so changing the hero
+      copy below means re-running that script. 1200x630 is the size Facebook,
+      LinkedIn and X all crop cleanly.
+    -->
+    <meta property="og:image" content="https://masa.life/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Masa — built for her whole story, every season." />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Masa — Built for her whole story, every season" />
     <meta name="twitter:description" content="Built for her whole story — cycles, fertility, pregnancy, postpartum, and the seasons in between." />
+    <meta name="twitter:image" content="https://masa.life/assets/og-image.png" />
+    <meta name="twitter:image:alt" content="Masa — built for her whole story, every season." />
     <meta name="theme-color" content="#4A4E5A" />
     <link rel="icon" type="image/png" href="assets/masa-icon-favicon.png" />
     <link rel="canonical" href="https://masa.life" />
+
+    <!--
+      There is deliberately no <link rel="preload"> for the fonts here, and
+      adding one is a regression. See "Core Web Vitals" in README.md: it was
+      tried, measured over seven runs a side, and cost about 80ms of LCP on
+      both a phone and a desktop while changing CLS by 0.0002. The h1 is the
+      largest contentful paint and `font-display: swap` already paints it in
+      the fallback immediately, so the preload buys nothing and competes with
+      the document for the same bandwidth. `scripts/measure-vitals.js`
+      re-runs the measurement.
+    -->
     <!--
       The two faces this page reads in, served from the same origin as the page.
 
@@ -225,6 +258,77 @@
         outline-offset: 2px;
       }
     </style>
+
+    <!--
+      Structured data, so a search engine reading this page knows Masa Life,
+      Inc. is the company behind masa.life rather than inferring it from the
+      footer. Organization plus WebSite is the whole useful set for a one-page
+      company site; the rest of schema.org's vocabulary would be decoration.
+
+      Deliberately no dated nodes — no Event or Offer for the Charter waitlist.
+      The launch copy on this page is hand-written and already has to be kept
+      in step with masa-app and masa-tools by hand (see README.md). A closing
+      date in here would be a third copy to forget, and a stale one in
+      structured data is worse than none: it is the version Google quotes.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://masa.life/#organization",
+            "name": "Masa Life, Inc.",
+            "alternateName": "Masa",
+            "url": "https://masa.life",
+            "email": "hello@masa.life",
+            "description": "Masa Life, Inc. builds Masa, a calm and private app for a woman's whole reproductive story — cycles, fertility, pregnancy, postpartum, and the seasons in between.",
+            "slogan": "Every Season Yours",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://masa.life/assets/masa-icon.png",
+              "width": 240,
+              "height": 240
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Los Angeles",
+              "addressRegion": "CA",
+              "addressCountry": "US"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "hello@masa.life",
+              "availableLanguage": "English"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://masa.life/#website",
+            "url": "https://masa.life",
+            "name": "Masa",
+            "description": "Built for her whole story — cycles, fertility, pregnancy, postpartum, and the seasons in between.",
+            "inLanguage": "en-US",
+            "publisher": { "@id": "https://masa.life/#organization" }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://masa.life/#webpage",
+            "url": "https://masa.life",
+            "name": "Masa — Built for her whole story, every season",
+            "isPartOf": { "@id": "https://masa.life/#website" },
+            "about": { "@id": "https://masa.life/#organization" },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://masa.life/assets/og-image.png",
+              "width": 1200,
+              "height": 630
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div>
@@ -233,7 +337,7 @@
       <div style="position:sticky; top:0; z-index:50; background:rgba(243,239,234,0.92); backdrop-filter:blur(8px); border-bottom:1px solid #D9D2C7;">
         <div class="nav-bar" style="max-width:1160px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
           <a href="#top" style="display:flex; align-items:center; gap:10px;">
-            <img src="assets/masa-icon.png" alt="Masa" width="40" height="40" style="width:40px; height:40px; object-fit:contain;" />
+            <img src="assets/masa-icon.png" alt="Masa" width="40" height="40" decoding="async" style="width:40px; height:40px; object-fit:contain;" />
             <div style="display:flex; flex-direction:column; gap:0px;">
               <div style="display:flex; justify-content:space-between; width:82px; font-family:'Cormorant Garamond',serif; font-size:19px; color:#4A4E5A; text-transform:uppercase;"><span>M</span><span>A</span><span>S</span><span>A</span></div>
               <span style="font-size:8px; color:#64748B; letter-spacing:0.05em; white-space:nowrap; width:82px; margin-top:-4px;">Every Season Yours</span>
@@ -265,7 +369,7 @@
 
         <div style="flex:1 1 340px; max-width:380px; margin:0 auto;">
           <div style="background:#FAF8F5; border:1px solid #D9D2C7; border-radius:20px; overflow:hidden; box-shadow:0 20px 50px -20px rgba(74,78,90,0.35);">
-            <img src="assets/app-screenshot-crop4.png" alt="Masa app, Today screen" width="809" height="420" style="width:100%; height:auto; display:block;" />
+            <img src="assets/app-screenshot-crop4.png" alt="Masa app, Today screen" width="809" height="420" decoding="async" style="width:100%; height:auto; display:block;" />
           </div>
         </div>
       </div>

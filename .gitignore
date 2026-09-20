@@ -1,3 +1,6 @@
+# scripts/measure-vitals.js needs playwright; nothing here ships from npm
+node_modules
+
 # wrangler files
 .wrangler
 .dev.vars*
