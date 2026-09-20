@@ -64,12 +64,14 @@ ever changes, they all change together.
   roughly a quarter of the bytes. Re-exporting an asset from a design tool will
   undo that — quantise it again on the way in.
 
-## Search Console — not yet set up
+## Search Console
 
 Nothing in this repo can do this part: verification needs a Google account and
 a DNS record, neither of which is in version control. These are the steps, in
-order. **Owner:** Bella. **Last validated:** not yet — written 2026-09-18,
-update this line once it has actually been walked through.
+order. **Owner:** Bella. **Last validated:** 2026-09-19, walked end to end —
+Domain property created, verified by DNS TXT in Cloudflare, sitemap submitted,
+first crawl requested. Steps 1–4 are done and are not repeated; step 5 is the
+one-week check.
 
 1. **Create a Domain property**, not a URL-prefix one, at
    [search.google.com/search-console](https://search.google.com/search-console).
