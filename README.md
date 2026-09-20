@@ -36,10 +36,9 @@ ever changes, they all change together.
   masa-tools' `worker.js` (`JOURNEY_STAGES`, `HOW_HEARD_OPTIONS`) and anything
   it does not recognise is dropped to empty without an error, so the `value`
   attributes here and those two sets have to be changed together.
-- Launch copy is hand-written, not derived from a date. The page does not know
-  what phase it is in: masa-app (`src/lib/charter.dates.ts`, which owns the
-  calendar per ADR-0357) and masa-tools (`WAITLIST_PHASES`) both switch
-  themselves at midnight Pacific, and this page has to be edited to match.
+- Launch copy switches itself. See **Launch phases** below. It used to be
+  hand-written and hand-edited, which meant that from the moment entries
+  stopped the page kept saying "Waitlist open now" until somebody remembered.
 - Contact email: `hello@masa.life`.
 - Footer links: Privacy Policy, Terms of Service, Contact.
 - No analytics. Nothing here measures whether any of the search work below
@@ -63,6 +62,51 @@ ever changes, they all change together.
   colour and two faces, so a 192–256 entry palette is visually identical at
   roughly a quarter of the bytes. Re-exporting an asset from a design tool will
   undo that — quantise it again on the way in.
+
+## Launch phases
+
+The page dresses itself for one of four phases, the same four masa-app calls
+`CharterWindow`:
+
+| Phase | When | What the page shows |
+|---|---|---|
+| `before-waitlist` | before 17 Sep | waitlist opens soon, form collects an email |
+| `waitlist-open` | 17 Sep – 3 Oct | the full waitlist form |
+| `waitlist-closed` | 4 – 7 Oct | entries stopped, last batch going out, **no form** |
+| `public-open` | 8 Oct onward | open to everyone, link to `app.masa.life` |
+
+**How it works.** An inline script at the end of `<head>` resolves the phase
+from the clock and writes it to `<html data-charter-phase>`, before anything
+paints, so there is no flash of the wrong copy. Each variant block carries
+`data-when="<phase> …"` and a short CSS rule hides the ones that do not match.
+
+**Keeping it in step.** The three boundary instants live in that script and
+nowhere else on this page. They are masa-app's `src/lib/charter.dates.ts`,
+which owns the calendar per ADR-0357, and they agree with masa-tools'
+`WAITLIST_PHASES` to the millisecond. **If the calendar moves, move it here in
+the same change** — nothing checks the two repositories against each other,
+because neither is checked out beside the other.
+
+Every boundary is written with its `-07:00` offset so it parses to one absolute
+instant. Do not rewrite them as bare local dates; a visitor in Sydney would get
+a different phase.
+
+**`node scripts/check-charter-phase.mjs`** checks the page on its own terms, no
+dependencies: that every boundary carries an offset and they are in order, that
+the phase is right one millisecond either side of each one, that every
+`data-when` names a real phase and every phase has copy, that the form is gone
+in the two phases masa-tools expects no form in, and that waitlist copy is
+gated out of the phases with no waitlist.
+
+That last rule exists because it caught a real miss. Everything structural
+passed while two lines still read "Everyone needs to join the waitlist for app
+access" and "Why join early" after entries had stopped — found by looking at a
+screenshot, not by any assertion. Phases switch block by block, so the failure
+mode is the block somebody forgets to mark.
+
+**With JavaScript off** the page shows the phase it shipped with, which is the
+old hand-edited behaviour and no worse. Googlebot runs the script, so the
+indexed copy is the live one.
 
 ## Search Console
 
