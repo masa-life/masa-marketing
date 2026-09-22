@@ -19,8 +19,8 @@ ever changes, they all change together.
 ## Files
 
 - `index.html` — company landing page (inline CSS, small vanilla-JS nav highlighter and waitlist form).
-- `accessibility.html` — the accessibility statement, served at `masa.life/accessibility`. Same copy as
-  `app.masa.life/accessibility`; if one changes, change the other.
+- `accessibility.html` — the accessibility statement, served at `masa.life/accessibility`. This is the
+  only copy: the app has no page of its own and links here.
 - `assets/` — logo icon, app screenshot, and the Open Graph share card referenced by `index.html`.
 - `scripts/make-og-image.py` — regenerates `assets/og-image.png`. Run it when the hero copy changes.
 - `robots.txt` — crawl policy; points at the sitemap.

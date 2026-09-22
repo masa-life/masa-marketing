@@ -236,6 +236,14 @@
       .social-link:hover { opacity: 0.72; }
 
       /*
+        Four links, the hairline and the mark come to about 440px in one row,
+        wider than a phone. The row wraps rather than scrolling the page
+        sideways; on a phone Contact, the hairline and the mark sit on a second
+        line together, which keeps the obligations-then-invitation order.
+      */
+      .footer-links { flex-wrap: wrap; row-gap: 10px; }
+
+      /*
         A flex item will not shrink below its own content unless it is told it
         may, and the country <select> carries 199 options — the longest of them
         ("Saint Vincent and the Grenadines") sets a min-content width the card
@@ -944,7 +952,7 @@
       <div style="border-top:1px solid #D9D2C7;">
         <div style="max-width:1160px; margin:0 auto; padding:28px 32px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;">
           <div style="font-size:13px; color:#64748B;">© 2026 Masa Life, Inc. All rights reserved.</div>
-          <div style="display:flex; gap:20px;">
+          <div class="footer-links" style="display:flex; gap:20px;">
             <a href="https://app.masa.life/privacy-policy" style="font-size:13px; color:#64748B;">Privacy Policy</a>
             <a href="https://app.masa.life/terms" style="font-size:13px; color:#64748B;">Terms of Service</a>
             <a href="/accessibility" style="font-size:13px; color:#64748B;">Accessibility</a>
