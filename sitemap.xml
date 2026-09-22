@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  One page, one entry. It exists so Search Console has something to submit and
-  a lastmod to read, not because a single-page site is hard to crawl.
+  One entry per page. It exists so Search Console has something to submit and
+  a lastmod to read, not because a site this small is hard to crawl.
 
   lastmod is hand-set. Keep it to the date the page's copy actually changed —
   a lastmod that moves on every deploy is one Google learns to ignore.
@@ -10,5 +10,9 @@
   <url>
     <loc>https://masa.life/</loc>
     <lastmod>2026-09-18</lastmod>
+  </url>
+  <url>
+    <loc>https://masa.life/accessibility</loc>
+    <lastmod>2026-09-22</lastmod>
   </url>
 </urlset>

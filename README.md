@@ -19,10 +19,12 @@ ever changes, they all change together.
 ## Files
 
 - `index.html` — company landing page (inline CSS, small vanilla-JS nav highlighter and waitlist form).
+- `accessibility.html` — the accessibility statement, served at `masa.life/accessibility`. Same copy as
+  `app.masa.life/accessibility`; if one changes, change the other.
 - `assets/` — logo icon, app screenshot, and the Open Graph share card referenced by `index.html`.
 - `scripts/make-og-image.py` — regenerates `assets/og-image.png`. Run it when the hero copy changes.
 - `robots.txt` — crawl policy; points at the sitemap.
-- `sitemap.xml` — the one page, with a hand-set `lastmod`.
+- `sitemap.xml` — both pages, each with a hand-set `lastmod`.
 - `llms.txt` — what Masa is, for the models that now answer questions about it.
 - `_headers` — Cloudflare Pages security headers.
 
@@ -40,7 +42,7 @@ ever changes, they all change together.
   hand-written and hand-edited, which meant that from the moment entries
   stopped the page kept saying "Waitlist open now" until somebody remembered.
 - Contact email: `hello@masa.life`.
-- Footer links: Privacy Policy, Terms of Service, Contact, then a hairline and
+- Footer links: Privacy Policy, Terms of Service, Accessibility, Contact, then a hairline and
   the Instagram mark. The hairline is there because the first three are
   obligations and the fourth is an invitation; in a plain row of four the
   invitation read as the least important of them.
