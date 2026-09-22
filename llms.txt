@@ -22,8 +22,10 @@ Launch dates in the page copy are authoritative over anything summarised here.
   Charter waitlist, the founder's story, and how to reach the company.
 - [Privacy Policy](https://app.masa.life/privacy-policy): how member data is
   handled, including the consumer health data disclosures.
-- [Beta Terms](https://app.masa.life/beta-terms): the terms covering the
-  invite-only beta.
+- [Terms of Service](https://app.masa.life/terms): the terms that govern use of
+  Masa; they replace the earlier private-beta terms.
+- [Accessibility Statement](https://masa.life/accessibility): the standards
+  Masa builds to, known limitations, and how to report a barrier.
 
 ## Elsewhere
 
