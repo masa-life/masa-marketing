@@ -26,7 +26,7 @@ ever changes, they all change together.
 - `robots.txt` — crawl policy; points at the sitemap.
 - `sitemap.xml` — both pages, each with a hand-set `lastmod`.
 - `llms.txt` — what Masa is, for the models that now answer questions about it.
-- `_headers` — Cloudflare Pages security headers.
+- `_headers` — security and cache headers, applied by Workers static assets.
 
 ## What's on the page
 
@@ -246,17 +246,62 @@ editor-only and are not shipped to production).
 
 ## Deploy
 
-1. Create a Cloudflare Pages project connected to a repo containing these files.
-2. Set build command to empty and output directory to `/`.
-3. Attach `masa.life` and `www.masa.life` as custom domains.
-4. Point `masalife.co` and `masalife.app` at a 301 → `https://masa.life/$1`.
-   They are defensive holds; they should never serve this page themselves.
-5. Verify `https://masa.life` loads and WHOIS shows **Masa Life, Inc.** as the registrant.
+The site is a Cloudflare **Worker with static assets**, not a Pages project:
+`wrangler.jsonc` points `assets` at the repo root, and Workers Builds deploys
+`masalife-holding` on every push to `master` (the "Workers Builds" check on a
+PR is that build). There is no build step.
 
-The Cloudflare project is still named `masalife-holding` in `wrangler.jsonc`,
-from when the page lived on the `.co`. The name is cosmetic and renaming it
-means recreating the project and re-attaching the domains, so it is left alone
-deliberately — it is not evidence of which domain is live.
+### How the two hostnames are wired
+
+| Hostname | How it reaches the site |
+|---|---|
+| `masa.life` | **Custom Domain** on the `masalife-holding` Worker. Cloudflare owns its DNS record. |
+| `www.masa.life` | Redirect Rule in the `masa.life` zone: 301 → `https://masa.life` + path, query string kept. |
+
+The Redirect Rule is Rules → Overview → Redirect Rules, matching
+`(http.host eq "www.masa.life")`, type Dynamic, expression
+`concat("https://masa.life", http.request.uri.path)`. A `www.masa.life/*`
+route is still attached to the Worker from the old setup; redirects run
+before Workers, so it is never reached and is harmless.
+
+`masalife.co` and `masalife.app` should 301 → `https://masa.life/$1`. They are
+defensive holds and should never serve this page themselves.
+
+### Things that went wrong, so they do not go wrong twice
+
+Until 2026-09-23 this was the other way round — `masa.life` redirected to
+`www` — while every canonical, `og:url` and sitemap entry said `masa.life`.
+Flipping it took the site down for about ten minutes. What was learned:
+
+- **The apex has to be a Custom Domain, not a route.** A route runs the Worker
+  in front of whatever the DNS record points at; the apex record pointed at a
+  server that does not answer, so when the route did not match, every request
+  ended in a **522**. Attaching a Custom Domain needs the old A/AAAA/CNAME
+  records for `masa.life` deleted first — only those. MX and TXT records on
+  the apex carry email and the Search Console verification; leave them.
+- **In the new dashboard the apex is an empty Subdomain field.** "Connect
+  domain" → `masa.life` → leave Subdomain blank ("Leave empty for root
+  domain").
+- **The rule builder's Value box takes a bare hostname** (`www.masa.life`).
+  Pasting a whole expression into it produces a rule that silently matches
+  nothing. Check the Expression Preview reads `(http.host eq "www.masa.life")`.
+- **Test before you flip.** Carve one path that nobody visits out of the
+  existing redirect — e.g. add `and http.request.uri.path ne "/robots.txt"` —
+  and confirm that path serves on the target host before moving any traffic.
+- **301s are cached by browsers.** Anyone who saw the old apex → www redirect
+  may hit a redirect loop until their cache clears; it is not a broken site.
+
+### Checking it
+
+- `https://masa.life/` and `https://masa.life/accessibility` load with no redirect.
+- `https://www.masa.life/accessibility` lands on `https://masa.life/accessibility`.
+- `https://masa.life/sitemap.xml` loads with no redirect.
+- WHOIS shows **Masa Life, Inc.** as the registrant.
+
+The Worker is still named `masalife-holding`, from when the page lived on the
+`.co`. The name is cosmetic and renaming it means recreating the Worker and
+re-attaching the domains, so it is left alone deliberately — it is not
+evidence of which domain is live.
 
 ## Brand tokens
 
