@@ -4,7 +4,12 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
   Permissions-Policy: interest-cohort=()
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  # 30 days, the same value as the app (masa-app src/lib/securityHeaders.ts).
+  # With includeSubDomains, this site's value also binds app.masa.life and
+  # dev.masa.life in any browser that visits masa.life, so it must never run
+  # ahead of the app's ladder. Raise both together. A browser that already saw
+  # the old one-year value keeps it until that expires.
+  Strict-Transport-Security: max-age=2592000; includeSubDomains
 
 # The font files are now ours to serve, and their names never change for a
 # given set of glyphs — an hour's caching on 292KB that is identical every
