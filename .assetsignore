@@ -2,8 +2,10 @@
 # checkout, so without this file every deploy published .git/, the tooling
 # scripts and the config (found 2026-09-30: /.git/HEAD and /wrangler.jsonc both
 # answered 200). This is an allowlist: ignore everything, then let the site
-# back in. A new page or asset directory has to be added here to ship; a new
-# tooling file stays off the site without anyone remembering to exclude it.
+# back in. A new top-level page or directory has to be added here to ship
+# (anything under assets/ already does); a new tooling file stays off the site
+# without anyone remembering to exclude it. `node scripts/check-assets.mjs`
+# checks the result against wrangler before a deploy.
 # (_headers, _redirects and this file are handled by Workers and never served.)
 *
 !/index.html

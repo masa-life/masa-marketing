@@ -28,7 +28,11 @@ ever changes, they all change together.
 - `llms.txt` — what Masa is, for the models that now answer questions about it.
 - `_headers` — security and cache headers, applied by Workers static assets.
 - `.assetsignore` — what the deploy uploads. `wrangler.jsonc` points it at the whole checkout, so this
-  file allowlists the site: a new page or asset directory has to be added here to ship.
+  file allowlists the site: a new top-level page or directory has to be added here to ship (anything
+  under `assets/` already does). `node scripts/check-assets.mjs` asks wrangler what a deploy would
+  upload and fails unless it is exactly the site; run it before deploying. Do not roll the Worker
+  back to a version deployed before this file existed (30 Sep 2026): those versions serve `.git/`,
+  `wrangler.jsonc`, `README.md` and `scripts/`.
 
 ## What's on the page
 
