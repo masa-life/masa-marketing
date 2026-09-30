@@ -1,0 +1,15 @@
+# What masa.life serves. `wrangler.jsonc` points the asset upload at the whole
+# checkout, so without this file every deploy published .git/, the tooling
+# scripts and the config (found 2026-09-30: /.git/HEAD and /wrangler.jsonc both
+# answered 200). This is an allowlist: ignore everything, then let the site
+# back in. A new page or asset directory has to be added here to ship; a new
+# tooling file stays off the site without anyone remembering to exclude it.
+# (_headers, _redirects and this file are handled by Workers and never served.)
+*
+!/index.html
+!/accessibility.html
+!/llms.txt
+!/robots.txt
+!/sitemap.xml
+!/assets/
+!/assets/**

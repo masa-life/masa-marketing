@@ -27,6 +27,8 @@ ever changes, they all change together.
 - `sitemap.xml` — both pages, each with a hand-set `lastmod`.
 - `llms.txt` — what Masa is, for the models that now answer questions about it.
 - `_headers` — security and cache headers, applied by Workers static assets.
+- `.assetsignore` — what the deploy uploads. `wrangler.jsonc` points it at the whole checkout, so this
+  file allowlists the site: a new page or asset directory has to be added here to ship.
 
 ## What's on the page
 
