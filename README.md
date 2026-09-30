@@ -30,7 +30,8 @@ ever changes, they all change together.
 - `.assetsignore` — what the deploy uploads. `wrangler.jsonc` points it at the whole checkout, so this
   file allowlists the site: a new top-level page or directory has to be added here to ship (anything
   under `assets/` already does). `node scripts/check-assets.mjs` asks wrangler what a deploy would
-  upload and fails unless it is exactly the site; run it before deploying. Do not roll the Worker
+  upload and fails unless it is exactly the site; run it before deploying. It runs the newest
+  wrangler 4.x, which may not be the one Workers Builds uses. Do not roll the Worker
   back to a version deployed before this file existed (30 Sep 2026): those versions serve `.git/`,
   `wrangler.jsonc`, `README.md` and `scripts/`.
 
