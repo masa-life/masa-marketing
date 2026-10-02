@@ -292,6 +292,12 @@ Flipping it took the site down for about ten minutes. What was learned:
 - **The rule builder's Value box takes a bare hostname** (`www.masa.life`).
   Pasting a whole expression into it produces a rule that silently matches
   nothing. Check the Expression Preview reads `(http.host eq "www.masa.life")`.
+- **A route pattern must name the exact hostname — never start it with `*`.**
+  `*masa.life/*` matches every host ending in `masa.life`, `app.masa.life`
+  included, and for a while it sent the product to this Worker: the app
+  showed the marketing homepage and its own pages 404'd. The only route on
+  this Worker is `www.masa.life/*`; anything else on `masa.life` belongs to
+  another service.
 - **Test before you flip.** Carve one path that nobody visits out of the
   existing redirect — e.g. add `and http.request.uri.path ne "/robots.txt"` —
   and confirm that path serves on the target host before moving any traffic.
