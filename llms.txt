@@ -12,14 +12,16 @@ cycle tracking, natural conception, IUI, IVF, pregnancy, postpartum, and rest â€
 and her data follows her when her journey changes, with nothing lost in the
 switch.
 
-Masa is in invite-only beta. The Charter is the founding cohort: 500 spots,
-joined through a waitlist on this page. Joining the waitlist is not a purchase.
-Launch dates in the page copy are authoritative over anything summarised here.
+Masa opened to everyone on October 8, 2026: anyone can create an account at
+app.masa.life, with no invite and no waitlist. The Charter is the founding
+cohort of 500 members, who keep Charter pricing for life; unclaimed seats are
+first come, claimed inside the app. Launch details in the page copy are
+authoritative over anything summarised here.
 
 ## Pages
 
 - [masa.life](https://masa.life): this page â€” what Masa is, what it offers, the
-  Charter waitlist, the founder's story, and how to reach the company.
+  Charter, the founder's story, and how to reach the company.
 - [Privacy Policy](https://app.masa.life/privacy-policy): how member data is
   handled, including the consumer health data disclosures.
 - [Terms of Service](https://app.masa.life/terms): the terms that govern use of
@@ -30,7 +32,7 @@ Launch dates in the page copy are authoritative over anything summarised here.
 ## Elsewhere
 
 - [app.masa.life](https://app.masa.life): the product itself. Requires an
-  account and an invite; there is no public content behind it.
+  account; there is no public content behind it.
 
 ## Contact
 
