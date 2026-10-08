@@ -31,8 +31,10 @@ authoritative over anything summarised here.
 
 ## Elsewhere
 
-- [app.masa.life](https://app.masa.life): the product itself. Requires an
-  account; there is no public content behind it.
+- [app.masa.life](https://app.masa.life): the product itself. Most of it
+  requires an account.
+- [Masa Learn](https://app.masa.life/learn): the public articles from the
+  app's learning library — cycles, trying to conceive, and rest.
 
 ## Contact
 

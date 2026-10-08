@@ -195,11 +195,15 @@ to add one.
 
 Two things to expect once the property exists:
 
-- **`dev.masa.life` will appear in it.** The development environment serves no
-  `robots.txt`, no `noindex` and no `X-Robots-Tag`, so if it is publicly
-  reachable it is indexable, and a dev copy of the product in Google's index
-  competes with production for its own brand terms. Worth closing before
-  verification, not after.
+- **`dev.masa.life` will appear in it, but should not be indexed.** masa-app
+  sends `X-Robots-Tag: noindex, nofollow` on every dev host
+  (`src/lib/securityHeaders.ts`, hosts from `src/lib/devHost.ts`) and serves
+  dev no `robots.txt` on purpose, so crawlers can fetch the page and read the
+  header. Any dev URL Google indexed before that shipped drops on recrawl; use
+  Search Console → Removals to hurry it. Do not add `Disallow: /` for dev
+  anywhere, Cloudflare included: a crawler that is not allowed to fetch never
+  sees the `noindex`. `docs/reference/environments-and-domains.md` in masa-app
+  is the current answer.
 - **No verification file or meta tag belongs in this repo.** DNS verification
   needs neither, and a stale `google*.html` or `google-site-verification` meta
   tag left in the page is a small information leak for no benefit.
