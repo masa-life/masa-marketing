@@ -110,7 +110,7 @@ The page dresses itself for one of four phases, the same four masa-app calls
 | `before-waitlist` | before 17 Sep | waitlist opens soon, form collects an email |
 | `waitlist-open` | 17 Sep – 3 Oct | the full waitlist form |
 | `waitlist-closed` | 4 – 7 Oct | entries stopped, last batch going out, **no form** |
-| `public-open` | 8 Oct onward | open to everyone, link to `app.masa.life` |
+| `public-open` | 8 Oct onward | open to everyone; "Create your account" links to `app.masa.life/login?mode=signup`, "Open Masa" to `app.masa.life` |
 
 **How it works.** An inline script at the end of `<head>` resolves the phase
 from the clock and writes it to `<html data-charter-phase>`, before anything
