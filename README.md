@@ -21,10 +21,14 @@ ever changes, they all change together.
 - `index.html` — company landing page (inline CSS, small vanilla-JS nav highlighter and waitlist form).
 - `accessibility.html` — the accessibility statement, served at `masa.life/accessibility`. This is the
   only copy: the app has no page of its own and links here.
+- `privacy.html` — the website privacy notice, served at `masa.life/privacy`. It covers this site
+  only; the app's Privacy Policy and Terms live at app.masa.life and are linked as the app's. It
+  says the site has no forms, analytics, trackers or cookies of its own, so adding any of those
+  means changing this page in the same commit.
 - `assets/` — logo icon, app screenshot, and the Open Graph share card referenced by `index.html`.
 - `scripts/make-og-image.py` — regenerates `assets/og-image.png`. Run it when the hero copy changes.
 - `robots.txt` — crawl policy; points at the sitemap.
-- `sitemap.xml` — both pages, each with a hand-set `lastmod`.
+- `sitemap.xml` — every page, each with a hand-set `lastmod`.
 - `llms.txt` — what Masa is, for the models that now answer questions about it.
 - `_headers` — security and cache headers, applied by Workers static assets.
 - `.assetsignore` — what the deploy uploads. `wrangler.jsonc` points it at the whole checkout, so this
@@ -49,10 +53,10 @@ ever changes, they all change together.
   hand-written and hand-edited, which meant that from the moment entries
   stopped the page kept saying "Waitlist open now" until somebody remembered.
 - Contact email: `hello@masa.life`.
-- Footer links: Privacy Policy, Terms of Service, Accessibility, Contact, then a hairline and
-  the Instagram mark. The hairline is there because the first three are
-  obligations and the fourth is an invitation; in a plain row of four the
-  invitation read as the least important of them.
+- Footer links: Website privacy (this site's notice), App privacy policy and App terms (the app's,
+  on app.masa.life), Accessibility, Contact, then a hairline and the Instagram mark. The hairline
+  is there because the links before it are obligations and the mark is an invitation; in one
+  plain row the invitation read as the least important of them.
 - **Social profiles** are listed twice and both copies have to agree: as a
   footer link carrying `rel="me"`, and in `sameAs` on the Organization node in
   the JSON-LD. The footer link is for a visitor deciding whether this is a real
@@ -310,7 +314,7 @@ Flipping it took the site down for about ten minutes. What was learned:
 
 ### Checking it
 
-- `https://masa.life/` and `https://masa.life/accessibility` load with no redirect.
+- `https://masa.life/`, `https://masa.life/accessibility` and `https://masa.life/privacy` load with no redirect.
 - `https://www.masa.life/accessibility` lands on `https://masa.life/accessibility`.
 - `https://masa.life/sitemap.xml` loads with no redirect.
 - WHOIS shows **Masa Life, Inc.** as the registrant.
