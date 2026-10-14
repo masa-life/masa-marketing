@@ -22,8 +22,10 @@ authoritative over anything summarised here.
 
 - [masa.life](https://masa.life): this page — what Masa is, what it offers, the
   Charter, the founder's story, and how to reach the company.
-- [Privacy Policy](https://app.masa.life/privacy-policy): how member data is
-  handled, including the consumer health data disclosures.
+- [Website Privacy Notice](https://masa.life/privacy): what this website
+  collects, which is nothing typed and no tracking.
+- [Privacy Policy](https://app.masa.life/privacy-policy): the Masa app's policy,
+  how member data is handled, including the consumer health data disclosures.
 - [Terms of Service](https://app.masa.life/terms): the terms that govern use of
   Masa; they replace the earlier private-beta terms.
 - [Accessibility Statement](https://masa.life/accessibility): the standards

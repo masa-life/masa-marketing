@@ -31,7 +31,7 @@ import { dirname, join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const PAGES = ["index.html", "accessibility.html", "llms.txt", "robots.txt", "sitemap.xml"];
+const PAGES = ["index.html", "accessibility.html", "privacy.html", "llms.txt", "robots.txt", "sitemap.xml"];
 
 if (!existsSync(join(ROOT, ".assetsignore"))) {
   console.error("check-assets: .assetsignore is missing, so the whole checkout would ship");
