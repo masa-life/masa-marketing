@@ -5,11 +5,19 @@
 
   lastmod is hand-set. Keep it to the date the page's copy actually changed —
   a lastmod that moves on every deploy is one Google learns to ignore.
+
+  This file lists masa.life only. Public articles and tools live on
+  app.masa.life and are linked from / and /reading; robots.txt points at
+  that host's own sitemap so the URLs are not copied here and left to rot.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://masa.life/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
+    <loc>https://masa.life/reading</loc>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://masa.life/accessibility</loc>
