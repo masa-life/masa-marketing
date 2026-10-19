@@ -34,9 +34,16 @@ authoritative over anything summarised here.
 ## Elsewhere
 
 - [app.masa.life](https://app.masa.life): the product itself. Most of it
-  requires an account.
-- [Masa Learn](https://app.masa.life/learn): the public articles from the
-  app's learning library — cycles, trying to conceive, and rest.
+  requires an account. The sign-in screen at app.masa.life/login is not the
+  product homepage.
+- [Articles and tools](https://masa.life/reading): the public pages, listed.
+- [Masa Learn](https://app.masa.life/learn): the public articles — cycles,
+  trying to conceive, pregnancy, rest, and waiting. The glossary is at
+  [app.masa.life/learn/glossary](https://app.masa.life/learn/glossary).
+- [Tools](https://app.masa.life/tools): public outlines. The working tool
+  opens in the app. Includes the
+  [hospital bag list](https://app.masa.life/tools/hospital-bag) and the
+  [birth plan](https://app.masa.life/tools/birth-plan).
 
 ## Contact
 

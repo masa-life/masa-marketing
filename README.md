@@ -13,8 +13,10 @@ site competes with itself for its own name. `docs/reference/environments-and-dom
 in masa-app is the current answer on the domain topology; the ADRs are history.
 
 Every absolute URL on the page — canonical, `og:url`, `og:image`, the JSON-LD
-`@id`s, `sitemap.xml`, `robots.txt` — points at `https://masa.life`. If that
-ever changes, they all change together.
+`@id`s, `sitemap.xml`, `robots.txt` — points at `https://masa.life`. The
+homepage canonical and `og:url` use the trailing slash, `https://masa.life/`,
+because that is the URL `www.masa.life` already redirects to and the URL in
+the sitemap. If the host ever changes, they all change together.
 
 ## Files
 
@@ -25,6 +27,9 @@ ever changes, they all change together.
   only; the app's Privacy Policy and Terms live at app.masa.life and are linked as the app's. It
   says the site has no forms, analytics, trackers or cookies of its own, so adding any of those
   means changing this page in the same commit.
+- `reading.html` — public articles and tool outlines, served at `masa.life/reading`. The same
+  links are on the homepage. `node scripts/check-reading-links.mjs` fails if the two lists or
+  the ItemList JSON-LD drift apart. Add a URL only after it returns 200 with no `noindex`.
 - `assets/` — logo icon, app screenshot, and the Open Graph share card referenced by `index.html`.
 - `scripts/make-og-image.py` — regenerates `assets/og-image.png`. Run it when the hero copy changes.
 - `robots.txt` — crawl policy; points at the sitemap.
@@ -93,12 +98,24 @@ ever changes, they all change together.
   It is generated ahead of time, so **changing the hero copy means re-running
   the script** — otherwise the preview quotes a line the page no longer has.
 - **Structured data.** A single JSON-LD `@graph` in the head: `Organization`,
-  `WebSite`, `WebPage`. Deliberately no `Event` or `Offer` for the Charter
-  waitlist — the launch copy is already hand-synced across three repos, and a
-  stale date in structured data is the version Google quotes.
-- **`sitemap.xml`.** `lastmod` is hand-set. Move it when the copy changes, not
-  on every deploy; a `lastmod` that always says "today" is one Google stops
-  reading.
+  `WebSite`, `WebPage`, `SoftwareApplication`, and an `ItemList` of the public
+  Learn articles and tool outlines. `SoftwareApplication` rather than
+  `MobileApplication`: Masa is the web app at app.masa.life, and there is no
+  verified store listing to cite. Deliberately no `Event` or `Offer` — not for
+  the Charter waitlist, and not a price of 0 for Core. The launch copy is
+  already hand-synced across three repos, and a stale number in structured
+  data is the version a search engine quotes.
+- **`sitemap.xml`.** This host only. `lastmod` is hand-set. Move it when the
+  copy changes, not on every deploy; a `lastmod` that always says "today" is
+  one Google stops reading. App URLs are not copied in here: a sitemap is
+  supposed to list its own host, and the app's list would go stale the day a
+  new article shipped. `robots.txt` also points at
+  `https://app.masa.life/sitemap.xml`, which is that list.
+- **Public links.** The homepage and `/reading` link to every Learn article
+  and tool outline that was public on 2026-10-19, including the hospital bag
+  list and the birth plan. The Learn index itself hides article URLs inside
+  collapsed buttons, so these anchors are how a crawler arriving at masa.life
+  reaches them. `/login` is not in the list.
 - **Images** are palette-quantised PNGs, not truecolour. The page is flat brand
   colour and two faces, so a 192–256 entry palette is visually identical at
   roughly a quarter of the bytes. Re-exporting an asset from a design tool will
@@ -157,6 +174,32 @@ order. **Owner:** Bella. **Last validated:** 2026-09-19, walked end to end —
 Domain property created, verified by DNS TXT in Cloudflare, sitemap submitted,
 first crawl requested. Steps 1–4 are done and are not repeated; step 5 is the
 one-week check.
+
+**2026-10-19.** Search Console shows `https://masa.life/` indexed, last
+crawled 9 October. The submitted sitemap had been read as 2 pages; this repo
+now lists 4 (`/`, `/reading`, `/accessibility`, `/privacy`). `noindex` on
+`dev.masa.life` is correct and stays in the app. A Google query for `masa.life`
+can still surface masalife.com (a different company) above this site, and Bing
+currently returns `app.masa.life/login` ("Sign in — Masa") rather than this
+page. The login page is not fixed here; that change belongs in masadev.
+
+After this deploys, Bella:
+
+1. In the existing Domain property, open Sitemaps and confirm
+   `https://masa.life/sitemap.xml` is re-read with 4 pages, not 2. Resubmit
+   the same URL if the count stays at 2. Also submit
+   `https://app.masa.life/sitemap.xml` if it is not already there — that file
+   is the app's list of public articles and tools.
+2. URL Inspection → `https://masa.life/` and `https://masa.life/reading` →
+   Request indexing. The homepage crawl on 9 October predates the new links.
+3. Bing Webmaster Tools: add the domain, verify with a DNS TXT record on `@`
+   in Cloudflare (same shape as the Google record; a second TXT, not a
+   replacement), and submit `https://masa.life/sitemap.xml`. Do not noindex
+   `app.masa.life/login` from this repo.
+4. Cloudflare → Security → Bots, on the `masa.life` zone: confirm Bot Fight
+   Mode is not challenging Googlebot or Bingbot. The 9 October crawl
+   succeeded, so this is a check, not a known block. Leave `dev.masa.life`
+   noindexed.
 
 **The property is owned by `admin@masa.life`, with `bella@masa.life` added as
 a Full user.** Company account owns it so the property survives any one
