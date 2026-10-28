@@ -104,7 +104,7 @@ check(
 );
 
 const sitemap = read("sitemap.xml");
-for (const loc of ["https://masa.life/", "https://masa.life/reading", "https://masa.life/accessibility", "https://masa.life/privacy"]) {
+for (const loc of ["https://masa.life/", "https://masa.life/reading", "https://masa.life/accessibility", "https://masa.life/privacy", "https://masa.life/press"]) {
   check(`sitemap lists ${loc}`, sitemap.includes(`<loc>${loc}</loc>`));
 }
 check("sitemap does not list the sign-in page", !sitemap.includes("/login"));
