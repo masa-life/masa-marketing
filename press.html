@@ -1,0 +1,490 @@
+<!doctype html>
+<!--
+  masa.life/press. Cloudflare serves this file at /press with no extension,
+  the way it serves privacy.html at /privacy.
+
+  Press kit for journalists: the short description, the logo files already in
+  assets/, three product screenshots, a fact file, and press@masa.life.
+  Screenshots are real files in assets/press/. The all-assets archive is
+  assets/press/masa-press-kit.zip, rebuilt by scripts/make-press-kit.py.
+  The founder section is text only.
+
+  The logo PNGs are the files already on the site. Do not recolor them.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Press — Masa</title>
+    <meta name="description" content="Everything you need to write about Masa: a short description, brand files, product images, and a direct line to the founder." />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Press — Masa" />
+    <meta property="og:description" content="Everything you need to write about Masa: a short description, brand files, product images, and a direct line to the founder." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://masa.life/press" />
+    <meta property="og:site_name" content="Masa" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://masa.life/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Masa — built for her whole story, every season." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Press — Masa" />
+    <meta name="twitter:description" content="Everything you need to write about Masa: a short description, brand files, product images, and a direct line to the founder." />
+    <meta name="twitter:image" content="https://masa.life/assets/og-image.png" />
+    <meta name="twitter:image:alt" content="Masa — built for her whole story, every season." />
+    <meta name="theme-color" content="#4A4E5A" />
+    <link rel="icon" type="image/png" href="/assets/masa-icon-favicon.png" />
+    <link rel="canonical" href="https://masa.life/press" />
+
+    <!--
+      The same self-hosted faces as the other pages, only the ones this page
+      renders: Cormorant Garamond 500 for the wordmark and headings, Inter
+      400/500 for everything else. Root-relative URLs so they resolve from /press.
+    -->
+    <style>
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('/assets/fonts/cormorant-garamond-500-latin.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('/assets/fonts/cormorant-garamond-500-latin-ext.woff2') format('woff2');
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/assets/fonts/inter-400-latin.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/assets/fonts/inter-400-latin-ext.woff2') format('woff2');
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('/assets/fonts/inter-500-latin.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('/assets/fonts/inter-500-latin-ext.woff2') format('woff2');
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: #F3EFEA;
+        color: #3A3A3A;
+        font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      img { max-width: 100%; height: auto; }
+      a { color: #4A4E5A; }
+      a:hover { color: #64748B; }
+      ::selection { background: #D9D2C7; color: #4A4E5A; }
+      a:focus-visible {
+        outline: 2px solid #4A4E5A;
+        outline-offset: 3px;
+      }
+
+      .skip-link { position: absolute; left: 16px; top: -48px; padding: 8px 14px; background: #4A4E5A; color: #FAF8F5; border-radius: 8px; font-size: 14px; z-index: 100; text-decoration: none; }
+      .skip-link:focus { top: 12px; color: #FAF8F5; }
+
+      .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+      header { position: sticky; top: 0; z-index: 50; background: rgba(243, 239, 234, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid #D9D2C7; }
+      .nav-bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 18px; padding-bottom: 18px; }
+      .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+      .wordmark { display: flex; justify-content: space-between; width: 82px; font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #4A4E5A; text-transform: uppercase; }
+      .tagline { display: block; font-size: 8px; color: #64748B; letter-spacing: 0.05em; white-space: nowrap; width: 82px; margin-top: -4px; }
+      .nav-links { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+      .nav-link { font-size: 14px; color: #3A3A3A; text-decoration: none; border-bottom: 2px solid transparent; padding-bottom: 4px; }
+      .nav-link:hover { color: #4A4E5A; }
+      .pill { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #4A4E5A; border-radius: 40px; padding: 12px 22px; background: transparent; color: #4A4E5A; font-size: 15px; font-weight: 500; text-decoration: none; line-height: 1.2; }
+      .pill.primary { background: #4A4E5A; color: #FAF8F5; }
+      .pill.primary:hover { background: #3F4350; color: #FAF8F5; }
+      .nav-links .pill { padding: 10px 20px; font-size: 14px; }
+
+      .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 72px; padding: 72px 0 64px; align-items: center; }
+      .eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #64748B; font-weight: 500; margin: 0 0 12px; }
+      h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; color: #4A4E5A; line-height: 1.08; margin: 0; }
+      h1 { font-size: clamp(42px, 6vw, 76px); letter-spacing: -0.02em; }
+      .hero .eyebrow { margin-bottom: 20px; }
+      .hero p { max-width: 480px; font-size: 17px; margin: 22px 0 0; }
+      .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+      .brand-panel { background: #E8E5E0; border-radius: 16px; min-height: 300px; display: flex; align-items: center; justify-content: center; position: relative; padding: 48px 24px 56px; }
+      .lockup { text-align: center; }
+      .lockup img { width: 64px; height: auto; display: block; margin: 0 auto 16px; }
+      .lockup-name { display: flex; justify-content: space-between; width: 148px; margin: 0 auto; font-family: 'Cormorant Garamond', serif; font-size: 32px; color: #4A4E5A; text-transform: uppercase; }
+      .lockup-tag { display: block; margin-top: 8px; color: #64748B; font-size: 11px; letter-spacing: 0.12em; }
+      .panel-caption { position: absolute; bottom: 18px; left: 24px; margin: 0; font-size: 11px; letter-spacing: 0.08em; color: #64748B; }
+
+      .jump { display: flex; gap: 28px; border-top: 1px solid #D9D2C7; border-bottom: 1px solid #D9D2C7; padding: 18px 0; font-size: 13px; overflow-x: auto; }
+      .jump a { color: #4A4E5A; text-decoration: none; white-space: nowrap; padding: 6px 0; }
+      .jump a:hover { color: #64748B; }
+      .jump-num { color: #64748B; margin-right: 8px; }
+
+      section { padding: 68px 0; border-bottom: 1px solid #D9D2C7; scroll-margin-top: 88px; }
+      section:last-child { border-bottom: 0; }
+      .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-bottom: 36px; align-items: start; }
+      .section-head h2 { margin-top: 8px; font-size: clamp(36px, 4vw, 46px); }
+      .section-head p { font-size: 17px; margin: 0 0 16px; }
+      .section-head p:last-child { margin-bottom: 0; }
+
+      .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 8px; }
+      .fact { border-top: 1px solid #D9D2C7; padding-top: 16px; }
+      .fact .eyebrow { margin-bottom: 8px; }
+      .fact p { font-size: 16px; margin: 0; }
+      .fact a { text-decoration: underline; text-underline-offset: 3px; }
+
+      .assets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+      .asset { background: #FAF8F5; border: 1px solid #D9D2C7; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+      .asset-art { height: 190px; background: #E8E5E0; display: flex; align-items: center; justify-content: center; padding: 24px; }
+      .asset-art img.cover { width: min(100%, 320px); height: 150px; object-fit: cover; object-position: top center; border-radius: 8px; }
+      .mini-lockup { text-align: center; }
+      .mini-lockup img { width: 52px; height: auto; display: block; margin: 0 auto 12px; }
+      .mini-word { display: flex; justify-content: space-between; width: 88px; margin: 0 auto; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #4A4E5A; text-transform: uppercase; }
+      .type-art { font-family: 'Cormorant Garamond', serif; font-size: 40px; letter-spacing: 0.14em; color: #4A4E5A; }
+      .asset-body { padding: 22px 22px 20px; display: flex; flex-direction: column; flex: 1; }
+      .asset-body h3 { font-size: 28px; }
+      .asset-body p { font-size: 14px; line-height: 1.55; margin: 10px 0 16px; color: #3A3A3A; }
+      .file-list { list-style: none; margin: auto 0 0; padding: 0; }
+      .file-list li { margin: 0 0 12px; }
+      .file-list li:last-child { margin-bottom: 0; }
+      .file-link { display: inline-block; padding: 4px 0; border-bottom: 1px solid #4A4E5A; color: #4A4E5A; font-size: 13px; font-weight: 500; text-decoration: none; }
+      .file-link:hover { color: #64748B; border-bottom-color: #64748B; }
+      .file-meta { display: block; margin-top: 4px; font-size: 12px; color: #64748B; }
+
+      .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 28px; }
+      .gallery figure { margin: 0; background: #FAF8F5; border: 1px solid #D9D2C7; border-radius: 12px; overflow: hidden; }
+      .shot { height: 340px; background: #E8E5E0; display: flex; align-items: flex-start; justify-content: center; padding: 20px 20px 0; overflow: hidden; }
+      .shot img { width: 100%; border-radius: 8px 8px 0 0; box-shadow: 0 4px 18px rgba(47, 50, 59, 0.08); }
+      .gallery figcaption { padding: 16px 20px 18px; font-size: 14px; color: #3A3A3A; }
+      .gallery figcaption p { margin: 0 0 10px; }
+
+      .founder { display: grid; grid-template-columns: 1fr 1.3fr; gap: 72px; align-items: start; }
+      .founder h2 { margin-top: 8px; font-size: clamp(36px, 4vw, 46px); }
+      .founder-name { margin: 0 0 16px; font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1.15; color: #4A4E5A; }
+      .founder-name small { display: block; margin-top: 6px; font-family: "Inter", sans-serif; font-size: 14px; color: #64748B; letter-spacing: 0; }
+      .founder p { font-size: 17px; margin: 0 0 18px; }
+      .story-link { font-size: 14px; color: #4A4E5A; text-decoration: underline; text-underline-offset: 3px; }
+
+      .contact { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
+      .contact h2 { margin-top: 8px; font-size: clamp(36px, 4vw, 46px); }
+      .contact p { font-size: 16px; max-width: 420px; margin: 16px 0 0; }
+      .contact-link { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(26px, 4vw, 40px); line-height: 1.15; color: #4A4E5A; text-decoration: none; border-bottom: 1px solid #4A4E5A; padding-bottom: 4px; overflow-wrap: anywhere; }
+      .contact-link:hover { color: #64748B; border-bottom-color: #64748B; }
+
+      footer { border-top: 1px solid #D9D2C7; }
+      .footer-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 28px; padding-bottom: 28px; }
+      .footer-bar, .footer-bar a { font-size: 13px; color: #64748B; text-decoration: none; }
+      .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+      .footer-links a:hover { color: #4A4E5A; }
+      .footer-links a[aria-current="page"] { color: #4A4E5A; }
+
+      @media (max-width: 900px) {
+        .hero, .section-head, .founder, .assets, .gallery { grid-template-columns: 1fr; gap: 28px; }
+        .hero { padding: 48px 0 40px; }
+        .brand-panel { min-height: 240px; }
+        .facts { grid-template-columns: 1fr; gap: 16px; }
+        .contact { display: block; }
+        .contact-link { display: inline-block; margin-top: 22px; }
+        .nav-links { gap: 16px; }
+      }
+
+      @media (max-width: 720px) {
+        .wrap { padding: 0 20px; }
+        .nav-bar { padding-top: 12px; padding-bottom: 12px; }
+        .nav-links .nav-link { display: none; }
+        h1 { font-size: 42px; }
+        section { padding: 48px 0; }
+        .jump { flex-wrap: wrap; overflow: visible; column-gap: 18px; row-gap: 2px; }
+        .asset-art { height: 210px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://masa.life/press#webpage",
+            "url": "https://masa.life/press",
+            "name": "Press — Masa",
+            "description": "Everything you need to write about Masa: a short description, brand files, product images, and a direct line to the founder.",
+            "isPartOf": { "@id": "https://masa.life/#website" },
+            "about": { "@id": "https://masa.life/#organization" },
+            "inLanguage": "en-US",
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://masa.life/assets/og-image.png",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          {
+            "@type": "ContactPoint",
+            "@id": "https://masa.life/press#contact",
+            "contactType": "press",
+            "email": "press@masa.life",
+            "url": "https://masa.life/press",
+            "availableLanguage": "English"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header>
+      <div class="wrap nav-bar">
+        <a class="brand" href="/" aria-label="Masa home">
+          <img src="/assets/masa-icon.png" alt="" width="40" height="40" decoding="async" style="width:40px; height:40px; object-fit:contain;" />
+          <span aria-hidden="true">
+            <span class="wordmark"><span>M</span><span>A</span><span>S</span><span>A</span></span>
+            <span class="tagline">Every Season Yours</span>
+          </span>
+        </a>
+        <nav class="nav-links" aria-label="Main">
+          <a class="nav-link" href="/#about">About</a>
+          <a class="nav-link" href="#assets">Press assets</a>
+          <a class="nav-link" href="#founder">Founder</a>
+          <a class="nav-link" href="#contact">Contact</a>
+          <a class="pill primary" href="https://app.masa.life">Open Masa</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content" class="wrap" tabindex="-1">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Masa / Press room</p>
+          <h1>A whole story.<br>A place to begin.</h1>
+          <p>Everything you need to write about Masa: a short description, brand files, product images, and a direct line to the founder.</p>
+          <div class="actions">
+            <a class="pill primary" href="/assets/press/masa-press-kit.zip" download="masa-press-kit.zip">Download press kit ↓</a>
+            <a class="pill" href="#contact">Media inquiries ↗</a>
+          </div>
+        </div>
+        <div class="brand-panel">
+          <div class="lockup">
+            <img src="/assets/masa-icon.png" alt="Masa brand symbol" width="240" height="240" decoding="async" />
+            <div class="lockup-name" aria-hidden="true"><span>M</span><span>A</span><span>S</span><span>A</span></div>
+            <span class="lockup-tag">Every Season Yours</span>
+          </div>
+          <p class="panel-caption">BRAND ASSETS / PREVIEW</p>
+        </div>
+      </div>
+
+      <nav class="jump" aria-label="Press sections">
+        <a href="#overview"><span class="jump-num">01</span>Overview</a>
+        <a href="#assets"><span class="jump-num">02</span>Press assets</a>
+        <a href="#founder"><span class="jump-num">03</span>Founder</a>
+        <a href="#contact"><span class="jump-num">04</span>Contact</a>
+      </nav>
+
+      <section id="overview">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">At a glance</p>
+            <h2>About Masa</h2>
+          </div>
+          <div>
+            <p>Masa is a steady, private app for a woman&rsquo;s whole reproductive story. It starts with cycles, fertility, and pregnancy, and it is built to stay with her as her seasons change. It meets her wherever she is, whether she is mid-IVF, newly paying attention to her body, or not trying for anything at all, and her history follows her when her life changes. Masa shows her numbers plainly, never judges them, and does not assume what her next season should be. There are no ads in any tier, and Masa never sells her data.</p>
+          </div>
+        </div>
+        <div class="facts">
+          <div class="fact">
+            <p class="eyebrow">Company</p>
+            <p>Masa Life, Inc.</p>
+          </div>
+          <div class="fact">
+            <p class="eyebrow">Based in</p>
+            <p>Los Angeles, CA</p>
+          </div>
+          <div class="fact">
+            <p class="eyebrow">Website</p>
+            <p><a href="https://masa.life">masa.life ↗</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="assets">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">For your story</p>
+            <h2>Press assets</h2>
+          </div>
+          <div>
+            <p>Please use these files as provided and do not recolor or alter the Masa logo. Credit images to Masa.</p>
+            <p><a class="file-link" href="/assets/press/masa-press-kit.zip" download="masa-press-kit.zip">Download press kit ↓</a></p>
+          </div>
+        </div>
+
+        <div class="assets">
+          <article class="asset">
+            <div class="asset-art">
+              <div class="mini-lockup">
+                <img src="/assets/masa-icon.png" alt="Masa logo" width="240" height="240" decoding="async" />
+                <div class="mini-word" aria-hidden="true"><span>M</span><span>A</span><span>S</span><span>A</span></div>
+              </div>
+            </div>
+            <div class="asset-body">
+              <h3>Brand &amp; logos</h3>
+              <p>Proposed bundle: approved logo files, colors, and brand guidelines.</p>
+              <ul class="file-list">
+                <li>
+                  <a class="file-link" href="/assets/masa-icon.png" download="masa-icon.png">Download logo icon ↓</a>
+                  <span class="file-meta">masa-icon.png · PNG · 240×240</span>
+                </li>
+                <li>
+                  <a class="file-link" href="/assets/masa-icon-favicon.png" download="masa-icon-favicon.png">Download favicon ↓</a>
+                  <span class="file-meta">masa-icon-favicon.png · PNG · 256×256</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="asset">
+            <div class="asset-art">
+              <img class="cover" src="/assets/press/tool-hospital-bag-mobile.png" alt="Masa hospital bag tool on a phone, showing the Labor, Recovery, Baby, and Support bags" width="390" height="844" decoding="async" />
+            </div>
+            <div class="asset-body">
+              <h3>Product imagery</h3>
+              <p>Proposed bundle: app screenshots made with demo accounts, with captions and credits. No real member data in any image.</p>
+              <ul class="file-list">
+                <li>
+                  <a class="file-link" href="/assets/press/press-today-ttc-maya.png" download="press-today-ttc-maya.png">Today, while trying to conceive. ↓</a>
+                  <span class="file-meta">press-today-ttc-maya.png</span>
+                </li>
+                <li>
+                  <a class="file-link" href="/assets/press/press-today-32w-maya.png" download="press-today-32w-maya.png">Today, at 32 weeks pregnant. ↓</a>
+                  <span class="file-meta">press-today-32w-maya.png</span>
+                </li>
+                <li>
+                  <a class="file-link" href="/assets/press/tool-hospital-bag-mobile.png" download="tool-hospital-bag-mobile.png">The hospital bag, free on masa.life. ↓</a>
+                  <span class="file-meta">tool-hospital-bag-mobile.png</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="asset">
+            <div class="asset-art">
+              <div class="type-art">Bio</div>
+            </div>
+            <div class="asset-body">
+              <h3>Founder bio</h3>
+              <p>Proposed bundle: short biography and approved quotes, as a text document.</p>
+              <ul class="file-list">
+                <li>
+                  <a class="file-link" href="/assets/press/masa-about-and-bio.md" download="masa-about-and-bio.md">Download founder bio ↓</a>
+                  <span class="file-meta">masa-about-and-bio.md</span>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="gallery">
+          <figure>
+            <div class="shot">
+              <img src="/assets/press/press-today-ttc-maya.png" alt="Masa Today screen while trying to conceive, cycle day 19" width="902" height="774" decoding="async" />
+            </div>
+            <figcaption>
+              <p>Today, while trying to conceive.</p>
+              <a class="file-link" href="/assets/press/press-today-ttc-maya.png" download="press-today-ttc-maya.png">Download PNG ↓</a>
+            </figcaption>
+          </figure>
+          <figure>
+            <div class="shot">
+              <img src="/assets/press/press-today-32w-maya.png" alt="Masa Today screen at 32 weeks pregnant, with a kick count tile and a childbirth class" width="902" height="836" decoding="async" />
+            </div>
+            <figcaption>
+              <p>Today, at 32 weeks pregnant.</p>
+              <a class="file-link" href="/assets/press/press-today-32w-maya.png" download="press-today-32w-maya.png">Download PNG ↓</a>
+            </figcaption>
+          </figure>
+          <figure>
+            <div class="shot">
+              <img src="/assets/press/tool-hospital-bag-mobile.png" alt="Masa hospital bag tool on a phone" width="390" height="844" decoding="async" />
+            </div>
+            <figcaption>
+              <p>The hospital bag, free on masa.life.</p>
+              <a class="file-link" href="/assets/press/tool-hospital-bag-mobile.png" download="tool-hospital-bag-mobile.png">Download PNG ↓</a>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="founder">
+        <div class="founder">
+          <div>
+            <p class="eyebrow">Behind Masa</p>
+            <h2>Meet the founder</h2>
+          </div>
+          <div>
+            <p class="founder-name">Bella S.<br><small>Founder &amp; CEO, Masa</small></p>
+            <p>Bella S. is the founder and CEO of Masa. Her own path to motherhood included natural conception, multiple rounds of IVF, and several pregnancy losses. Through all of it she used one app after another, and none of them could hold what she was living through. With a career in health tech behind her, she knew exactly what was missing, and she built Masa herself. It comes from lived experience, not from guesses about what women want. Bella is also a mother to a toddler.</p>
+            <a class="story-link" href="/#story">Read the founder&rsquo;s story ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact">
+          <div>
+            <p class="eyebrow">Media inquiries</p>
+            <h2>Let&rsquo;s be in touch.</h2>
+            <p>For interviews, product questions, or image requests, write to us and we will reply as soon as we can.</p>
+          </div>
+          <a class="contact-link" href="mailto:press@masa.life">press@masa.life ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap footer-bar">
+        <div>&copy; 2026 Masa Life, Inc. All rights reserved.</div>
+        <nav class="footer-links" aria-label="Legal">
+          <a href="/privacy">Website privacy</a>
+          <a href="https://app.masa.life/privacy-policy">App privacy policy</a>
+          <a href="https://app.masa.life/terms">App terms</a>
+          <a href="/accessibility">Accessibility</a>
+          <a href="/press" aria-current="page">Press</a>
+          <a href="mailto:hello@masa.life">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

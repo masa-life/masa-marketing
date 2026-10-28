@@ -30,6 +30,10 @@ the sitemap. If the host ever changes, they all change together.
 - `reading.html` — public articles and tool outlines, served at `masa.life/reading`. The same
   links are on the homepage. `node scripts/check-reading-links.mjs` fails if the two lists or
   the ItemList JSON-LD drift apart. Add a URL only after it returns 200 with no `noindex`.
+- `press.html` — the press kit, served at `masa.life/press`. The short description, logo files,
+  product screenshots, founder bio, and `press@masa.life`. Screenshots and the fact file live in
+  `assets/press/`. `python3 scripts/make-press-kit.py` rebuilds `assets/press/masa-press-kit.zip`
+  from those files and the logo icons. The logo PNGs are copied in unchanged.
 - `assets/` — logo icon, app screenshot, and the Open Graph share card referenced by `index.html`.
 - `scripts/make-og-image.py` — regenerates `assets/og-image.png`. Run it when the hero copy changes.
 - `robots.txt` — crawl policy; points at the sitemap.
@@ -57,7 +61,7 @@ the sitemap. If the host ever changes, they all change together.
 - Launch copy switches itself. See **Launch phases** below. It used to be
   hand-written and hand-edited, which meant that from the moment entries
   stopped the page kept saying "Waitlist open now" until somebody remembered.
-- Contact email: `hello@masa.life`.
+- Contact email: `hello@masa.life`. Press is `press@masa.life`, on `/press` only.
 - Footer links: Website privacy (this site's notice), App privacy policy and App terms (the app's,
   on app.masa.life), Accessibility, Contact, then a hairline and the Instagram mark. The hairline
   is there because the links before it are obligations and the mark is an invitation; in one
@@ -177,11 +181,15 @@ one-week check.
 
 **2026-10-19.** Search Console shows `https://masa.life/` indexed, last
 crawled 9 October. The submitted sitemap had been read as 2 pages; this repo
-now lists 4 (`/`, `/reading`, `/accessibility`, `/privacy`). `noindex` on
+listed 4 (`/`, `/reading`, `/accessibility`, `/privacy`). `noindex` on
 `dev.masa.life` is correct and stays in the app. A Google query for `masa.life`
 can still surface masalife.com (a different company) above this site, and Bing
 currently returns `app.masa.life/login` ("Sign in — Masa") rather than this
 page. The login page is not fixed here; that change belongs in masadev.
+
+**2026-10-28.** `/press` is the press kit. The sitemap lists 5 pages. After
+this deploys, confirm Search Console re-reads `https://masa.life/sitemap.xml`
+as 5.
 
 After this deploys, Bella:
 

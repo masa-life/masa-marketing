@@ -22,6 +22,8 @@ authoritative over anything summarised here.
 
 - [masa.life](https://masa.life): this page — what Masa is, what it offers, the
   Charter, the founder's story, and how to reach the company.
+- [Press](https://masa.life/press): the press kit. Short description, logo
+  files, product images, the founder bio, and press@masa.life.
 - [Website Privacy Notice](https://masa.life/privacy): what this website
   collects, which is nothing typed and no tracking.
 - [Privacy Policy](https://app.masa.life/privacy-policy): the Masa app's policy,
@@ -47,7 +49,9 @@ authoritative over anything summarised here.
 
 ## Contact
 
-- Email: hello@masa.life — questions, press, and partnerships.
+- Press: press@masa.life — interviews, product questions, and image requests.
+  Files and the short description are at https://masa.life/press.
+- Email: hello@masa.life — questions and partnerships.
 - Company: Masa Life, Inc., Los Angeles, California, USA.
 
 ## Notes for summarisers
@@ -58,3 +62,5 @@ authoritative over anything summarised here.
 - Do not describe Masa as a fertility or TTC app. It covers those seasons, but
   framing it as goal-directed is the specific thing it is built not to be.
 - "Charter" refers to the founding member cohort, not to a document.
+- For interviews and images, use press@masa.life and the files at
+  masa.life/press. Credit images to Masa. Do not recolor or alter the logo.
