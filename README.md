@@ -27,9 +27,10 @@ the sitemap. If the host ever changes, they all change together.
   only; the app's Privacy Policy and Terms live at app.masa.life and are linked as the app's. It
   says the site has no forms, analytics, trackers or cookies of its own, so adding any of those
   means changing this page in the same commit.
-- `reading.html` — public articles and tool outlines, served at `masa.life/reading`. The same
-  links are on the homepage. `node scripts/check-reading-links.mjs` fails if the two lists or
-  the ItemList JSON-LD drift apart. Add a URL only after it returns 200 with no `noindex`.
+- `reading.html` — public articles and tool outlines, served at `masa.life/reading`. The
+  homepage does not render this list. `node scripts/check-reading-links.mjs` fails if the
+  /reading list or either page's ItemList JSON-LD drift apart. Add a URL only after it
+  returns 200 with no `noindex`.
 - `press.html` — the press kit, served at `masa.life/press`. The short description, logo files,
   product screenshots, founder bio, and `press@masa.life`. Screenshots and the fact file live in
   `assets/press/`. `python3 scripts/make-press-kit.py` rebuilds `assets/press/masa-press-kit.zip`
@@ -115,11 +116,12 @@ the sitemap. If the host ever changes, they all change together.
   supposed to list its own host, and the app's list would go stale the day a
   new article shipped. `robots.txt` also points at
   `https://app.masa.life/sitemap.xml`, which is that list.
-- **Public links.** The homepage and `/reading` link to every Learn article
-  and tool outline that was public on 2026-10-19, including the hospital bag
-  list and the birth plan. The Learn index itself hides article URLs inside
-  collapsed buttons, so these anchors are how a crawler arriving at masa.life
-  reaches them. `/login` is not in the list.
+- **Public links.** `/reading` links to every Learn article and tool outline
+  that was public on 2026-10-19, including the hospital bag list and the birth
+  plan. The same URLs are in the ItemList JSON-LD on the homepage and on
+  `/reading`. They are not rendered on the homepage. The Learn index itself
+  hides article URLs inside collapsed buttons, so these anchors are how a
+  crawler arriving at masa.life reaches them. `/login` is not in the list.
 - **Images** are palette-quantised PNGs, not truecolour. The page is flat brand
   colour and two faces, so a 192–256 entry palette is visually identical at
   roughly a quarter of the bytes. Re-exporting an asset from a design tool will
