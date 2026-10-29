@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
- * The public Learn and tool links are written four times: the homepage list,
- * the /reading list, and an ItemList in each page's JSON-LD. This checks
- * those four copies are the same list, that the homepage is indexable, and
- * that the sitemap names every page on this host.
+ * The public Learn and tool links are written three times: the /reading list
+ * and an ItemList in each of the homepage and /reading JSON-LD. The homepage
+ * does not render them. This checks those three copies are the same list,
+ * that the homepage is indexable and does not show the lists, and that the
+ * sitemap names every page on this host.
  *
  *   node scripts/check-reading-links.mjs
  *
@@ -52,11 +53,15 @@ function itemListUrls(html) {
 const index = read("index.html");
 const reading = read("reading.html");
 const lists = {
-  "homepage html": publicHrefs(index),
   "reading html": publicHrefs(reading),
   "homepage JSON-LD": itemListUrls(index),
   "reading JSON-LD": itemListUrls(reading),
 };
+
+check("homepage does not render the article lists", !/<ul class="public-links"/.test(index));
+check("homepage does not render the articles heading", !/id="articles-heading"/.test(index));
+check("homepage does not render the tools heading", !/id="tools-heading"/.test(index));
+check("homepage does not link to /reading", !/href="\/reading"/.test(index));
 
 const [firstName, first] = Object.entries(lists)[0];
 for (const [name, urls] of Object.entries(lists)) {
