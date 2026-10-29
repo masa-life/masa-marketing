@@ -35,7 +35,7 @@ the sitemap. If the host ever changes, they all change together.
   product screenshots, founder bio, and `press@masa.life`. Screenshots and the fact file live in
   `assets/press/`. `python3 scripts/make-press-kit.py` rebuilds `assets/press/masa-press-kit.zip`
   from those files and the logo icons. The logo PNGs are copied in unchanged.
-- `assets/` — logo icon, app screenshot, and the Open Graph share card referenced by `index.html`.
+- `assets/` — logo icon, two fictional Maya Today screenshots (`today-maya-32w.png` in the hero, `today-maya-tight.png` in What Masa offers), and the Open Graph share card referenced by `index.html`.
 - `scripts/make-og-image.py` — regenerates `assets/og-image.png`. Run it when the hero copy changes.
 - `robots.txt` — crawl policy; points at the sitemap.
 - `sitemap.xml` — every page, each with a hand-set `lastmod`.
