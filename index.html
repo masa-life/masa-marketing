@@ -1,15 +1,5 @@
 <!doctype html>
-<!--
-  data-charter-phase is the launch phase the page is dressed for. It ships as
-  "waitlist-open" and the script at the end of <head> corrects it, before
-  anything paints, from the clock.
-
-  Shipping a real phase rather than an empty attribute is deliberate: with
-  JavaScript off nothing corrects it, and the page then reads exactly as it
-  did before any of this existed. That is the old failure — stale copy — and
-  not a new one, which is the most a static page can promise here.
--->
-<html lang="en" data-charter-phase="waitlist-open">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -35,8 +25,8 @@
     <!--
       The card every share of this link renders as — iMessage, Slack, WhatsApp,
       LinkedIn. Without it those previews are a blank rectangle with a URL
-      under it, which for a page whose whole job is a waitlist signup is the
-      one impression that matters most. Absolute URLs: relative ones are not
+      under it, which for the page most people meet Masa through is the one
+      impression that matters most. Absolute URLs: relative ones are not
       resolved by most crawlers.
 
       Built from the page's own tokens and faces by `scripts/make-og-image.py`
@@ -309,79 +299,10 @@
         .nav-links .nav-link { display: none; }
       }
 
-      #waitlist-email:focus,
-      .waitlist-field:focus,
       .cta:focus-visible,
       a:focus-visible {
         outline: 2px solid #4A4E5A;
         outline-offset: 2px;
-      }
-    </style>
-
-    <!--
-      The launch calendar, and the only copy of it on this page.
-
-      These four instants are masa-app's `src/lib/charter.dates.ts`, which owns
-      the calendar per ADR-0357, and they agree with masa-tools' WAITLIST_PHASES
-      to the millisecond — masa-app closes the waitlist at 2026-10-03T23:59:59.999
-      Pacific, masa-tools opens the next phase at 2026-10-04T00:00:00 Pacific,
-      which is the same boundary written from either side. If that calendar
-      moves, this moves with it, in the same change.
-
-      Every boundary carries its -07:00 offset, so each parses to one absolute
-      instant and the phase is the same for a visitor in Sydney as in Rancho
-      Cucamonga. Do not rewrite these as local dates.
-
-      Why this exists: until 2026-09-19 the page had no idea what phase it was
-      in. masa-app and masa-tools both roll themselves over at midnight Pacific
-      and this page was hand-edited to match, so from the moment entries
-      stopped it would have kept saying "Waitlist open now" until somebody
-      remembered — during the week they would least want to be remembering.
-      Worse, the form stayed on screen: you could fill it in and only learn it
-      had closed after submitting. masa-tools' own note for that phase reads
-      "No form is on screen in this one, so it should collect nothing."
-    -->
-    <script>
-      (function () {
-        var OPENS_AT = Date.parse('2026-09-17T00:00:00-07:00');
-        var CLOSES_AT = Date.parse('2026-10-04T00:00:00-07:00');
-        var PUBLIC_OPENS_AT = Date.parse('2026-10-08T00:00:00-07:00');
-
-        // Mirrors getCharterWindow() in masa-app. Same names, same order, so
-        // the two can be read side by side.
-        function charterPhase(now) {
-          if (now < OPENS_AT) return 'before-waitlist';
-          if (now < CLOSES_AT) return 'waitlist-open';
-          if (now < PUBLIC_OPENS_AT) return 'waitlist-closed';
-          return 'public-open';
-        }
-
-        try {
-          document.documentElement.setAttribute('data-charter-phase', charterPhase(Date.now()));
-        } catch (e) {
-          // Leave the shipped default in place. A visitor seeing last week's
-          // copy is the failure this page already had; a blank hero is a new
-          // one, and worse.
-        }
-      })();
-    </script>
-    <style>
-      /*
-        Show only the blocks dressed for the current phase.
-
-        Each variant carries data-when with one or more phase names, space
-        separated, and ~= matches a single one out of that list. The rules are
-        written out per phase because CSS cannot compare an attribute on <html>
-        against one on a descendant.
-
-        Nothing is hidden unless <html> carries a phase, so a page whose script
-        did not run shows its shipped copy rather than nothing at all.
-      */
-      html[data-charter-phase='before-waitlist'] [data-when]:not([data-when~='before-waitlist']),
-      html[data-charter-phase='waitlist-open'] [data-when]:not([data-when~='waitlist-open']),
-      html[data-charter-phase='waitlist-closed'] [data-when]:not([data-when~='waitlist-closed']),
-      html[data-charter-phase='public-open'] [data-when]:not([data-when~='public-open']) {
-        display: none !important;
       }
     </style>
 
@@ -533,9 +454,7 @@
             <a class="nav-link" data-target="charter" href="#charter">Charter</a>
             <a class="nav-link" data-target="story" href="#story">Founder's story</a>
             <a class="nav-link" data-target="contact" href="#contact">Contact</a>
-            <a href="#charter" class="cta" data-when="before-waitlist waitlist-open" style="font-size:14px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:10px 20px; border-radius:24px;">Join the waitlist</a>
-            <a href="#charter" class="cta" data-when="waitlist-closed" style="font-size:14px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:10px 20px; border-radius:24px;">Opens October 8</a>
-            <a href="https://app.masa.life" class="cta" data-when="public-open" style="font-size:14px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:10px 20px; border-radius:24px;">Open Masa</a>
+            <a href="https://app.masa.life" class="cta" style="font-size:14px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:10px 20px; border-radius:24px;">Open Masa</a>
           </nav>
         </div>
       </header>
@@ -544,19 +463,13 @@
       <!-- HERO -->
       <div id="top" style="max-width:1160px; margin:0 auto; padding:clamp(48px,8vw,96px) 32px 64px; display:flex; align-items:center; gap:56px; flex-wrap:wrap;">
         <div style="flex:1 1 460px;">
-          <div style="display:inline-block; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#64748B; background:#FAF8F5; border:1px solid #D9D2C7; padding:6px 14px; border-radius:20px; margin-bottom:20px;" data-when="before-waitlist waitlist-open waitlist-closed">Invite only, for now</div>
           <h1 style="font-family:'Cormorant Garamond',serif; font-weight:500; letter-spacing:-0.02em; font-size:clamp(38px,5vw,60px); line-height:1.08; margin:0 0 20px; color:#2f323b;">Built for her whole story — cycles, fertility, pregnancy, postpartum, and the seasons in between.</h1>
           <p style="font-size:clamp(16px,1.6vw,19px); color:#3A3A3A; max-width:480px; margin:0 0 32px;">One place to track, reflect, and prepare — through cycles, fertility, pregnancy, postpartum, and every season in between. No ads, no noise, no presumed outcome.</p>
           <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
-            <a href="#charter" class="cta" data-when="before-waitlist waitlist-open" style="font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:14px 28px; border-radius:26px;">Join the Charter waitlist</a>
-            <a href="#charter" class="cta" data-when="waitlist-closed" style="font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:14px 28px; border-radius:26px;">What happens on October 8</a>
-            <a href="https://app.masa.life/login?mode=signup" class="cta" data-when="public-open" style="font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:14px 28px; border-radius:26px;">Create your account</a>
+            <a href="https://app.masa.life/login?mode=signup" class="cta" style="font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:14px 28px; border-radius:26px;">Create your account</a>
             <a href="#offerings" style="font-size:15px; font-weight:500; color:#4A4E5A; border:1px solid #4A4E5A; padding:14px 28px; border-radius:26px;">See what Masa offers</a>
           </div>
-          <p style="font-size:13px; color:#64748B; margin-top:18px;" data-when="before-waitlist">The Charter waitlist opens September 17. Joining it will be the only way into Masa before October 8.</p>
-          <p style="font-size:13px; color:#64748B; margin-top:18px;" data-when="waitlist-open">Waitlist open now. Join to get first access — closes October 3, or once all 500 Charter spots are claimed. Joining is not a purchase.</p>
-          <p style="font-size:13px; color:#64748B; margin-top:18px;" data-when="waitlist-closed">The waitlist has closed. The last batch of invitations is going out now, and Masa opens to everyone on October 8 — no invite needed.</p>
-          <p style="font-size:13px; color:#64748B; margin-top:18px;" data-when="public-open">Masa is open to everyone. Charter pricing holds while any of the 500 seats remain.</p>
+          <p style="font-size:13px; color:#64748B; margin-top:18px;">Masa is open to everyone. Charter pricing holds while any of the 500 seats remain.</p>
         </div>
 
         <div style="flex:1 1 340px; max-width:380px; margin:0 auto;">
@@ -676,299 +589,28 @@
               <li style="padding:6px 0; border-top:1px solid rgba(250,248,245,0.15);">A direct line to shape what we build next</li>
               <li style="padding:6px 0; border-top:1px solid rgba(250,248,245,0.15); border-bottom:1px solid rgba(250,248,245,0.15);">Every season, in one place, as they arrive</li>
             </ul>
-            <p style="font-size:13px; color:rgba(250,248,245,0.6); margin:0 0 28px;" data-when="before-waitlist waitlist-open">Everyone needs to join the waitlist for app access while Charter is available — whether or not you plan to become a Charter member.</p>
-            <p style="font-size:13px; color:rgba(250,248,245,0.6); margin:0 0 28px;" data-when="public-open">Charter is claimed inside the app, on the plan screen, for as long as seats remain.</p>
+            <p style="font-size:13px; color:rgba(250,248,245,0.6); margin:0 0 28px;">Charter is claimed inside the app, on the plan screen, for as long as seats remain.</p>
 
             <div style="border-top:1px solid rgba(250,248,245,0.15); padding-top:24px;">
-              <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:#FAF8F5; margin-bottom:14px;" data-when="before-waitlist waitlist-open">Why join early</div>
-              <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:#FAF8F5; margin-bottom:14px;" data-when="waitlist-closed">What happens next</div>
-              <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:#FAF8F5; margin-bottom:14px;" data-when="public-open">What Charter means now</div>
+              <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:#FAF8F5; margin-bottom:14px;">What Charter means now</div>
               <div style="display:flex; flex-direction:column; gap:14px; font-size:14px; color:rgba(250,248,245,0.8); max-width:460px;">
-                <p style="margin:0;" data-when="before-waitlist waitlist-open">Joining the waitlist is the only way into Masa before October 8.</p>
-                <p style="margin:0;" data-when="before-waitlist waitlist-open">We're releasing members in small batches to create an account, complete onboarding, and claim a Charter seat — before the public opening on October 8 and before the 500 seats are gone.</p>
-                <p style="margin:0;" data-when="waitlist-closed">Entries have stopped. The last batch of invitations is going out now, so everyone who joined in time gets their window before the doors open.</p>
-                <p style="margin:0;" data-when="waitlist-closed">On October 8 Masa opens to everyone, no invite needed. Charter seats that are still unclaimed stay available at Charter pricing until the 500 are gone.</p>
-                <p style="margin:0;" data-when="public-open">Masa is open to everyone — create an account whenever you like, no invite and no waiting.</p>
-                <p style="margin:0;" data-when="public-open">Charter pricing is held for life for the first 500 members, and any seats still unclaimed are first come.</p>
+                <p style="margin:0;">Masa is open to everyone — create an account whenever you like, no invite and no waiting.</p>
+                <p style="margin:0;">Charter pricing is held for life for the first 500 members, and any seats still unclaimed are first come.</p>
               </div>
             </div>
           </div>
           <div class="charter-form" style="flex:1 1 320px; background:#FAF8F5; border-radius:16px; padding:32px;">
-            <div style="font-size:13px; color:#64748B; margin-bottom:6px;" data-when="before-waitlist waitlist-open">Join the waitlist</div>
-            <div style="font-size:13px; color:#64748B; margin-bottom:6px;" data-when="waitlist-closed">The waitlist has closed</div>
-            <div style="font-size:13px; color:#64748B; margin-bottom:6px;" data-when="public-open">Masa is open</div>
+            <div style="font-size:13px; color:#64748B; margin-bottom:6px;">Masa is open</div>
 
-            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;" data-when="before-waitlist">The Charter waitlist opens September 17. Leave your email and we'll tell you the moment it does.</div>
-            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;" data-when="waitlist-open">Waitlist open now. Join to get first access — closes October 3, or once all 500 Charter spots are claimed. Joining is not a purchase.</div>
-            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;" data-when="waitlist-closed">Entries have stopped and the last batch is going out. Masa opens to everyone on October 8 — nothing to join, just come back.</div>
-            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;" data-when="public-open">Masa is open to everyone. Create your account and claim a Charter seat while they last.</div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; color:#2f323b; margin-bottom:20px;">Masa is open to everyone. Create your account and claim a Charter seat while they last.</div>
 
             <!--
-              The one CTA that replaces the form once there is nothing to join.
-              It is a link to the product rather than a second form: an address
-              taken here after entries stop is an enquiry, not a place in a
-              queue, and masa-tools would file it as exactly that.
+              A link to the product, not a form: masa.life collects nothing
+              (see privacy.html). The pre-launch copy and its sign-up form were
+              removed after Masa opened on 8 October 2026.
             -->
-            <a href="https://app.masa.life/login?mode=signup" data-when="public-open" style="display:block; text-align:center; font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:13px; border-radius:10px;">Create your account</a>
+            <a href="https://app.masa.life/login?mode=signup" style="display:block; text-align:center; font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:13px; border-radius:10px;">Create your account</a>
 
-            <!--
-              No form once entries have stopped. Hiding the <form> takes the
-              three response messages inside it with it, which is right: there
-              is no submission in those phases to respond to.
-
-              before-waitlist keeps the form because masa-tools' teaser phase
-              does collect (email and journey stage). That phase is behind us
-              and cannot recur, so it is handled for correctness rather than
-              tuned — the extra fields this form sends are ones masa-tools
-              accepts and labels against the form they came from.
-            -->
-            <form id="waitlist-form" data-when="before-waitlist waitlist-open" novalidate>
-              <div id="waitlist-pending" style="display:flex; flex-direction:column; gap:12px;">
-                <input id="waitlist-email" type="email" required placeholder="you@email.com" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;" />
-                <select id="waitlist-country" class="waitlist-field" aria-label="Country or region" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;">
-                  <option value="">Country / region</option>
-                  <option value="af">Afghanistan</option>
-                  <option value="al">Albania</option>
-                  <option value="dz">Algeria</option>
-                  <option value="ad">Andorra</option>
-                  <option value="ao">Angola</option>
-                  <option value="ag">Antigua and Barbuda</option>
-                  <option value="ar">Argentina</option>
-                  <option value="am">Armenia</option>
-                  <option value="au">Australia</option>
-                  <option value="at">Austria</option>
-                  <option value="az">Azerbaijan</option>
-                  <option value="bs">Bahamas</option>
-                  <option value="bh">Bahrain</option>
-                  <option value="bd">Bangladesh</option>
-                  <option value="bb">Barbados</option>
-                  <option value="by">Belarus</option>
-                  <option value="be">Belgium</option>
-                  <option value="bz">Belize</option>
-                  <option value="bj">Benin</option>
-                  <option value="bt">Bhutan</option>
-                  <option value="bo">Bolivia</option>
-                  <option value="ba">Bosnia and Herzegovina</option>
-                  <option value="bw">Botswana</option>
-                  <option value="br">Brazil</option>
-                  <option value="bn">Brunei</option>
-                  <option value="bg">Bulgaria</option>
-                  <option value="bf">Burkina Faso</option>
-                  <option value="bi">Burundi</option>
-                  <option value="kh">Cambodia</option>
-                  <option value="cm">Cameroon</option>
-                  <option value="ca">Canada</option>
-                  <option value="cv">Cape Verde</option>
-                  <option value="cf">Central African Republic</option>
-                  <option value="td">Chad</option>
-                  <option value="cl">Chile</option>
-                  <option value="cn">China</option>
-                  <option value="co">Colombia</option>
-                  <option value="km">Comoros</option>
-                  <option value="cg">Congo</option>
-                  <option value="cd">Congo (DRC)</option>
-                  <option value="cr">Costa Rica</option>
-                  <option value="hr">Croatia</option>
-                  <option value="cu">Cuba</option>
-                  <option value="cy">Cyprus</option>
-                  <option value="cz">Czech Republic</option>
-                  <option value="dk">Denmark</option>
-                  <option value="dj">Djibouti</option>
-                  <option value="dm">Dominica</option>
-                  <option value="do">Dominican Republic</option>
-                  <option value="ec">Ecuador</option>
-                  <option value="eg">Egypt</option>
-                  <option value="sv">El Salvador</option>
-                  <option value="gq">Equatorial Guinea</option>
-                  <option value="er">Eritrea</option>
-                  <option value="ee">Estonia</option>
-                  <option value="sz">Eswatini</option>
-                  <option value="et">Ethiopia</option>
-                  <option value="fj">Fiji</option>
-                  <option value="fi">Finland</option>
-                  <option value="fr">France</option>
-                  <option value="ga">Gabon</option>
-                  <option value="gm">Gambia</option>
-                  <option value="ge">Georgia</option>
-                  <option value="de">Germany</option>
-                  <option value="gh">Ghana</option>
-                  <option value="gr">Greece</option>
-                  <option value="gd">Grenada</option>
-                  <option value="gt">Guatemala</option>
-                  <option value="gn">Guinea</option>
-                  <option value="gw">Guinea-Bissau</option>
-                  <option value="gy">Guyana</option>
-                  <option value="ht">Haiti</option>
-                  <option value="hn">Honduras</option>
-                  <option value="hk">Hong Kong</option>
-                  <option value="hu">Hungary</option>
-                  <option value="is">Iceland</option>
-                  <option value="in">India</option>
-                  <option value="id">Indonesia</option>
-                  <option value="ir">Iran</option>
-                  <option value="iq">Iraq</option>
-                  <option value="ie">Ireland</option>
-                  <option value="il">Israel</option>
-                  <option value="it">Italy</option>
-                  <option value="jm">Jamaica</option>
-                  <option value="jp">Japan</option>
-                  <option value="jo">Jordan</option>
-                  <option value="kz">Kazakhstan</option>
-                  <option value="ke">Kenya</option>
-                  <option value="ki">Kiribati</option>
-                  <option value="kw">Kuwait</option>
-                  <option value="kg">Kyrgyzstan</option>
-                  <option value="la">Laos</option>
-                  <option value="lv">Latvia</option>
-                  <option value="lb">Lebanon</option>
-                  <option value="ls">Lesotho</option>
-                  <option value="lr">Liberia</option>
-                  <option value="ly">Libya</option>
-                  <option value="li">Liechtenstein</option>
-                  <option value="lt">Lithuania</option>
-                  <option value="lu">Luxembourg</option>
-                  <option value="mo">Macau</option>
-                  <option value="mg">Madagascar</option>
-                  <option value="mw">Malawi</option>
-                  <option value="my">Malaysia</option>
-                  <option value="mv">Maldives</option>
-                  <option value="ml">Mali</option>
-                  <option value="mt">Malta</option>
-                  <option value="mh">Marshall Islands</option>
-                  <option value="mr">Mauritania</option>
-                  <option value="mu">Mauritius</option>
-                  <option value="mx">Mexico</option>
-                  <option value="fm">Micronesia</option>
-                  <option value="md">Moldova</option>
-                  <option value="mc">Monaco</option>
-                  <option value="mn">Mongolia</option>
-                  <option value="me">Montenegro</option>
-                  <option value="ma">Morocco</option>
-                  <option value="mz">Mozambique</option>
-                  <option value="mm">Myanmar</option>
-                  <option value="na">Namibia</option>
-                  <option value="nr">Nauru</option>
-                  <option value="np">Nepal</option>
-                  <option value="nl">Netherlands</option>
-                  <option value="nz">New Zealand</option>
-                  <option value="ni">Nicaragua</option>
-                  <option value="ne">Niger</option>
-                  <option value="ng">Nigeria</option>
-                  <option value="kp">North Korea</option>
-                  <option value="mk">North Macedonia</option>
-                  <option value="no">Norway</option>
-                  <option value="om">Oman</option>
-                  <option value="pk">Pakistan</option>
-                  <option value="pw">Palau</option>
-                  <option value="ps">Palestine</option>
-                  <option value="pa">Panama</option>
-                  <option value="pg">Papua New Guinea</option>
-                  <option value="py">Paraguay</option>
-                  <option value="pe">Peru</option>
-                  <option value="ph">Philippines</option>
-                  <option value="pl">Poland</option>
-                  <option value="pt">Portugal</option>
-                  <option value="pr">Puerto Rico</option>
-                  <option value="qa">Qatar</option>
-                  <option value="ro">Romania</option>
-                  <option value="ru">Russia</option>
-                  <option value="rw">Rwanda</option>
-                  <option value="kn">Saint Kitts and Nevis</option>
-                  <option value="lc">Saint Lucia</option>
-                  <option value="vc">Saint Vincent and the Grenadines</option>
-                  <option value="ws">Samoa</option>
-                  <option value="sm">San Marino</option>
-                  <option value="st">Sao Tome and Principe</option>
-                  <option value="sa">Saudi Arabia</option>
-                  <option value="sn">Senegal</option>
-                  <option value="rs">Serbia</option>
-                  <option value="sc">Seychelles</option>
-                  <option value="sl">Sierra Leone</option>
-                  <option value="sg">Singapore</option>
-                  <option value="sk">Slovakia</option>
-                  <option value="si">Slovenia</option>
-                  <option value="sb">Solomon Islands</option>
-                  <option value="so">Somalia</option>
-                  <option value="za">South Africa</option>
-                  <option value="kr">South Korea</option>
-                  <option value="ss">South Sudan</option>
-                  <option value="es">Spain</option>
-                  <option value="lk">Sri Lanka</option>
-                  <option value="sd">Sudan</option>
-                  <option value="sr">Suriname</option>
-                  <option value="se">Sweden</option>
-                  <option value="ch">Switzerland</option>
-                  <option value="sy">Syria</option>
-                  <option value="tw">Taiwan</option>
-                  <option value="tj">Tajikistan</option>
-                  <option value="tz">Tanzania</option>
-                  <option value="th">Thailand</option>
-                  <option value="tl">Timor-Leste</option>
-                  <option value="tg">Togo</option>
-                  <option value="to">Tonga</option>
-                  <option value="tt">Trinidad and Tobago</option>
-                  <option value="tn">Tunisia</option>
-                  <option value="tr">Turkey</option>
-                  <option value="tm">Turkmenistan</option>
-                  <option value="tv">Tuvalu</option>
-                  <option value="ug">Uganda</option>
-                  <option value="ua">Ukraine</option>
-                  <option value="ae">United Arab Emirates</option>
-                  <option value="gb">United Kingdom</option>
-                  <option value="us">United States</option>
-                  <option value="uy">Uruguay</option>
-                  <option value="uz">Uzbekistan</option>
-                  <option value="vu">Vanuatu</option>
-                  <option value="va">Vatican City</option>
-                  <option value="ve">Venezuela</option>
-                  <option value="vn">Vietnam</option>
-                  <option value="ye">Yemen</option>
-                  <option value="zm">Zambia</option>
-                  <option value="zw">Zimbabwe</option>
-                  <option value="other">Other</option>
-                </select>
-                <input id="waitlist-first-name" class="waitlist-field" type="text" aria-label="First name (optional)" placeholder="First name (optional)" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;" />
-                <select id="waitlist-journey" class="waitlist-field" aria-label="Where are you in your journey? (optional)" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;">
-                  <option value="">Your journey (optional)</option>
-                  <option value="thinking">Thinking about it</option>
-                  <option value="trying_naturally">Trying naturally</option>
-                  <option value="iui">IUI</option>
-                  <option value="ivf">IVF</option>
-                  <option value="between_cycles">Between cycles</option>
-                  <option value="after_loss">After a loss</option>
-                  <option value="pregnant">Pregnant</option>
-                  <option value="postpartum">Postpartum</option>
-                  <option value="prefer_not">Prefer not to say</option>
-                </select>
-                <select id="waitlist-how-heard" class="waitlist-field" aria-label="How did you hear about Masa? (optional)" style="padding:14px 16px; border-radius:10px; border:1px solid #D9D2C7; font-size:15px; font-family:'Inter',sans-serif; background:#FFFFFF; color:#3A3A3A;">
-                  <option value="">How you heard (optional)</option>
-                  <option value="friend">Friend or family</option>
-                  <option value="clinic">Provider or clinic</option>
-                  <option value="instagram">Instagram</option>
-                  <option value="search">Search</option>
-                  <option value="community">Community group</option>
-                  <option value="other">Other</option>
-                </select>
-                <div style="font-size:12px; color:#64748B; line-height:1.5;">By signing up, you agree to hear from Masa about our launch. We'll never sell your information. See our <a href="https://app.masa.life/privacy-policy" style="color:#4A4E5A; text-decoration:underline;">Privacy Policy</a>.</div>
-                <button id="waitlist-submit" type="submit" style="text-align:center; cursor:pointer; font-size:15px; font-weight:500; color:#FAF8F5; background:#4A4E5A; padding:13px; border-radius:10px; border:none; font-family:inherit;">Join the Charter waitlist</button>
-                <div id="waitlist-error" style="display:none; font-size:13px; color:#B4483A;"></div>
-              </div>
-              <div id="waitlist-done" style="display:none; background:#EDF2F7; border-radius:12px; padding:16px 18px; font-size:15px; color:#4A4E5A;">You're on the list. We'll email you at <span id="waitlist-done-email"></span> when it's your turn.</div>
-              <!--
-                Shown when Masa is not open where she is. Saying "You're on the
-                list" there would be untrue twice over: she is not on it, and
-                the invite it promises would be refused at signup. The note she
-                has just been sent says the same thing.
-              -->
-              <!--
-                4 to 7 October: entries have stopped and the last batch is out.
-                The API decides this, not the page - masalife.co is hand-edited
-                and nobody should have to remember to change it at midnight on
-                the 3rd.
-              -->
-              <div id="waitlist-closed" style="display:none; background:#EDF2F7; border-radius:12px; padding:16px 18px; font-size:15px; color:#4A4E5A;">The Charter waitlist has closed — Masa opens to everyone on October 8, no invite needed. We've kept your email at <span id="waitlist-closed-email"></span> and we'll write to you the day the doors open.</div>
-              <div id="waitlist-region" style="display:none; background:#EDF2F7; border-radius:12px; padding:16px 18px; font-size:15px; color:#4A4E5A;">Masa isn't open in your region yet, so we haven't put you on the Charter list. We've emailed <span id="waitlist-region-email"></span> and we'll write again when that changes.</div>
-            </form>
           </div>
         </div>
       </div>
@@ -1136,82 +778,6 @@
             { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
           );
           targets.forEach(function (t) { observer.observe(t); });
-        }
-
-        var form = document.getElementById('waitlist-form');
-        if (form) {
-          var input = document.getElementById('waitlist-email');
-          var country = document.getElementById('waitlist-country');
-          var firstName = document.getElementById('waitlist-first-name');
-          var journey = document.getElementById('waitlist-journey');
-          var howHeard = document.getElementById('waitlist-how-heard');
-          var submitBtn = document.getElementById('waitlist-submit');
-          var pending = document.getElementById('waitlist-pending');
-          var done = document.getElementById('waitlist-done');
-          var doneEmail = document.getElementById('waitlist-done-email');
-          var closed = document.getElementById('waitlist-closed');
-          var closedEmail = document.getElementById('waitlist-closed-email');
-          var region = document.getElementById('waitlist-region');
-          var regionEmail = document.getElementById('waitlist-region-email');
-          var errorBox = document.getElementById('waitlist-error');
-          var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-          function showError(message) {
-            errorBox.textContent = message;
-            errorBox.style.display = 'block';
-          }
-
-          form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            var email = input.value.trim();
-            errorBox.style.display = 'none';
-            if (!EMAIL_RE.test(email)) {
-              showError('That doesn\'t look like a valid email address.');
-              return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Joining…';
-
-            fetch('https://masa.tools/api/waitlist', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              // Key names are the API's, not the field ids': masa.tools validates
-              // journeyStage and howHeard against a fixed set and silently drops
-              // anything it does not recognise, so these must stay in step with
-              // WAITLIST_PHASES' asks in masa-tools' worker.js.
-              body: JSON.stringify({
-                email: email,
-                country: country ? country.value : '',
-                firstName: firstName ? firstName.value.trim() : '',
-                journeyStage: journey ? journey.value : '',
-                howHeard: howHeard ? howHeard.value : '',
-              }),
-            })
-              .then(function (res) {
-                if (res.status === 429) throw new Error('Too many attempts — please try again in a few minutes.');
-                if (!res.ok) throw new Error('Something went wrong. Please try again.');
-                return res.json().catch(function () { return {}; });
-              })
-              .then(function (body) {
-                pending.style.display = 'none';
-                if (body && body.waitlist === 'closed') {
-                  closedEmail.textContent = email;
-                  closed.style.display = 'block';
-                } else if (body && body.region === 'unavailable') {
-                  regionEmail.textContent = email;
-                  region.style.display = 'block';
-                } else {
-                  doneEmail.textContent = email;
-                  done.style.display = 'block';
-                }
-              })
-              .catch(function (err) {
-                showError(err.message || 'Something went wrong. Please try again.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Join the Charter waitlist';
-              });
-          });
         }
       })();
     </script>
