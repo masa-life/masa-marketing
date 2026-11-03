@@ -20,7 +20,7 @@ the sitemap. If the host ever changes, they all change together.
 
 ## Files
 
-- `index.html` — company landing page (inline CSS, small vanilla-JS nav highlighter and waitlist form).
+- `index.html` — company landing page (inline CSS and a small vanilla-JS nav highlighter).
 - `accessibility.html` — the accessibility statement, served at `masa.life/accessibility`. This is the
   only copy: the app has no page of its own and links here.
 - `privacy.html` — the website privacy notice, served at `masa.life/privacy`. It covers this site
@@ -52,16 +52,10 @@ the sitemap. If the host ever changes, they all change together.
 ## What's on the page
 
 - Company name: **Masa Life, Inc.**
-- Nav, hero, about, offerings, Charter waitlist, founder's story, and contact sections.
-- Charter waitlist form: posts to `https://masa.tools/api/waitlist`. Open-phase
-  fields are email (required), country, first name, journey stage, and how they
-  heard about Masa. The last two are validated against a fixed vocabulary in
-  masa-tools' `worker.js` (`JOURNEY_STAGES`, `HOW_HEARD_OPTIONS`) and anything
-  it does not recognise is dropped to empty without an error, so the `value`
-  attributes here and those two sets have to be changed together.
-- Launch copy switches itself. See **Launch phases** below. It used to be
-  hand-written and hand-edited, which meant that from the moment entries
-  stopped the page kept saying "Waitlist open now" until somebody remembered.
+- Nav, hero, about, offerings, Charter, founder's story, and contact sections.
+- No forms. "Create your account" links to `app.masa.life/login?mode=signup` and
+  "Open Masa" to `app.masa.life`. The Charter waitlist form and the launch-phase
+  copy were removed on 3 Nov 2026; see **Launch phases (retired)** below.
 - Contact email: `hello@masa.life`. Press is `press@masa.life`, on `/press` only.
 - Footer links: Website privacy (this site's notice), App privacy policy and App terms (the app's,
   on app.masa.life), Accessibility, Contact, then a hairline and the Instagram mark. The hairline
@@ -107,7 +101,7 @@ the sitemap. If the host ever changes, they all change together.
   Learn articles and tool outlines. `SoftwareApplication` rather than
   `MobileApplication`: Masa is the web app at app.masa.life, and there is no
   verified store listing to cite. Deliberately no `Event` or `Offer` — not for
-  the Charter waitlist, and not a price of 0 for Core. The launch copy is
+  the Charter, and not a price of 0 for Core. The launch copy is
   already hand-synced across three repos, and a stale number in structured
   data is the version a search engine quotes.
 - **`sitemap.xml`.** This host only. `lastmod` is hand-set. Move it when the
@@ -127,50 +121,19 @@ the sitemap. If the host ever changes, they all change together.
   roughly a quarter of the bytes. Re-exporting an asset from a design tool will
   undo that — quantise it again on the way in.
 
-## Launch phases
+## Launch phases (retired)
 
-The page dresses itself for one of four phases, the same four masa-app calls
-`CharterWindow`:
+From 17 Sep to 7 Oct 2026 the page dressed itself for one of four launch
+phases (`before-waitlist`, `waitlist-open`, `waitlist-closed`, `public-open`):
+an inline script in `<head>` set `<html data-charter-phase>` from the clock,
+and CSS hid every `data-when` block that did not match.
 
-| Phase | When | What the page shows |
-|---|---|---|
-| `before-waitlist` | before 17 Sep | waitlist opens soon, form collects an email |
-| `waitlist-open` | 17 Sep – 3 Oct | the full waitlist form |
-| `waitlist-closed` | 4 – 7 Oct | entries stopped, last batch going out, **no form** |
-| `public-open` | 8 Oct onward | open to everyone; "Create your account" links to `app.masa.life/login?mode=signup`, "Open Masa" to `app.masa.life` |
-
-**How it works.** An inline script at the end of `<head>` resolves the phase
-from the clock and writes it to `<html data-charter-phase>`, before anything
-paints, so there is no flash of the wrong copy. Each variant block carries
-`data-when="<phase> …"` and a short CSS rule hides the ones that do not match.
-
-**Keeping it in step.** The three boundary instants live in that script and
-nowhere else on this page. They are masa-app's `src/lib/charter.dates.ts`,
-which owns the calendar per ADR-0357, and they agree with masa-tools'
-`WAITLIST_PHASES` to the millisecond. **If the calendar moves, move it here in
-the same change** — nothing checks the two repositories against each other,
-because neither is checked out beside the other.
-
-Every boundary is written with its `-07:00` offset so it parses to one absolute
-instant. Do not rewrite them as bare local dates; a visitor in Sydney would get
-a different phase.
-
-**`node scripts/check-charter-phase.mjs`** checks the page on its own terms, no
-dependencies: that every boundary carries an offset and they are in order, that
-the phase is right one millisecond either side of each one, that every
-`data-when` names a real phase and every phase has copy, that the form is gone
-in the two phases masa-tools expects no form in, and that waitlist copy is
-gated out of the phases with no waitlist.
-
-That last rule exists because it caught a real miss. Everything structural
-passed while two lines still read "Everyone needs to join the waitlist for app
-access" and "Why join early" after entries had stopped — found by looking at a
-screenshot, not by any assertion. Phases switch block by block, so the failure
-mode is the block somebody forgets to mark.
-
-**With JavaScript off** the page shows the phase it shipped with, which is the
-old hand-edited behaviour and no worse. Googlebot runs the script, so the
-indexed copy is the live one.
+It was removed on 3 Nov 2026, along with the waitlist form and
+`scripts/check-charter-phase.mjs`. The hidden blocks were still in the HTML,
+so search engines kept reading and quoting waitlist copy ("Join the Charter
+waitlist", "Opens October 8") long after Masa opened. Only the `public-open`
+copy remains, as plain markup. Don't bring back hidden alternative copy on
+this page: whatever is in the HTML is what a search engine may show.
 
 ## Search Console
 
@@ -295,7 +258,7 @@ Three things worth not re-deriving:
   the script.
 - **The remaining phone CLS is the font swap**, at about 1.7s: the h1 reflows
   when Cormorant replaces the fallback serif and pushes the CTA row and the
-  waitlist note down. Removing it properly means metric-matched fallbacks
+  note under it down. Removing it properly means metric-matched fallbacks
   (`size-adjust`, `ascent-override`) tuned per platform, since the fallback
   serif differs on Windows, macOS and Android. At 0.0098 against a 0.1 budget
   that is not worth the fragility on a page synced by hand from a design canvas.
